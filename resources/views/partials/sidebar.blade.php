@@ -21,7 +21,7 @@
         <li class="{{ request()->is('bom*') ? 'active' : '' }}"><a href="{{ route('bom.index') }}"><em class="fa fa-sticky-note-o">&nbsp;</em> BoM</a></li>
         <li class="{{ request()->is('bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em class="fa fa-balance-scale ">&nbsp;</em> Bahan Baku</a></li>
         <li class="{{ request()->is('pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Data Pesanan</a></li>
-        <li class="{{ request()->is('vendor*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em> Data Vendor</a></li>
+        <li class="{{ request()->is('datavendor*') ? 'active' : '' }}"><a href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em> Data Vendor</a></li>
         <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> MO <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
             </a>
