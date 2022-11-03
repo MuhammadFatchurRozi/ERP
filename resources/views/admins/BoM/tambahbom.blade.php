@@ -30,7 +30,8 @@
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="kode">kode Produk</label>
                         <select name="kode" id="kode" class="form-control input-lg dynamic" data-dependent="nama"
-                            data-dynamic="ukuran" required>
+                            data-dynamic="ukuran">
+                            required>
                             <option disabled selected>---PILIH---</option>
                             @foreach ($products as $p)
                                 <option value="{{ $p->kode }}">{{ $p->kode }} ||
@@ -40,7 +41,8 @@
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="nama">Nama Produk</label>
-                        <select name="nama" id="nama" class="form-control input-lg" readonly="readonly">
+                        <select name="nama" id="nama" class="form-control input-lg" readonly="readonly"
+                            data-dependent="ukuran">
                         </select>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
@@ -75,12 +77,12 @@
         <br>
         <p class="back-link">ERP Produksi Kaos Polos 2022</p>
     </div>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     {{-- Ajax for Nama Produk --}}
     <script>
         $(document).ready(function() {
+
             $('.dynamic').change(function() {
                 if ($(this).val() != '') {
                     var select = $(this).attr("id");
@@ -88,7 +90,7 @@
                     var dependent = $(this).data('dependent');
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
-                        url: "{{ route('bom.fetch') }}",
+                        url: "{{ route('bom.dependent') }}",
                         method: "POST",
                         data: {
                             select: select,
@@ -99,10 +101,10 @@
                         success: function(result) {
                             $('#' + dependent).html(result);
                         }
+
                     })
                 }
             });
-
             $('#kode').change(function() {
                 $('#nama').val('');
             });
@@ -110,7 +112,7 @@
     </script>
 
     {{-- Ajax for table jabatan --}}
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             $('.dynamic').change(function() {
                 if ($(this).val() != '') {
@@ -134,9 +136,9 @@
                 }
             });
 
-            $('#kode').change(function() {
+            $('#nama').change(function() {
                 $('#ukuran').val('');
             });
         });
-    </script> --}}
+    </script>
 @endsection
