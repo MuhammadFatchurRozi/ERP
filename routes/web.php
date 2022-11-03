@@ -8,6 +8,8 @@ use App\Http\Controllers\Bahan_BakuController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BoMController;
+use App\Http\Controllers\KasirController;
+use App\Http\Controllers\VendorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,8 +42,14 @@ Route::resource('pesanan', PesananController::class);
 #Product
 Route::resource('product', ProductController::class);
 
+#Kasir
+Route::resource('kasir', KasirController::class);
+
+#Vendor
+Route::resource('vendor', VendorController::class);
+
 #BoM
 Route::resource('bom', BomController::class);
-Route::post('/bom/fetch', [BomController::class,'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
-Route::post('/bom/fetch1', [BomController::class,'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
-Route::post('/bom/cetak', [BomController::class,'cetak'])->name('bom.cetak'); //Route Cetak PDF
+Route::post('/bom/fetch', [BomController::class, 'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
+Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
+Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF

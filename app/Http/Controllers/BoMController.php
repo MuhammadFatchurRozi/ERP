@@ -17,7 +17,10 @@ class BoMController extends Controller
      */
     public function index()
     {
+        // $all = bom::all();
         $boms = bom::latest()->paginate(8);
+        // $kain = $all->kain * $all->quantity; //0.25 per pcs
+        // $benang = $all->benang * $all->quantity; // 125 per pcs
         return view('admins.bom.tampilbom', compact('boms'));
     }
 
@@ -29,7 +32,7 @@ class BoMController extends Controller
     public function create()
     {
         $products = product::all();
-        return view('admins.bom.tambahbom',compact('products'));
+        return view('admins.bom.tambahbom', compact('products'));
     }
 
     /**
@@ -101,7 +104,7 @@ class BoMController extends Controller
         $boms = bom::all();
         return view('admins.bom.cetakbom', compact('boms'));
     }
-    
+
     //Ajax for table Nama
     function fetch(Request $request)
     {

@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.36.4.
+ * Generated for Laravel 9.38.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5000,7 +5000,7 @@
                     /**
          * Return all of the created connections.
          *
-         * @return \Illuminate\Database\array<string, \Illuminate\Database\Connection>
+         * @return array<string, \Illuminate\Database\Connection> 
          * @static 
          */ 
         public static function getConnections()
@@ -13201,6 +13201,19 @@
                         return $instance->pushMiddlewareToGroup($group, $middleware);
         }
                     /**
+         * Remove the given middleware from the specified group.
+         *
+         * @param string $group
+         * @param string $middleware
+         * @return \Illuminate\Routing\Router 
+         * @static 
+         */ 
+        public static function removeMiddlewareFromGroup($group, $middleware)
+        {
+                        /** @var \Illuminate\Routing\Router $instance */
+                        return $instance->removeMiddlewareFromGroup($group, $middleware);
+        }
+                    /**
          * Flush the router's middleware groups.
          *
          * @return \Illuminate\Routing\Router 
@@ -14579,6 +14592,18 @@
         {
                         /** @var \Illuminate\Session\Store $instance */
                         return $instance->getHandler();
+        }
+                    /**
+         * Set the underlying session handler implementation.
+         *
+         * @param \SessionHandlerInterface $handler
+         * @return void 
+         * @static 
+         */ 
+        public static function setHandler($handler)
+        {
+                        /** @var \Illuminate\Session\Store $instance */
+                        $instance->setHandler($handler);
         }
                     /**
          * Determine if the session handler needs a request.
@@ -17036,6 +17061,17 @@
      */ 
         class Vite {
                     /**
+         * Get the preloaded assets.
+         *
+         * @var array
+         * @static 
+         */ 
+        public static function preloadedAssets()
+        {
+                        /** @var \Illuminate\Foundation\Vite $instance */
+                        return $instance->preloadedAssets();
+        }
+                    /**
          * Get the Content Security Policy nonce applied to all generated tags.
          *
          * @return string|null 
@@ -17140,6 +17176,18 @@
         {
                         /** @var \Illuminate\Foundation\Vite $instance */
                         return $instance->useStyleTagAttributes($attributes);
+        }
+                    /**
+         * Use the given callback to resolve attributes for preload tags.
+         *
+         * @param \Illuminate\Foundation\(callable(string,  string, ?array, ?array): array)|array  $attributes
+         * @return \Illuminate\Foundation\Vite 
+         * @static 
+         */ 
+        public static function usePreloadTagAttributes($attributes)
+        {
+                        /** @var \Illuminate\Foundation\Vite $instance */
+                        return $instance->usePreloadTagAttributes($attributes);
         }
                     /**
          * Generate React refresh runtime script.
@@ -17426,7 +17474,7 @@
                     /**
          * 
          *
-         * @param \Barryvdh\DomPDF\array<string> $pc
+         * @param array<string> $pc
          * @static 
          */ 
         public static function setEncryption($password, $ownerpassword = '', $pc = [])
@@ -17598,7 +17646,7 @@
                     /**
          * 
          *
-         * @param \Barryvdh\DomPDF\array<string> $pc
+         * @param array<string> $pc
          * @static 
          */ 
         public static function setEncryption($password, $ownerpassword = '', $pc = [])
@@ -18171,7 +18219,7 @@
                     /**
          * 
          *
-         * @return \Spatie\FlareClient\array<int, FlareMiddleware|class-string<FlareMiddleware>>
+         * @return array<int, FlareMiddleware|class-string<FlareMiddleware>> 
          * @static 
          */ 
         public static function getMiddleware()
@@ -18232,7 +18280,7 @@
                     /**
          * 
          *
-         * @param \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|\Spatie\FlareClient\array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware> $middleware
+         * @param \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware> $middleware
          * @return \Spatie\FlareClient\Flare 
          * @static 
          */ 
@@ -18244,7 +18292,7 @@
                     /**
          * 
          *
-         * @return \Spatie\FlareClient\array<int,FlareMiddleware|\Spatie\FlareClient\class-string<FlareMiddleware>> 
+         * @return array<int,FlareMiddleware|class-string<FlareMiddleware>> 
          * @static 
          */ 
         public static function getMiddlewares()
@@ -18404,7 +18452,7 @@
          *
          * @param string $groupName
          * @param mixed $default
-         * @return \Spatie\FlareClient\array<int, mixed>
+         * @return array<int, mixed> 
          * @static 
          */ 
         public static function getGroup($groupName = 'context', $default = [])
@@ -20190,7 +20238,7 @@ namespace  {
                 /**
              * Set the table which the query is targeting.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|string $table
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string $table
              * @param string|null $as
              * @return \Illuminate\Database\Query\Builder 
              * @static 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ukuran');
             $table->double('kain');
             $table->double('benang');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
