@@ -42,8 +42,9 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Kode Bahan</th>
-                                    <th>Bahan</th>
+                                    <th>Nama Bahan</th>
                                     <th>Ketersediaan</th>
+                                    <th>Order</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +58,12 @@
                                                 <span class="badge bg-danger me-1 ">Stok Kosong</span>
                                             @elseif ($bahan->stok >= '0')
                                                 <span class="badge bg-primary me-2">{{ $bahan->stok }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bahan->stok == '0')
+                                                <a href="" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>
+                                                    Order</a>
                                             @endif
                                         </td>
                                     </tr>

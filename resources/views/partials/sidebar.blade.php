@@ -9,25 +9,28 @@
                 {{ Auth::user()->name }}
             </div>
             <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+            <a href="{{ route('actionlogout') }}"><em class="fa fa-power-off">&nbsp;</em> Logout</a>
         </div>
         <div class="clear"></div>
     </div>
     <div class="divider"></div>
     <ul class="nav menu">
         <li class="{{ request()->is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><em
-                    class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+                    class="fa fa-home">&nbsp;</em> Dashboard</a></li>
+        <li class="{{ request()->is('admins.product*') ? 'active' : '' }}"><a href="{{ route('product.index') }}"><em
+                    class="fa fa-barcode  ">&nbsp;</em> Kasir</a></li>
         <li class="{{ request()->is('admins.product*') ? 'active' : '' }}"><a href="{{ route('product.index') }}"><em
                     class="fa fa-user-circle-o ">&nbsp;</em> Product</a></li>
         <li class="{{ request()->is('admins.BoM*') ? 'active' : '' }}"><a href="{{ route('bom.index') }}"><em
-                    class="fa fa-th  ">&nbsp;</em> BoM</a></li>
+                    class="fa fa-sticky-note-o">&nbsp;</em> BoM</a></li>
         <li class="{{ request()->is('admins.bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em
-                    class="fa fa-bar-chart">&nbsp;</em> Bahan Baku</a></li>
+                    class="fa fa-balance-scale ">&nbsp;</em> Bahan Baku</a></li>
         <li class="{{ request()->is('admins.pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
                     class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
         <li class="{{ request()->is('admins.costumer*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
                     class="fa fa-user">&nbsp;</em> Data Costumer</a></li>
         <li class="{{ request()->is('admins.vendor*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
-                    class="fa fa-user-plus ">&nbsp;</em> Data Vendor</a></li>
+                    class="fa fa-handshake-o ">&nbsp;</em> Data Vendor</a></li>
         <li class="{{ request()->is('admins.list-product*') ? 'active' : '' }}"><a
                 href="{{ route('pesanan.index') }}"><em class="fa fa-th  ">&nbsp;</em> List Produk</a></li>
         <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
@@ -49,6 +52,6 @@
                     </a></li>
             </ul>
         </li>
-        <li><a href="{{ route('actionlogout') }}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+
     </ul>
 </div>
