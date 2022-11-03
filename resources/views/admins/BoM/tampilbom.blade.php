@@ -59,6 +59,8 @@
                                         <td>{{ $bom->benang }} </td>
                                         <td>
                                             <div class="action">
+                                                <a href="{{ route('bom.cetak', $bom->id) }}"
+                                                    class="action btn btn-sm btn-info"><i class="fa fa-file-text"></i></a>
                                                 <a href="{{ route('bom.edit', $bom->id) }}"
                                                     class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('bom.destroy', $bom->id) }}" method="POST"
