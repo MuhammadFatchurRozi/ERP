@@ -13,7 +13,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admins.datavendor.tampilvendor');
     }
 
     /**
@@ -23,7 +23,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.datavendor.tambahvendor');
     }
 
     /**

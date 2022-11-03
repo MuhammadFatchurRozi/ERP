@@ -46,7 +46,7 @@ Route::resource('product', ProductController::class);
 Route::resource('kasir', KasirController::class);
 
 #Vendor
-Route::resource('vendor', VendorController::class);
+Route::resource('datavendor', VendorController::class);
 
 #BoM
 Route::resource('bom', BomController::class);
