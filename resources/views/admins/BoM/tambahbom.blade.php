@@ -136,7 +136,7 @@
                 }
             });
 
-            $('#nama').change(function() {
+            $('#kode').change(function() {
                 $('#ukuran').val('');
             });
         });

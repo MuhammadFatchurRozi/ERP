@@ -34,10 +34,6 @@
                                 <a type="button" class="btn btn-danger" href="{{ route('bahan.create') }}"><i
                                         class="fa fa-plus"></i> Tambah</a>
                             </div>
-                            {{-- <div class="form-group">
-                                <a type="button" class="btn btn-info" href="{{ route('bahan.cetak') }}"><i
-                                        class="fa fa-print"></i> Cetak</a>
-                            </div> --}}
                         </form>
                     </div>
                     <div class="table-responsive">
@@ -56,7 +52,13 @@
                                         <td>{{ $bahan->id }} </td>
                                         <td>{{ $bahan->kode }} </td>
                                         <td>{{ $bahan->bahan }} </td>
-                                        <td>{{ $bahan->stok }} </td>
+                                        <td>
+                                            @if ($bahan->stok == '0')
+                                                <span class="badge bg-danger me-1 ">Stok Kosong</span>
+                                            @elseif ($bahan->stok >= '0')
+                                                <span class="badge bg-primary me-2">{{ $bahan->stok }}</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

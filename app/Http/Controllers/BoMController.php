@@ -94,9 +94,15 @@ class BoMController extends Controller
     {
         //
     }
+
+    //Cetak
+    public function cetak()
+    {
+        $boms = bom::all();
+        return view('admins.bom.cetakbom', compact('boms'));
+    }
     
     //Ajax for table Nama
-    //Ajax for table jabatan
     function fetch(Request $request)
     {
         $select = $request->get('select');

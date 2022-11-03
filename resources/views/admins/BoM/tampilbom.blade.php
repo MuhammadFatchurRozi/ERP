@@ -39,20 +39,22 @@
                             <thead class="text-center" style="vertical-align:middle;">
                                 <tr>
                                     <th rowspan="2">No</th>
+                                    <th rowspan="2">Kode Produk</th>
                                     <th rowspan="2">Nama Produk</th>
                                     <th rowspan="2">Ukuran</th>
                                     <th colspan="2">Bahan Baku</th>
                                     <th rowspan="2">Actions</th>
                                 </tr>
                                 <tr>
-                                    <th>Kain</th>
-                                    <th>Benang</th>
+                                    <th>Kain/<small>yard</small></th>
+                                    <th>Benang/<small>pcs</small></th>
                                 </tr>
                             </thead>
                             <tbody class="text-center" style="vertical-align:middle;">
                                 @forelse ($boms as $bom)
                                     <tr>
                                         <td>{{ $bom->id }} </td>
+                                        <td>{{ $bom->kode }} </td>
                                         <td>{{ $bom->nama }} </td>
                                         <td>{{ $bom->ukuran }} </td>
                                         <td>{{ $bom->kain }} </td>
