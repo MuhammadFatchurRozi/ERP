@@ -138,6 +138,7 @@ input.form-control {
     font-weight: 500;
     height: 60px;
     padding-top: 18px;
+    text-align: center;
 }
 
 .navbar-header .navbar-brand span {

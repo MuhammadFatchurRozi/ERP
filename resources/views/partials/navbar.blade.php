@@ -7,8 +7,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="{{ route('home') }}"><span>ERP</span> PRODUKSI KAOS POLOS</a>
-            <ul class="nav navbar-top-links navbar-right">
+            <a class="navbar-brand" href="{{ route('home') }}"><span>ERP</span> PRODUKSI KAOS
+                POLOS</a>
+            {{-- <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <em class="fa fa-envelope"></em><span class="label label-danger">15</span>
                     </a>
@@ -66,7 +67,7 @@
                             </a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </nav>
