@@ -54,7 +54,7 @@
                                     <tr>
                                         <td>{{ $products->id }} </td>
                                         <td>{{ $products->kode }}</td>
-                                        <td>{{ $products->nama }} </td>
+                                        <td>Kaos Polos {{ $products->nama }} </td>
                                         <td>{{ $products->ukuran }} </td>
                                         <td>{{ $products->harga }} </td>
                                         <td>

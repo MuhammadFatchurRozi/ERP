@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\product;
+use App\Models\bom;
 
-class ProductSeeder extends Seeder
+class BoMSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,41 +15,60 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        product::create([
+        bom::Create([
+            'id' => 1,
             'kode' => 'P01',
             'nama' => 'Lengan Panjang',
             'ukuran' => 'M',
-            'harga' => 10000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
-        product::create([
+        bom::Create([
+            'id' => 2,
             'kode' => 'P02',
             'nama' => 'Lengan Panjang',
             'ukuran' => 'L',
-            'harga' => 20000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
-        product::create([
+        bom::Create([
+            'id' => 3,
             'kode' => 'P03',
             'nama' => 'Lengan Panjang',
             'ukuran' => 'XL',
-            'harga' => 30000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
-        product::create([
+        bom::Create([
+            'id' => 4,
             'kode' => 'P04',
             'nama' => 'Lengan Pendek',
             'ukuran' => 'M',
-            'harga' => 10000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
-        product::create([
+        bom::Create([
+            'id' => 5,
             'kode' => 'P05',
             'nama' => 'Lengan Pendek',
             'ukuran' => 'L',
-            'harga' => 20000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
-        product::create([
+        bom::Create([
+            'id' => 6,
             'kode' => 'P06',
             'nama' => 'Lengan Pendek',
             'ukuran' => 'XL',
-            'harga' => 30000,
+            'kain' => 0.25,
+            'benang' => 125,
+            'quantity' => 1,
         ]);
+
     }
 }

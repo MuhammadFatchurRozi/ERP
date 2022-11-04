@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\pesanan;
+use App\Models\bom;
+use App\Models\bahan_baku;
 use Alert;
 
 class PesananController extends Controller
@@ -45,6 +47,18 @@ class PesananController extends Controller
             Alert::error('Pesanan Gagal Ditambahkan', 'Maaf');
             return redirect()->route('pesanan.create');
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    //Di Alih Fungsi Menjadi Button Proses
+    public function show($id)
+    {
+        //
     }
 
     /**

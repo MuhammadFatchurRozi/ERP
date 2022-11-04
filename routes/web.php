@@ -44,6 +44,9 @@ Route::resource('product', ProductController::class);
 
 #Kasir
 Route::resource('kasir', KasirController::class);
+Route::post('/kasir/fetch', [KasirController::class, 'fetch'])->name('kasir.dependent'); //Ajax Fetch Data nama produk from products
+Route::post('/kasir/fetch1', [KasirController::class, 'fetch1'])->name('kasir.fetch1'); //Ajax Fetch Data ukuran produk from products
+Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fetch2'); //Ajax Fetch Data harga produk from products
 
 #Vendor
 Route::resource('vendor', VendorController::class);

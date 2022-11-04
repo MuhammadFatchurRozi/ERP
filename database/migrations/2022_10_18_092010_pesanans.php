@@ -15,11 +15,19 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->string('produk');
+            $table->string('kode_pesanan')->nullable();
+            $table->string('nama');
             $table->string('ukuran');
-            $table->integer('jml_kaos');
-            $table->double('kain');
-            $table->double('benang');
+            $table->double('harga');
+            $table->integer('jumlah');
+            $table->integer('total');
+            $table->string('tgl_pesan');
+            $table->boolean('status')->default(0);
+            $table->string('nama_pemesan');
+            $table->string('alamat_pemesan');
+            $table->string('no_pemesan');
+            $table->double('kain')->nullable();
+            $table->double('benang')->nullable();
             $table->timestamps();
         });
     }
