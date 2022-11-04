@@ -32,7 +32,7 @@
                 <div class="col-xs-6 col-md-3 col-lg-4 no-padding">
                     <div class="panel panel-blue panel-widget border-right">
                         <div class="row no-padding"><em class="fa fa-xl fa-child color-orange"></em>
-                            <div class="large"><strong>{{ $sum_kain }} </strong> (Kg)</div>
+                            <div class="large"><strong>{{ $kain->stok }} </strong> (Kg)</div>
                             <div class="text-muted">Kain</div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="col-xs-6 col-md-3 col-lg-4 no-padding">
                     <div class="panel panel-orange panel-widget border-right">
                         <div class="row no-padding"><em class="fa fa-xl fa-bars color-teal"></em>
-                            <div class="large"><strong> {{ $sum_benang }}</strong> (yard)</div>
+                            <div class="large"><strong> {{ $benang->stok }}</strong> (yard)</div>
                             <div class="text-muted">benang</div>
                         </div>
                     </div>
@@ -146,19 +146,25 @@
                                         <th>Produk</th>
                                         <th>Jumlah Kaos (pcs)</th>
                                         <th>Ukuran</th>
-                                        <th>Jumlah Kain Katun 245 (Kg)</th>
-                                        <th>Jumlah Benang (Yard)</th>
+                                        <th>Kain/<small>Kg</small></th>
+                                        <th>Benang/<small>Yard</small></th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
                                     @forelse ($pesanans as $pesanan)
                                         <tr>
                                             <td>{{ $pesanan->id }} </td>
-                                            <td>{{ $pesanan->produk }} </td>
-                                            <td>{{ $pesanan->jml_kaos }} </td>
+                                            <td>{{ $pesanan->nama }} </td>
+                                            <td>{{ $pesanan->jumlah }} </td>
                                             <td>{{ $pesanan->ukuran }} </td>
                                             <td>{{ $pesanan->kain }} </td>
                                             <td>{{ $pesanan->benang }} </td>
+                                            @if ($pesanan->status == 0)
+                                                <td><span class="badge bg-danger">Belum Diproses</span></td>
+                                            @elseif ($pesanan->status == 1)
+                                                <td><span class="badge bg-succes">Sudah Diproses</span></td>
+                                            @endif
                                         </tr>
                                     @empty
                                         ` <tr>

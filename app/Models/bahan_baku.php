@@ -9,4 +9,5 @@ class bahan_baku extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $primaryKey = 'id';
 }

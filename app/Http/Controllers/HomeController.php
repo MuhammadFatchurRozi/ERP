@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\pesanan;
-
+use App\Models\bahan_baku;
 
 class HomeController extends Controller
 {
@@ -12,8 +12,8 @@ class HomeController extends Controller
     {
         $pesanans = pesanan::orderBy('id', 'DESC')->get();
         $all_pesanan = pesanan::count('id');
-        $sum_kain = pesanan::sum('kain'); 
-        $sum_benang = pesanan::sum('benang'); 
-        return view('home',compact('all_pesanan','sum_kain','sum_benang','pesanans'));
+        $kain = bahan_baku::where('id', 1)->first();
+        $benang = bahan_baku::where('id', 2)->first();
+        return view('home',compact('all_pesanan','kain','benang','pesanans'));
     }
 }
