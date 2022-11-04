@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_vendor');
+            $table->string('alamat');
+            $table->string('no_telp');
+            $table->string('kode_produk');
+            $table->string('nama_produk');
+            $table->string('status');
             $table->timestamps();
         });
     }

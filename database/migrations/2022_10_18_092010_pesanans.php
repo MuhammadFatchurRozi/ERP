@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('nama_pemesan');
             $table->string('alamat_pemesan');
             $table->string('no_pemesan');
-            $table->double('kain')->nullable();
-            $table->double('benang')->nullable();
+            $table->integer('kain')->nullable();
+            $table->integer('benang')->nullable();
             $table->timestamps();
         });
     }

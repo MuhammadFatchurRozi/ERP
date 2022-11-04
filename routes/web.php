@@ -35,9 +35,11 @@ Route::post('register/action', [RegisterController::class, 'actionregister'])->n
 
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
+Route::get('bahan/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
+Route::post('pesanan/{id}/proses', [PesananController::class, 'proses'])->name('pesanan.proses');  //Check Avibility (CA)
 
 #Product
 Route::resource('product', ProductController::class);
@@ -50,6 +52,7 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 
 #Vendor
 Route::resource('datavendor', VendorController::class);
+Route::post('datavendor/{id}/tambahstok', [VendorController::class, 'tambahstok'])->name('datavendor.stok'); //Tambah Stok Bahan Baku
 
 #BoM
 Route::resource('bom', BomController::class);

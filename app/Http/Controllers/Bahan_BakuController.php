@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bahan_baku;
 use Illuminate\Http\Request;
+use App\Models\bahan_baku;
+use App\Models\vendor;
 use Alert;
 use PDF;
 
@@ -109,6 +110,19 @@ class Bahan_BakuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function vendor($id)
+    {
+        if ($id == 1){
+            $vendors = vendor::where('nama_produk', 'Kain')->where('status','aktif')->get();
+            return view('admins.data-vendor.tampilvendor', compact('vendors'));
+        }
+        elseif ($id == 2){
+            $vendors = vendor::where('nama_produk', 'Benang')->where('status','aktif')->get();
+            return view('admins.data-vendor.tampilvendor', compact('vendors'));
+        }
+    }
+    
     public function cetak()
     {
         $bahans = bahan_baku::all();
