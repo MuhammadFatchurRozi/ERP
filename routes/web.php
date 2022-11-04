@@ -49,7 +49,7 @@ Route::post('/kasir/fetch1', [KasirController::class, 'fetch1'])->name('kasir.fe
 Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fetch2'); //Ajax Fetch Data harga produk from products
 
 #Vendor
-Route::resource('vendor', VendorController::class);
+Route::resource('datavendor', VendorController::class);
 
 #BoM
 Route::resource('bom', BomController::class);
