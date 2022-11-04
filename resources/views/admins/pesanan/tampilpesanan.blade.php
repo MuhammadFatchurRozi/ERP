@@ -48,8 +48,8 @@
                                     <td>harga Produk</td>
                                     <td>Kain</td>
                                     <td>Benang</td>
-                                    <td>Edit</td>
                                     <td>Proses</td>
+                                    <td>Edit</td>
                                 </tr>
                             </thead>
                             <tbody class="text-center" style="vertical-align:middle;">
