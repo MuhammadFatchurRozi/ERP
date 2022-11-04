@@ -111,4 +111,41 @@ class PesananController extends Controller
             return redirect()->route('pesanan.index');
         }
     }
+
+    public function proses($id)
+    {
+        //Proses Check Avibility
+        $kain_bahan = bahan_baku::find(1);
+        $kain_bahan = $kain_bahan->stok;
+        $benang_bahan = bahan_baku::find(2);
+        $benang_bahan = $benang_bahan->stok;
+
+
+        $pesanans = pesanan::find($id);
+        $kain_pesanan = $pesanans->kain;
+        $benang_pesanan = $pesanans->benang;
+        
+        if ($kain_bahan >= $kain_pesanan && $benang_bahan >= $benang_pesanan) {
+            
+            $up_kain = $kain_bahan - $kain_pesanan;
+            $up_benang = $benang_bahan - $benang_pesanan;
+            
+            $new_kain = bahan_baku::find(1);
+            $new_kain->stok = $up_kain;
+            $new_kain->save();
+
+            $new_bahan = bahan_baku::find(2);
+            $new_bahan->stok = $up_benang;
+            $new_bahan->save();
+            
+            $pesanans->status = 1;
+            $pesanans->save();
+
+            Alert::success('Pesanan Berhasil Diproses', 'Selamat');
+            return redirect()->route('pesanan.index');
+        } else {
+            Alert::error('Pesanan Tidak Dapat Di Proses ', 'Stok Kurang');
+            return redirect()->route('pesanan.index');
+        }
+    }
 }

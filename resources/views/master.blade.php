@@ -163,7 +163,7 @@
                                             @if ($pesanan->status == 0)
                                                 <td><span class="badge bg-danger">Belum Diproses</span></td>
                                             @elseif ($pesanan->status == 1)
-                                                <td><span class="badge bg-succes">Sudah Diproses</span></td>
+                                                <td><span class="badge bg-success">Sudah Diproses</span></td>
                                             @endif
                                         </tr>
                                     @empty
@@ -186,16 +186,4 @@
         <!--/.row-->
     </div>
     <!--/.main-->
-
-    <script>
-        window.onload = function() {
-            var chart1 = document.getElementById("line-chart").getContext("2d");
-            window.myLine = new Chart(chart1).Line(lineChartData, {
-                responsive: true,
-                scaleLineColor: "rgba(0,0,0,.2)",
-                scaleGridLineColor: "rgba(0,0,0,.05)",
-                scaleFontColor: "#c5c7cc"
-            });
-        };
-    </script>
 @endsection

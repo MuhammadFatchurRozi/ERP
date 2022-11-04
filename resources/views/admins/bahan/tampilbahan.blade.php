@@ -24,18 +24,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Pencarian. . ." name="#"
-                                    value="">
-                            </div>
-                            <div class="form-group">
-                                <a type="button" class="btn btn-danger" href="{{ route('bahan.create') }}"><i
-                                        class="fa fa-plus"></i> Tambah</a>
-                            </div>
-                        </form>
-                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
@@ -61,10 +49,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($bahan->stok == '0')
-                                                <a href="" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>
-                                                    Order</a>
-                                            @endif
+                                            <a href="{{ route('bahan.vendor', $bahan->id) }} "
+                                                class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>
+                                                Order</a>
                                         </td>
                                     </tr>
                                 @empty

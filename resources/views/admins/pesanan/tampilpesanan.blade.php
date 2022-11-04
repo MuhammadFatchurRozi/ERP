@@ -58,15 +58,14 @@
                                         <td>{{ $pesanan->id }} </td>
                                         {{-- Format kode MRK-LPA-{{ukuran}}-0{{id}} --}}
                                         @if ($pesanan->nama == 'Lengan Panjang')
-                                            <td>{!! DNS2D::getBarcodeHTML("ERP-LPA-$pesanan->ukuran-0$pesanan->id", 'QRCODE', 4, 4) !!}
+                                            <td>{!! DNS1D::getBarcodeHTML("ERP-LPA-$pesanan->ukuran-0$pesanan->id", 'C39', 0.8, 30) !!}
                                                 <p style="font-size: 10px; margin-top: 5px;">
                                                     ERP-LPA-{{ $pesanan->ukuran }}-0{{ $pesanan->id }}</p>
                                             </td>
                                         @elseif ($pesanan->nama == 'Lengan Pendek')
-                                            <td>{!! DNS2D::getBarcodeHTML("ERP-LPD-$pesanan->ukuran-0$pesanan->id", 'QRCODE', 4, 4) !!}
+                                            <td>{!! DNS1D::getBarcodeHTML("ERP-LPD-$pesanan->ukuran-0$pesanan->id", 'C39', 0.8, 30) !!}
                                                 <p style="font-size: 10px; margin-top: 5px;">
                                                     ERP-LPD-{{ $pesanan->ukuran }}-0{{ $pesanan->id }}</p>
-
                                             </td>
                                         @endif
                                         <td>{{ $pesanan->nama_pemesan }} </td>
@@ -74,30 +73,32 @@
                                         <td>{{ $pesanan->no_pemesan }} </td>
                                         <td>{{ $pesanan->nama }} </td>
                                         <td>{{ $pesanan->ukuran }} </td>
-                                        <td>{{ $pesanan->harga }} </td>
+                                        <td>@idr($pesanan->harga) </td>
                                         <td>{{ $pesanan->jumlah }} </td>
-                                        <td>{{ $pesanan->total }} </td>
+                                        <td>@idr($pesanan->total) </td>
                                         <td>{{ $pesanan->kain }} </td>
                                         <td>{{ $pesanan->benang }} </td>
                                         <td>{{ $pesanan->tgl_pesan }} </td>
                                         @if ($pesanan->status == 0)
                                             <td><span class="badge bg-danger">Belum Diproses</span></td>
                                         @elseif ($pesanan->status == 1)
-                                            <td><span class="badge bg-succes">Sudah Diproses</span></td>
+                                            <td><span class="badge bg-success">Sudah Diproses</span></td>
                                         @endif
+                                        <td>
+                                            <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-info">Proses</button>
+                                            </form>
+
+                                        </td>
                                         <td>
                                             <a href="{{ route('pesanan.edit', $pesanan->id) }}"
                                                 class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
-                                        <td>
-                                            <a href="{{ route('pesanan.edit', $pesanan->id) }}"
-                                                class="action btn btn-sm btn-primary">Proses</i></a>
-
-                                        </td>
                                     </tr>
                                 @empty
                                     ` <tr>
-                                        <td colspan="6" class="text-center">Tidak ada data</td>
+                                        <td colspan="16" class="text-center">Tidak ada data</td>
                                     </tr>
                                 @endforelse
                             </tbody>
