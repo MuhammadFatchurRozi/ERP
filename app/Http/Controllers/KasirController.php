@@ -70,7 +70,7 @@ class KasirController extends Controller
         
         $get_benang = $benang->benang * $request->jumlah * 12;
 
-        $tanggal = date('Y-m-d');
+        $tanggal = date('Y-m-d, H:i');
         $pesanan = pesanan::create([
             'nama' => $request->nama,
             'ukuran' => $request->ukuran,
