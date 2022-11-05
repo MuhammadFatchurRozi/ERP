@@ -145,7 +145,7 @@ class PesananController extends Controller
             return redirect()->route('pesanan.index');
         } else {
             Alert::error('Pesanan Tidak Dapat Di Proses, Silahkan Tambah Stok ', 'Stok Kurang');
-            return redirect()->route('stok.index');
+            return redirect()->route('bahan.index');
         }
     }
 
