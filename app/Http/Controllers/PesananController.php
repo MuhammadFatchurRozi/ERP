@@ -112,9 +112,9 @@ class PesananController extends Controller
         }
     }
 
+    //Proses Check Avibility (CA)
     public function proses($id)
     {
-        //Proses Check Avibility
         $kain_bahan = bahan_baku::find(1);
         $kain_bahan = $kain_bahan->stok;
         $benang_bahan = bahan_baku::find(2);
@@ -147,5 +147,11 @@ class PesananController extends Controller
             Alert::error('Pesanan Tidak Dapat Di Proses ', 'Stok Kurang');
             return redirect()->route('pesanan.index');
         }
+    }
+
+    public function cetak($id)
+    {
+        $pesanans = pesanan::find($id);
+        return view('admins.pesanan.cetakpesanan', compact('pesanans'));
     }
 }

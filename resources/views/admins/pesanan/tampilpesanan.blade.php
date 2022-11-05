@@ -37,7 +37,7 @@
                                     <th colspan="2">Bahan Baku</th>
                                     <th rowspan="2">Tanggal Pemesanan</th>
                                     <th rowspan="2">Status</th>
-                                    <th colspan="2">Action</th>
+                                    <th colspan="3">Action</th>
                                 </tr>
                                 <tr>
                                     <td>Nama Pemesan</td>
@@ -49,6 +49,7 @@
                                     <td>Kain</td>
                                     <td>Benang</td>
                                     <td>Proses</td>
+                                    <td>Cetak</td>
                                     <td>Edit</td>
                                 </tr>
                             </thead>
@@ -89,7 +90,10 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-info">Proses</button>
                                             </form>
-
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('pesanan.cetak', $pesanan->id) }}"
+                                                class="action btn btn-sm btn-default"><i class="fa fa-print"></i></a>
                                         </td>
                                         <td>
                                             <a href="{{ route('pesanan.edit', $pesanan->id) }}"

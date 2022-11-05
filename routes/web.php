@@ -40,6 +40,7 @@ Route::get('bahan/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('
 #Pesanan
 Route::resource('pesanan', PesananController::class);
 Route::post('pesanan/{id}/proses', [PesananController::class, 'proses'])->name('pesanan.proses');  //Check Avibility (CA)
+Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('pesanan.cetak');  
 
 #Product
 Route::resource('product', ProductController::class);
