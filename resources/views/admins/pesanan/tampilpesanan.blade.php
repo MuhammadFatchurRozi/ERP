@@ -88,7 +88,12 @@
                                         <td>
                                             <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-info">Proses</button>
+                                                @if ($pesanan->status == 0)
+                                                    <button type="submit" class="btn btn-sm btn-info">Proses</button>
+                                                @else
+                                                    <button type="submit" class="btn btn-sm btn-info"
+                                                        disabled>Proses</button>
+                                                @endif
                                             </form>
                                         </td>
                                         <td>
