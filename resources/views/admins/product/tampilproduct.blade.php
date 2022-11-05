@@ -56,7 +56,7 @@
                                         <td>{{ $products->kode }}</td>
                                         <td>Kaos Polos {{ $products->nama }} </td>
                                         <td>{{ $products->ukuran }} </td>
-                                        <td>{{ $products->harga }} </td>
+                                        <td>Rp. @idr($products->harga) </td>
                                         <td>
                                             <div class="action">
                                                 <a href="{{ route('product.edit', $products->id) }}"

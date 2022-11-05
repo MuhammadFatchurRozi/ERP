@@ -144,8 +144,8 @@ class PesananController extends Controller
             Alert::success('Pesanan Berhasil Diproses', 'Selamat');
             return redirect()->route('pesanan.index');
         } else {
-            Alert::error('Pesanan Tidak Dapat Di Proses ', 'Stok Kurang');
-            return redirect()->route('pesanan.index');
+            Alert::error('Pesanan Tidak Dapat Di Proses, Silahkan Tambah Stok ', 'Stok Kurang');
+            return redirect()->route('stok.index');
         }
     }
 

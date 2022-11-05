@@ -45,7 +45,13 @@
                                             @if ($bahan->stok == '0')
                                                 <span class="badge bg-danger me-1 ">Stok Kosong</span>
                                             @elseif ($bahan->stok >= '0')
-                                                <span class="badge bg-primary me-2">{{ $bahan->stok }}</span>
+                                                @if ($bahan->bahan == 'Kain')
+                                                    <span class="badge bg-primary me-2">{{ $bahan->stok }}
+                                                        <small>KG</small></span>
+                                                @elseif ($bahan->bahan == 'Benang')
+                                                    <span class="badge bg-primary me-2">{{ $bahan->stok }}
+                                                        <small>Yard</small></span>
+                                                @endif
                                             @endif
                                         </td>
                                         <td>
