@@ -21,7 +21,7 @@
                     class="fa fa-user-circle-o ">&nbsp;</em>Data Product</a></li>
         <li class="{{ request()->is('bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em
                     class="fa fa-balance-scale ">&nbsp;</em> Bahan Baku</a></li>
-        <li class="{{ request()->is('vendor*') ? 'active' : '' }}"><a href="{{ route('datavendor.index') }}"><em
+        <li class="{{ request()->is('datavendor*') ? 'active' : '' }}"><a href="{{ route('datavendor.index') }}"><em
                     class="fa fa-handshake-o ">&nbsp;</em> Data Vendor</a></li>
         <li class="{{ request()->is('kasir*') ? 'active' : '' }}"><a href="{{ route('kasir.index') }}"><em
                     class="fa fa-money  ">&nbsp;</em> Kasir</a></li>

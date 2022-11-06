@@ -83,4 +83,10 @@ class MaDController extends Controller
     {
         //
     }
+
+    public function cetak($id)
+    {
+        $mads = mad::find($id);
+        return view('admins.MaD.cetakmad', compact('mads'));
+    }
 }

@@ -36,7 +36,7 @@ Route::post('register/action', [RegisterController::class, 'actionregister'])->n
 
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
-Route::get('bahan/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
+Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
@@ -65,3 +65,4 @@ Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); /
 
 #MaD
 Route::resource ('mad', MadController::class);
+Route::get('mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak');  

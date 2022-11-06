@@ -72,29 +72,20 @@
                                         <td>{{ $pesanan->kain }} </td>
                                         <td>{{ $pesanan->benang }} </td>
                                         <td>{{ $pesanan->tgl_pesan }} </td>
-                                        @if ($pesanan->status == 0)
-                                            <td><span class="badge bg-danger">Belum Diproses</span></td>
-                                        @elseif ($pesanan->status == 1)
-                                            <td><span class="badge bg-success">Sudah Diproses</span></td>
-                                        @endif
+                                        <td><span class="badge bg-danger">Belum Diproses</span></td>
                                         <td>
                                             <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">
                                                 @csrf
-                                                @if ($pesanan->status == 0)
-                                                    <button type="submit" class="btn btn-sm btn-info">Proses</button>
-                                                @else
-                                                    <button type="submit" class="btn btn-sm btn-info"
-                                                        disabled>Proses</button>
-                                                @endif
+                                                <button type="submit" class="btn btn-sm btn-info">Proses</button>
                                             </form>
                                         </td>
                                         <td>
                                             <a href="{{ route('pesanan.cetak', $pesanan->id) }}"
-                                                class="action btn btn-sm btn-default"><i class="fa fa-print"></i></a>
+                                                class="btn btn-sm btn-default"><i class="fa fa-print"> Cetak</i></a>
                                         </td>
                                         <td>
                                             <a href="{{ route('pesanan.edit', $pesanan->id) }}"
-                                                class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                                class="btn btn-sm btn-warning"><i class="fa fa-pencil"> Edit</i></a>
                                         </td>
                                     </tr>
                                 @empty

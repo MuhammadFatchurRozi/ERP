@@ -48,9 +48,7 @@
                                     <td>harga Produk</td>
                                     <td>Kain</td>
                                     <td>Benang</td>
-                                    <td>Proses</td>
                                     <td>Cetak</td>
-                                    <td>Edit</td>
                                 </tr>
                             </thead>
                             <tbody class="text-center" style="vertical-align:middle;">
@@ -72,29 +70,10 @@
                                         <td>{{ $mad->kain }} </td>
                                         <td>{{ $mad->benang }} </td>
                                         <td>{{ $mad->tgl_pesan }} </td>
-                                        @if ($mad->status == 0)
-                                            <td><span class="badge bg-danger">Belum Diproses</span></td>
-                                        @elseif ($mad->status == 1)
-                                            <td><span class="badge bg-success">Sudah Diproses</span></td>
-                                        @endif
+                                        <td><span class="badge bg-success">Sudah Diproses</span></td>
                                         <td>
-                                            <form action="{{ route('pesanan.proses', $mad->id) }}" method="POST">
-                                                @csrf
-                                                @if ($mad->status == 0)
-                                                    <button type="submit" class="btn btn-sm btn-info">Proses</button>
-                                                @else
-                                                    <button type="submit" class="btn btn-sm btn-info"
-                                                        disabled>Proses</button>
-                                                @endif
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('pesanan.cetak', $mad->id) }}"
-                                                class="action btn btn-sm btn-default"><i class="fa fa-print"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('pesanan.edit', $mad->id) }}"
-                                                class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ route('mad.cetak', $mad->id) }}" class="btn btn-sm btn-default"><i
+                                                    class="fa fa-print"> Cetak</i></a>
                                         </td>
                                     </tr>
                                 @empty
