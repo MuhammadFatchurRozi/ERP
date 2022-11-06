@@ -18,7 +18,7 @@
         <li class="{{ request()->is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><em
                     class="fa fa-home">&nbsp;</em> Dashboard</a></li>
         <li class="{{ request()->is('product*') ? 'active' : '' }}"><a href="{{ route('product.index') }}"><em
-                    class="fa fa-user-circle-o ">&nbsp;</em> Product</a></li>
+                    class="fa fa-user-circle-o ">&nbsp;</em>Data Product</a></li>
         <li class="{{ request()->is('bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em
                     class="fa fa-balance-scale ">&nbsp;</em> Bahan Baku</a></li>
         <li class="{{ request()->is('vendor*') ? 'active' : '' }}"><a href="{{ route('datavendor.index') }}"><em
@@ -26,7 +26,7 @@
         <li class="{{ request()->is('kasir*') ? 'active' : '' }}"><a href="{{ route('kasir.index') }}"><em
                     class="fa fa-money  ">&nbsp;</em> Kasir</a></li>
         <li class="{{ request()->is('bom*') ? 'active' : '' }}"><a href="{{ route('bom.index') }}"><em
-                    class="fa fa-recycle">&nbsp;</em> BoM</a></li>
+                    class="fa fa-recycle">&nbsp;</em>Data BoM</a></li>
         <li class="{{ request()->is('pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
                     class="fa fa-shopping-cart">&nbsp;</em> Detail Pesanan</a></li>
         <li class="{{ request()->is('mad*') ? 'active' : '' }}"><a href="{{ route('mad.index') }}"><em
