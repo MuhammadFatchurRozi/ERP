@@ -99,9 +99,9 @@ class BoMController extends Controller
     }
 
     //Cetak
-    public function cetak()
+    public function cetak($id)
     {
-        $boms = bom::all();
+        $boms = bom::find($id);
         return view('admins.bom.cetakbom', compact('boms'));
     }
 

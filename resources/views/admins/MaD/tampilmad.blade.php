@@ -37,7 +37,7 @@
                                     <th colspan="2">Bahan Baku</th>
                                     <th rowspan="2">Tanggal Pemesanan</th>
                                     <th rowspan="2">Status</th>
-                                    <th colspan="3">Action</th>
+                                    <th rowspan="3">Cetak</th>
                                 </tr>
                                 <tr>
                                     <td>Nama Pemesan</td>
@@ -48,7 +48,6 @@
                                     <td>harga Produk</td>
                                     <td>Kain</td>
                                     <td>Benang</td>
-                                    <td>Cetak</td>
                                 </tr>
                             </thead>
                             <tbody class="text-center" style="vertical-align:middle;">
