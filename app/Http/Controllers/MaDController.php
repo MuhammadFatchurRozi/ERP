@@ -14,7 +14,7 @@ class MaDController extends Controller
      */
     public function index()
     {
-        $mads = mad::orderBy('tgl_pesan', 'asc')->paginate(8);
+        $mads = mad::orderBy('tgl_pesan', 'desc')->paginate(8);
         return view ('admins.mad.tampilmad', compact('mads'));
     }
 
