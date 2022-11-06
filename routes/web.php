@@ -55,14 +55,15 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 
 #Vendor
 Route::resource('datavendor', VendorController::class);
-Route::post('datavendor/{id}/tambahstok', [VendorController::class, 'tambahstok'])->name('datavendor.stok'); //Tambah Stok Bahan Baku
+Route::post('/datavendor/{id}/tambahstok', [VendorController::class, 'tambahstok'])->name('datavendor.stok'); //Tambah Stok Bahan Baku
 
 #BoM
 Route::resource('bom', BomController::class);
 Route::post('/bom/fetch', [BomController::class, 'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
 Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
-Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF
+// Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF
+Route::get('/bom/{id}/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF  
 
 #MaD
 Route::resource ('mad', MadController::class);
-Route::get('mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak');  
+Route::get('/mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak');  
