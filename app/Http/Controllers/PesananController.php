@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\pesanan;
 use App\Models\bom;
 use App\Models\bahan_baku;
+use App\Models\mad;
+use App\Models\product;
+
 use Alert;
+use DB;
 
 class PesananController extends Controller
 {
@@ -121,7 +126,13 @@ class PesananController extends Controller
         $benang_bahan = $benang_bahan->stok;
 
 
+        $mad = mad::all();
         $pesanans = pesanan::find($id);
+        $produk = product::find($pesanans->id_produk);
+
+        // $produk_match_pesanan = product::where('nama', 'regexp',"(^| ){$pesanans->nama}.*( |$)")->where('ukuran', 'regexp',"(^| ){$pesanans->ukuran}.*( |$)")->get(); //Cari Produk Yang Sesuai Dengan Pesanan dan Product Berdasarkan Nama dan Ukuran
+        
+
         $kain_pesanan = $pesanans->kain;
         $benang_pesanan = $pesanans->benang;
         
@@ -138,11 +149,31 @@ class PesananController extends Controller
             $new_bahan->stok = $up_benang;
             $new_bahan->save();
             
-            $pesanans->status = 1;
-            $pesanans->save();
+            $mad = mad::create([
+                'kode_pesanan' => $pesanans->kode_pesanan,
+                'nama' => $pesanans->nama,
+                'ukuran' => $pesanans->ukuran,
+                'harga' => $pesanans->harga,
+                'jumlah' => $pesanans->jumlah,
+                'total' => $pesanans->total,
+                'tgl_pesan' => $pesanans->tgl_pesan,
+                'kain' => $pesanans->kain,
+                'benang' => $pesanans->benang,
+                'status' => 0,
+                'nama_pemesan' => $pesanans->nama_pemesan,
+                'alamat_pemesan' => $pesanans->alamat_pemesan,
+                'no_pemesan' => $pesanans->no_pemesan,
+            ]);
+
+            $mad->status = 1;
+            $mad->save();
+            $produk->penjualan = $produk->penjualan + $pesanans->jumlah;
+            $produk->save();
+
+            $pesanans->delete();
 
             Alert::success('Pesanan Berhasil Diproses', 'Selamat');
-            return redirect()->route('pesanan.index');
+            return redirect()->route('mad.index');
         } else {
             Alert::error('Pesanan Tidak Dapat Di Proses, Silahkan Tambah Stok ', 'Stok Kurang');
             return redirect()->route('bahan.index');
