@@ -163,6 +163,7 @@ class PesananController extends Controller
                 'nama_pemesan' => $pesanans->nama_pemesan,
                 'alamat_pemesan' => $pesanans->alamat_pemesan,
                 'no_pemesan' => $pesanans->no_pemesan,
+                'estimasi' => $pesanans->estimasi,
             ]);
 
             $mad->status = 1;

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\bom;
+use Carbon\Carbon;
 
 class BoMSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 16,
         ]);
         bom::Create([
             'id' => 2,
@@ -32,6 +34,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 16,
         ]);
         bom::Create([
             'id' => 3,
@@ -41,6 +44,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 16,
         ]);
         bom::Create([
             'id' => 4,
@@ -50,6 +54,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 15,
         ]);
         bom::Create([
             'id' => 5,
@@ -59,6 +64,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 15,
         ]);
         bom::Create([
             'id' => 6,
@@ -68,6 +74,7 @@ class BoMSeeder extends Seeder
             'kain' => 0.25,
             'benang' => 125,
             'quantity' => 1,
+            'estimasi' => 15,
         ]);
 
     }
