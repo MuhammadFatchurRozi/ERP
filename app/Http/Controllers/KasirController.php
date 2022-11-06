@@ -70,8 +70,15 @@ class KasirController extends Controller
         
         $get_benang = $benang->benang * $request->jumlah * 12;
 
+        if ($request->nama == 'Lengan Panjang') {
+            $kode_pesan = "ERP-LPA-$request->ukuran-$request->kode";
+        }
+        else {
+            $kode_pesan = "ERP-LPE-$request->ukuran-$request->kode";
+        }
         $tanggal = date('Y-m-d, H:i');
         $pesanan = pesanan::create([
+            'kode_pesanan' => $kode_pesan,
             'nama' => $request->nama,
             'ukuran' => $request->ukuran,
             'harga' => $request->harga,
@@ -84,6 +91,7 @@ class KasirController extends Controller
             'nama_pemesan' => $request->nama_pemesan,
             'alamat_pemesan' => $request->alamat_pemesan,
             'no_pemesan' => $request->no_pemesan,
+            'id_produk' => $request->id,
         ]);
 
         if ($pesanan) {
@@ -138,6 +146,22 @@ class KasirController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Ajax for table Nama
+    function fetch3(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dynamic3 = $request->get('dynamic3');
+        $data = DB::table('products')
+            ->where($select, $value)
+            ->groupBy($dynamic3)
+            ->get();
+        foreach ($data as $row) {
+            $output = '<option value="' . $row->$dynamic3 . '" name="kode" selected>' . ucfirst($row->$dynamic3) . '</option>';
+        }
+        echo $output;
     }
 
     //Ajax for table Nama

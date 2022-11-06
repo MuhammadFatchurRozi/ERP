@@ -7,14 +7,14 @@
                 <li><a href="{{ route('home') }}">
                         <em class="fa fa-home"></em>
                     </a></li>
-                <li class="active">Data Pemesanan</li>
+                <li class="active">Data Mark as Done</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Detail Pesanan</h2>
+                <h2 class="page-header">Data Mark as Done</h2>
             </div>
         </div>
     </div>
@@ -54,33 +54,33 @@
                                 </tr>
                             </thead>
                             <tbody class="text-center" style="vertical-align:middle;">
-                                @forelse ($pesanans as $pesanan)
+                                @forelse ($mads as $mad)
                                     <tr>
-                                        <td>{{ $pesanan->id }} </td>
-                                        <td>{!! DNS1D::getBarcodeHTML($pesanan->kode_pesanan, 'C39', 0.8, 30) !!}
+                                        <td>{{ $mad->id }} </td>
+                                        <td>{!! DNS1D::getBarcodeHTML($mad->kode_pesanan, 'C39', 0.8, 30) !!}
                                             <p style="font-size: 10px; margin-top: 5px;">
-                                                {{ $pesanan->kode_pesanan }}</p>
+                                                {{ $mad->kode_pesanan }}</p>
                                         </td>
-                                        <td>{{ $pesanan->nama_pemesan }} </td>
-                                        <td>{{ $pesanan->alamat_pemesan }} </td>
-                                        <td>{{ $pesanan->no_pemesan }} </td>
-                                        <td>{{ $pesanan->nama }} </td>
-                                        <td>{{ $pesanan->ukuran }} </td>
-                                        <td>Rp.@idr($pesanan->harga) </td>
-                                        <td>{{ $pesanan->jumlah }} </td>
-                                        <td>Rp.@idr($pesanan->total) </td>
-                                        <td>{{ $pesanan->kain }} </td>
-                                        <td>{{ $pesanan->benang }} </td>
-                                        <td>{{ $pesanan->tgl_pesan }} </td>
-                                        @if ($pesanan->status == 0)
+                                        <td>{{ $mad->nama_pemesan }} </td>
+                                        <td>{{ $mad->alamat_pemesan }} </td>
+                                        <td>{{ $mad->no_pemesan }} </td>
+                                        <td>{{ $mad->nama }} </td>
+                                        <td>{{ $mad->ukuran }} </td>
+                                        <td>@idr($mad->harga) </td>
+                                        <td>{{ $mad->jumlah }} </td>
+                                        <td>@idr($mad->total) </td>
+                                        <td>{{ $mad->kain }} </td>
+                                        <td>{{ $mad->benang }} </td>
+                                        <td>{{ $mad->tgl_pesan }} </td>
+                                        @if ($mad->status == 0)
                                             <td><span class="badge bg-danger">Belum Diproses</span></td>
-                                        @elseif ($pesanan->status == 1)
+                                        @elseif ($mad->status == 1)
                                             <td><span class="badge bg-success">Sudah Diproses</span></td>
                                         @endif
                                         <td>
-                                            <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">
+                                            <form action="{{ route('pesanan.proses', $mad->id) }}" method="POST">
                                                 @csrf
-                                                @if ($pesanan->status == 0)
+                                                @if ($mad->status == 0)
                                                     <button type="submit" class="btn btn-sm btn-info">Proses</button>
                                                 @else
                                                     <button type="submit" class="btn btn-sm btn-info"
@@ -89,11 +89,11 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <a href="{{ route('pesanan.cetak', $pesanan->id) }}"
+                                            <a href="{{ route('pesanan.cetak', $mad->id) }}"
                                                 class="action btn btn-sm btn-default"><i class="fa fa-print"></i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('pesanan.edit', $pesanan->id) }}"
+                                            <a href="{{ route('pesanan.edit', $mad->id) }}"
                                                 class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
@@ -106,7 +106,7 @@
                         </table>
                     </div>
                 </div>
-                {!! $pesanans->withQueryString()->links() !!}
+                {!! $mads->withQueryString()->links() !!}
             </div>
             <div class="col-sm-12">
                 <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>

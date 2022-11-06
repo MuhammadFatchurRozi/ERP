@@ -65,18 +65,10 @@
                                     <div class="well">
                                         <ul class="list-unstyled mb0">
                                             <li><strong>Invoice</strong>
-                                                @if ($pesanans->nama == 'Lengan Panjang')
-                                                    <td>{!! DNS1D::getBarcodeHTML("ERP-LPA-$pesanans->ukuran-0$pesanans->id", 'C39', 0.8, 30) !!}
-                                                        <p
-                                                            style="font-size: 10px; margin-top: 5px; margin-left: 5.2rem;">
-                                                            ERP-LPA-{{ $pesanans->ukuran }}-0{{ $pesanans->id }}</p>
-                                                    </td>
-                                                @elseif ($pesanans->nama == 'Lengan Pendek')
-                                                    <td>{!! DNS1D::getBarcodeHTML("ERP-LPD-$pesanans->ukuran-0$pesanans->id", 'C39', 0.8, 30) !!}
-                                                        <p style="font-size: 10px; margin-top: 5px;">
-                                                            ERP-LPD-{{ $pesanans->ukuran }}-0{{ $pesanans->id }}</p>
-                                                    </td>
-                                                @endif
+                                                <td>{!! DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) !!}
+                                                    <p style="font-size: 10px; margin-top: 5px; margin-left: 5.2rem;">
+                                                        {{ $pesanans->kode_pesanan }}</p>
+                                                </td>
                                             </li>
                                             <li><strong>Invoice Date:</strong> {{ $pesanans->tgl_pesan }}</li>
                                             <li><strong>Status:</strong>

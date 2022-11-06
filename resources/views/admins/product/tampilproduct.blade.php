@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    {{-- <div class="panel-heading">
                         <form class="form-inline">
                             <div class="form-group">
                             </div>
@@ -36,7 +36,7 @@
                                 <a type="button" class="btn btn-info" href="#"><i class="fa fa-print"></i> Cetak</a>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover">
                             <thead class="text-center" style="vertical-align:middle;">
@@ -46,6 +46,7 @@
                                     <th>Nama Produk</th>
                                     <th>Ukuran</th>
                                     <th>Harga</th>
+                                    <th>Terjual</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -58,25 +59,32 @@
                                         <td>{{ $products->ukuran }} </td>
                                         <td>Rp. @idr($products->harga) </td>
                                         <td>
-                                            <div class="action">
-                                                <a href="{{ route('product.edit', $products->id) }}"
-                                                    class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('product.destroy', $products->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="action btn btn-sm btn-danger"
-                                                        onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                            @if ($products->penjualan == 0)
+                                                <span class="badge bg-danger">Belum Terjual</span>
+                                            @else
+                                                <span class="badge bg-success">{{ $products->penjualan }}</span>
                                         </td>
-                                    </tr>
-                                @empty
-                                    ` <tr>
-                                        <td colspan="6" class="text-center">Tidak ada data</td>
-                                    </tr>
+                                @endif
+                                <td>
+                                    <div class="action">
+                                        <a href="{{ route('product.edit', $products->id) }}"
+                                            class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <form action="{{ route('product.destroy', $products->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="action btn btn-sm btn-danger"
+                                                onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                                </tr>
+                            @empty
+                                ` <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>

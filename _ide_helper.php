@@ -22428,9 +22428,9 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class PDF extends \Barryvdh\DomPDF\Facade\Pdf {}
-            class Pdf extends \Barryvdh\DomPDF\Facade\Pdf {}
             class DNS1D extends \Milon\Barcode\Facades\DNS1DFacade {}
             class DNS2D extends \Milon\Barcode\Facades\DNS2DFacade {}
+            class Pdf extends \Barryvdh\DomPDF\Facade\Pdf {}
             class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      

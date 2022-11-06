@@ -26,43 +26,51 @@
                 @csrf
                 <h5 class="card-header">Product</h5>
                 <div class="form-row" style="text-align: center">
-                    <div class="col-md-2 mb-3 input-group-sm">
-                        <label for="kode">kode Produk</label>
-                        <select name="kode" id="kode" class="form-control input-lg dynamic" data-dependent="nama"
-                            data-dynamic="ukuran" data-dynamic1="harga" required>
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="id">kode Produk</label>
+                        <select name="id" id="id" class="form-control input-lg dynamic" data-dynamic3="kode"
+                            data-dynamic1="harga" data-dependent="nama" data-dynamic="ukuran" required>
                             <option disabled selected>---PILIH---</option>
                             @foreach ($products as $p)
-                                <option value="{{ $p->kode }}">{{ $p->kode }} ||
+                                <option value="{{ $p->id }}">{{ $p->kode }} ||
                                     {{ $p->nama }} || {{ $p->ukuran }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-2 mb-3 input-group-sm">
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="kode">Kode Produk</label>
+                        <select name="kode" id="kode" class="form-control input-lg" readonly="readonly">
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 input-group-sm">
                         <label for="nama">Nama Produk</label>
                         <select name="nama" id="nama" class="form-control input-lg" readonly="readonly">
                         </select>
                     </div>
-                    <div class="col-md-2 mb-3 input-group-sm">
+                    <div class="col-md-3 mb-3 input-group-sm">
                         <label for="ukuran">Ukuran</label>
                         <select name="ukuran" id="ukuran" class="form-control input-lg" readonly="readonly">
                         </select>
                     </div>
-                    <div class="col-md-2 mb-3 input-group-sm">
+                    <div class="col-md-4 mb-3 mt-lg-5 input-group-sm">
                         <label for="harga">Harga</label>
                         <select name="harga" id="harga" class="form-control input-lg" readonly="readonly">
                         </select>
                     </div>
-                    <div class="col-md-2 mb-3 input-group-sm">
+                    <div class="col-md-4 mb-3 input-group-sm">
                         <label for="jumlah">Jumlah/<small>lusin</small></label>
                         <input type="text" id="jumlah" name="jumlah" class="form-control input-lg"
                             onchange="lembur();">
                     </div>
-                    <div class="col-md-2 mb-3 input-group-sm">
+                    <div class="col-md-4 mb-3 input-group-sm">
                         <label for="total">Total Harga</label>
                         <input type="text" id="total" name="total" class="form-control input-lg"
                             onchange="lembur();" readonly="readonly">
                     </div>
+                    <br>
+                    <br>
+                    <br>
                     <br>
                     <br>
                     <br>
@@ -118,6 +126,38 @@
                 if ($(this).val() != '') {
                     var select = $(this).attr("id");
                     var value = $(this).val();
+                    var dynamic3 = $(this).data('dynamic3');
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "{{ route('kasir.dependent2') }}",
+                        method: "POST",
+                        data: {
+                            select: select,
+                            value: value,
+                            _token: _token,
+                            dynamic3: dynamic3
+                        },
+                        success: function(result) {
+                            $('#' + dynamic3).html(result);
+                        }
+
+                    })
+                }
+            });
+            $('#id').change(function() {
+                $('#kode').val('');
+            });
+        });
+    </script>
+
+    {{-- Ajax for Nama Produk --}}
+    <script>
+        $(document).ready(function() {
+
+            $('.dynamic').change(function() {
+                if ($(this).val() != '') {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
                     var dependent = $(this).data('dependent');
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
@@ -136,7 +176,7 @@
                     })
                 }
             });
-            $('#kode').change(function() {
+            $('#id').change(function() {
                 $('#nama').val('');
             });
         });
@@ -167,7 +207,7 @@
                 }
             });
 
-            $('#kode').change(function() {
+            $('#id').change(function() {
                 $('#ukuran').val('');
             });
         });
@@ -198,7 +238,7 @@
                 }
             });
 
-            $('#kode').change(function() {
+            $('#id').change(function() {
                 $('#harga').val('');
             });
         });

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BoMController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\MaDController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +48,7 @@ Route::resource('product', ProductController::class);
 
 #Kasir
 Route::resource('kasir', KasirController::class);
+Route::post('/kasir/fetch3', [KasirController::class, 'fetch3'])->name('kasir.dependent2'); //Ajax Fetch Data nama produk from products
 Route::post('/kasir/fetch', [KasirController::class, 'fetch'])->name('kasir.dependent'); //Ajax Fetch Data nama produk from products
 Route::post('/kasir/fetch1', [KasirController::class, 'fetch1'])->name('kasir.fetch1'); //Ajax Fetch Data ukuran produk from products
 Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fetch2'); //Ajax Fetch Data harga produk from products
@@ -60,3 +62,6 @@ Route::resource('bom', BomController::class);
 Route::post('/bom/fetch', [BomController::class, 'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
 Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
 Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF
+
+#MaD
+Route::resource ('mad', MadController::class);
