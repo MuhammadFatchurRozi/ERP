@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\product;
 use App\Models\pesanan;
 use App\Models\bom;
 use App\Models\bahan_baku;
+
 use DB;
 use Alert;
+use Carbon\Carbon;
 
 class KasirController extends Controller
 {
@@ -41,6 +44,7 @@ class KasirController extends Controller
      */
     public function store(Request $request)
     {
+        // Mark as Todo
         if ($request->nama == 'Lengan Panjang' && $request->ukuran == 'M') {
             $kain = bom::where('id', 1)->first();
             $benang = bom::where('id', 1)->first();
@@ -66,17 +70,50 @@ class KasirController extends Controller
             $benang = bom::where('id', 6)->first();
         }
 
+        // Bahahn Baku dari BoM * Jumlah Pesanan
         $get_kain = $kain->kain * $request->jumlah * 12;
-        
         $get_benang = $benang->benang * $request->jumlah * 12;
 
+        // Inisilisasi Kode Produk
         if ($request->nama == 'Lengan Panjang') {
             $kode_pesan = "ERP-LPA-$request->ukuran-$request->kode";
         }
         else {
             $kode_pesan = "ERP-LPE-$request->ukuran-$request->kode";
         }
+
+        // Pick DateTime
         $tanggal = date('Y-m-d, H:i');
+        $current = Carbon::now();
+
+        // Estimasi Waktu Produksi
+            
+            // // get the current time
+
+            // if ($request->nama == 'Lengan Panjang') {
+            //     $trialExpires = $current->addMinutes($boms->estimasi) * $request->jumlah + 12;
+            // }
+            // else {
+            //     $trialExpires = $current->addMinutes($boms->estimasi) * $request->jumlah + 12;
+            // }
+        
+        $boms = bom::find($request->id);
+        $estimasi =  $boms->estimasi * $request->jumlah + 12; //Estimasi per lusin
+        $sum_estimasi = pesanan::sum('total_estimasi'); // menghitung semua estimasi pada tabel pesanan
+        if(pesanan::count() >= 1){
+            $sum_estimasi = pesanan::sum('total_estimasi') + $estimasi;
+        }
+        else{
+            $sum_estimasi = $estimasi;
+        }
+        $hasil_estimasi = $current->addMinutes($sum_estimasi);
+
+        //Perhitungan Jika Hari Weekend
+        // if($estimasi_to_date->isWeekend()){
+        //     $estimasi_to_date = $total_estimasi->addDays(2);
+        // }
+        // dd($hasil_estimasi);
+
         $pesanan = pesanan::create([
             'kode_pesanan' => $kode_pesan,
             'nama' => $request->nama,
@@ -92,6 +129,8 @@ class KasirController extends Controller
             'alamat_pemesan' => $request->alamat_pemesan,
             'no_pemesan' => $request->no_pemesan,
             'id_produk' => $request->id,
+            'estimasi' => $hasil_estimasi->format('Y-m-d, H:i'),
+            'total_estimasi' => $estimasi, //untuk menampung jumlah waktu estimasi per pesanan
         ]);
 
         if ($pesanan) {

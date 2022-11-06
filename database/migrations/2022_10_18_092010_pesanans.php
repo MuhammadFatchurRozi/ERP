@@ -29,6 +29,8 @@ return new class extends Migration
             $table->integer('kain');
             $table->integer('benang');
             $table->integer('id_produk');
+            $table->string('estimasi');
+            $table->integer('total_estimasi');
             $table->timestamps();
         });
     }

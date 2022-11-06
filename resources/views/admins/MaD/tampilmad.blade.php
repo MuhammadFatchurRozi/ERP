@@ -36,6 +36,7 @@
                                     <th rowspan="2">Total Harga</th>
                                     <th colspan="2">Bahan Baku</th>
                                     <th rowspan="2">Tanggal Pemesanan</th>
+                                    <th rowspan="2">Estimasi Jadi</th>
                                     <th rowspan="2">Status</th>
                                     <th rowspan="3">Cetak</th>
                                 </tr>
@@ -69,6 +70,7 @@
                                         <td>{{ $mad->kain }} </td>
                                         <td>{{ $mad->benang }} </td>
                                         <td>{{ $mad->tgl_pesan }} </td>
+                                        <td>{{ $mad->estimasi }} </td>
                                         <td><span class="badge bg-success">Sudah Diproses</span></td>
                                         <td>
                                             <a href="{{ route('mad.cetak', $mad->id) }}" class="btn btn-sm btn-default"><i

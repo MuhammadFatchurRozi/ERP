@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('no_pemesan');
             $table->integer('kain');
             $table->integer('benang');
+            $table->string('estimasi');
             $table->timestamps();
         });
     }

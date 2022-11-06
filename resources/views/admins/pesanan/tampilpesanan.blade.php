@@ -36,6 +36,7 @@
                                     <th rowspan="2">Total Harga</th>
                                     <th colspan="2">Bahan Baku</th>
                                     <th rowspan="2">Tanggal Pemesanan</th>
+                                    <th rowspan="2">Estimasi Jadi</th>
                                     <th rowspan="2">Status</th>
                                     <th colspan="3">Action</th>
                                 </tr>
@@ -72,6 +73,7 @@
                                         <td>{{ $pesanan->kain }} </td>
                                         <td>{{ $pesanan->benang }} </td>
                                         <td>{{ $pesanan->tgl_pesan }} </td>
+                                        <td>{{ $pesanan->estimasi }} </td>
                                         <td><span class="badge bg-danger">Belum Diproses</span></td>
                                         <td>
                                             <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">

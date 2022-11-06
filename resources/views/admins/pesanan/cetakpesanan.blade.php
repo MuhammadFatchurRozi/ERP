@@ -70,7 +70,10 @@
                                                         {{ $pesanans->kode_pesanan }}</p>
                                                 </td>
                                             </li>
-                                            <li><strong>Invoice Date:</strong> {{ $pesanans->tgl_pesan }}</li>
+                                            <li><strong>Tanggal Pemesanan:</strong>
+                                                {{ date('l, j F Y, H:i A', strtotime($pesanans->tgl_pesan)) }}</li>
+                                            <li><strong>Estimasi Jadi:</strong>
+                                                {{ date('l, j F Y, H:i A', strtotime($pesanans->estimasi)) }}</li>
                                             <li><strong>Status:</strong>
                                                 @if ($pesanans->status == 0)
                                                     <td><span class="label label-danger">Belum Diproses</span></td>

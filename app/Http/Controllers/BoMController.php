@@ -7,6 +7,7 @@ use App\Models\bom;
 use App\Models\product;
 use DB;
 use Alert;
+use Carbon\Carbon;
 
 class BoMController extends Controller
 {
@@ -17,11 +18,15 @@ class BoMController extends Controller
      */
     public function index()
     {
-        // $all = bom::all();
         $boms = bom::latest()->paginate(8);
-        // $kain = $all->kain * $all->quantity; //0.25 per pcs
-        // $benang = $all->benang * $all->quantity; // 125 per pcs
+                // // get the current time
+                // $current = Carbon::now();
+
+                // // add 30 days to the current time
+                // $trialExpires = $current->addMinutes(30);
+                // dd($trialExpires);
         return view('admins.bom.tampilbom', compact('boms'));
+
     }
 
     /**

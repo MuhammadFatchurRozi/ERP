@@ -42,13 +42,14 @@
                                     <th rowspan="2">Kode Produk</th>
                                     <th rowspan="2">Nama Produk</th>
                                     <th rowspan="2">Ukuran</th>
-                                    <th colspan="3">Bahan Baku</th>
+                                    <th colspan="2">Bahan Baku</th>
+                                    <th rowspan="2">Estimasi Waktu</th>
+                                    <th rowspan="2">Quantity/<small>Pcs</small></th>
                                     <th rowspan="2">Actions</th>
                                 </tr>
                                 <tr>
                                     <th>Kain/<small>Kg</small></th>
                                     <th>Benang/<small>Yard</small></th>
-                                    <th>Quantity/<small>Pcs</small> </th>
 
                                 </tr>
                             </thead>
@@ -62,6 +63,7 @@
                                         <td>{{ $bom->kain }} </td>
                                         <td>{{ $bom->benang }} </td>
                                         <td>{{ $bom->quantity }} </td>
+                                        <td>{{ $bom->estimasi }} </td>
                                         <td>
                                             <div class="action">
                                                 <a href="{{ route('bom.cetak', $bom->id) }}"
