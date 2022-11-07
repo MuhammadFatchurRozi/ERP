@@ -44,7 +44,7 @@ class KasirController extends Controller
      */
     public function store(Request $request)
     {
-        // Mark as Todo
+        // MO (Material Order)
         if ($request->nama == 'Lengan Panjang' && $request->ukuran == 'M') {
             $kain = bom::where('id', 1)->first();
             $benang = bom::where('id', 1)->first();
@@ -70,7 +70,7 @@ class KasirController extends Controller
             $benang = bom::where('id', 6)->first();
         }
 
-        // Bahahn Baku dari BoM * Jumlah Pesanan
+        // Bahan Baku dari BoM * Jumlah Pesanan (MO)
         $get_kain = $kain->kain * $request->jumlah * 12;
         $get_benang = $benang->benang * $request->jumlah * 12;
 
@@ -84,36 +84,38 @@ class KasirController extends Controller
 
         // Pick DateTime
         $tanggal = date('Y-m-d, H:i');
-        $current = Carbon::now();
-
-        // Estimasi Waktu Produksi
-            
-            // // get the current time
-
-            // if ($request->nama == 'Lengan Panjang') {
-            //     $trialExpires = $current->addMinutes($boms->estimasi) * $request->jumlah + 12;
-            // }
-            // else {
-            //     $trialExpires = $current->addMinutes($boms->estimasi) * $request->jumlah + 12;
-            // }
         
-        $boms = bom::find($request->id);
+        $boms = bom::find($request->id); // Find Bom by ID from Request (ID kasir)
+
+        $current = Carbon::now(); // get tanggal sekarang
+        $sunday = $current->isSunday(); // cek apakah hari ini minggu
+        $saturday = $current->isSaturday(); // cek apakah hari ini sabtu
         $estimasi =  $boms->estimasi * $request->jumlah + 12; //Estimasi per lusin
         $sum_estimasi = pesanan::sum('total_estimasi'); // menghitung semua estimasi pada tabel pesanan
+
+        // cek apakah pesanan lebih dari satu maka estimasi ditambahkan dengan estimasi sebelumnya
         if(pesanan::count() >= 1){
             $sum_estimasi = pesanan::sum('total_estimasi') + $estimasi;
         }
         else{
             $sum_estimasi = $estimasi;
         }
-        $hasil_estimasi = $current->addMinutes($sum_estimasi);
 
-        //Perhitungan Jika Hari Weekend
-        // if($estimasi_to_date->isWeekend()){
-        //     $estimasi_to_date = $total_estimasi->addDays(2);
-        // }
-        // dd($hasil_estimasi);
+        // cek apakah hari ini minggu jika hari ini minggu maka estimasi ditambahkan 1 hari dan jika hari ini sabtu maka estimasi ditambahkan 2 hari
+        if($current == $sunday){
+            $add_day_estimasi = $current->addMinutes($sum_estimasi)->addDays(1);
+        }
+        elseif($current == $saturday){
+            $add_day_estimasi = $current->addMinutes($sum_estimasi)->addDays(2);
+        }
+        else{
+            $add_day_estimasi = $current->addMinutes($sum_estimasi);
+        }
+        
+        // hasil estimasi
+        $hasil_estimasi = $add_day_estimasi;
 
+        // Insert to Database Pesanan
         $pesanan = pesanan::create([
             'kode_pesanan' => $kode_pesan,
             'nama' => $request->nama,
@@ -130,7 +132,7 @@ class KasirController extends Controller
             'no_pemesan' => $request->no_pemesan,
             'id_produk' => $request->id,
             'estimasi' => $hasil_estimasi->format('Y-m-d, H:i'),
-            'total_estimasi' => $estimasi, //untuk menampung jumlah waktu estimasi per pesanan
+            'total_estimasi' => $sum_estimasi, //untuk menampung jumlah waktu estimasi per pesanan
         ]);
 
         if ($pesanan) {

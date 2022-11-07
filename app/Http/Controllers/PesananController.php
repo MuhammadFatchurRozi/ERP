@@ -117,30 +117,33 @@ class PesananController extends Controller
         }
     }
 
-    //Proses Check Avibility (CA)
     public function proses($id)
     {
+        // Inisiliasi Variabel Untuk Menampung Data Kain Dan Benang Dari Tabel Bahan Baku, Digunakan Untuk Menghitung Persediaan 
         $kain_bahan = bahan_baku::find(1);
         $kain_bahan = $kain_bahan->stok;
         $benang_bahan = bahan_baku::find(2);
         $benang_bahan = $benang_bahan->stok;
 
 
-        $mad = mad::all();
-        $pesanans = pesanan::find($id);
-        $produk = product::find($pesanans->id_produk);
+        $mad = mad::all(); //Mengambil Semua Data Dari Tabel Mad
+        $pesanans = pesanan::find($id); //Mengambil Data Pesanan Berdasarkan ID
+        $produk = product::find($pesanans->id_produk); //Mengambil Data Produk Berdasarkan id_produk Pesanan
 
         // $produk_match_pesanan = product::where('nama', 'regexp',"(^| ){$pesanans->nama}.*( |$)")->where('ukuran', 'regexp',"(^| ){$pesanans->ukuran}.*( |$)")->get(); //Cari Produk Yang Sesuai Dengan Pesanan dan Product Berdasarkan Nama dan Ukuran
         
-
-        $kain_pesanan = $pesanans->kain;
-        $benang_pesanan = $pesanans->benang;
+        $kain_pesanan = $pesanans->kain; //Mengambil Data Kain Dari Pesanan
+        $benang_pesanan = $pesanans->benang; //Mengambil Data Benang Dari Pesanan
         
+        // cek ketersediaan kain dan benang atau Check Avibility (CA)
         if ($kain_bahan >= $kain_pesanan && $benang_bahan >= $benang_pesanan) {
-            
+            // Jika Kain dan Benang Mencukupi Maka Pesanan Dapat Di Proses
+
+            // Inisilisasi Untuk Update Stok Kain dan Benang
             $up_kain = $kain_bahan - $kain_pesanan;
             $up_benang = $benang_bahan - $benang_pesanan;
             
+            // Proses Update Stok Kain dan Benang
             $new_kain = bahan_baku::find(1);
             $new_kain->stok = $up_kain;
             $new_kain->save();
@@ -149,6 +152,7 @@ class PesananController extends Controller
             $new_bahan->stok = $up_benang;
             $new_bahan->save();
             
+            // Proses Post ke Table MaD
             $mad = mad::create([
                 'kode_pesanan' => $pesanans->kode_pesanan,
                 'nama' => $pesanans->nama,
@@ -166,12 +170,13 @@ class PesananController extends Controller
                 'estimasi' => $pesanans->estimasi,
             ]);
 
+            // Proses Update Status Pesanan Dari 0 (Belum Diproses) Menjadi 1 (Sudah Diproses)
             $mad->status = 1;
             $mad->save();
             $produk->penjualan = $produk->penjualan + $pesanans->jumlah;
             $produk->save();
 
-            $pesanans->delete();
+            $pesanans->delete(); // Menghapus Pesanan Yang Sudah Diproses
 
             Alert::success('Pesanan Berhasil Diproses', 'Selamat');
             return redirect()->route('mad.index');

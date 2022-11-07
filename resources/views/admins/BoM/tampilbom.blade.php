@@ -43,8 +43,8 @@
                                     <th rowspan="2">Nama Produk</th>
                                     <th rowspan="2">Ukuran</th>
                                     <th colspan="2">Bahan Baku</th>
-                                    <th rowspan="2">Estimasi Waktu</th>
                                     <th rowspan="2">Quantity/<small>Pcs</small></th>
+                                    <th rowspan="2">Estimasi Waktu/<small>Menit</small></th>
                                     <th rowspan="2">Actions</th>
                                 </tr>
                                 <tr>
