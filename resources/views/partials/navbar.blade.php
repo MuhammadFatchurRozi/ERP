@@ -8,10 +8,8 @@
                 <span class="icon-bar"></span></button>
             <a class="navbar-brand" href="{{ route('home') }}"><span>ERP</span> PRODUKSI KAOS
                 POLOS</a>
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i href="{{ route('actionlogout') }}" class="fa fa-power-off"></i>
-                </li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('actionlogout') }}"><span class="fa fa-sign-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>

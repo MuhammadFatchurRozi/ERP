@@ -13,7 +13,7 @@ p {
 a,
 a:hover,
 a:focus {
-    color: #30a5ff;
+    color: white;
 }
 
 h1,
@@ -1544,4 +1544,8 @@ p.back-link {
 .action {
     display: inline-flex;
     margin-left: 5px;
+}
+
+.wkt{
+    text-align: right;
 }
