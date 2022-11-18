@@ -12,6 +12,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\MaDController;
 use App\Http\Controllers\RfqController;
+use App\Http\Controllers\POController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,7 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 
 #Logout
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::post('actionlogout', [LoginController::class, 'actionlogout']);
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 #Register
 Route::get('register', [RegisterController::class, 'register'])->name('register');
@@ -71,3 +72,6 @@ Route::get('/mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak'
 
 #RFQ
 Route::resource('rfq', RfqController::class);
+
+#PO
+Route::resource('po', POController::class);

@@ -75,7 +75,7 @@
 
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4 mb-3">
+        <div class="form-group col-md-4">
             </br>
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
         </div>
