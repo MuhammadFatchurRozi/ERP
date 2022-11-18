@@ -34,7 +34,7 @@
                     <label><i class="fa fa-key"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in"></i> Register</button>
+                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in">&nbsp;</i><span> Register</span> </button>
                 <hr>
                 <p class="text-center">Sudah punya akun silahkan <a href="{{route('login')}}">Login Disini!</a></p>
             </form>

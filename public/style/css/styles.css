@@ -9,11 +9,12 @@ body {
 p {
     color: #777;
 }
-
-a,
+a{
+    color: white;
+}
 a:hover,
 a:focus {
-    color: white;
+    color: blue;
 }
 
 h1,
@@ -1548,4 +1549,8 @@ p.back-link {
 
 .wkt{
     text-align: right;
+}
+
+.log{
+    color: white;
 }
