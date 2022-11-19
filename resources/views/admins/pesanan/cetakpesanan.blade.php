@@ -65,9 +65,12 @@
                                     <div class="well">
                                         <ul class="list-unstyled mb0">
                                             <li><strong>Invoice</strong>
-                                                <td>{!! DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) !!}
-                                                    <p style="font-size: 10px; margin-top: 5px; margin-left: 5.2rem;">
-                                                        {{ $pesanans->kode_pesanan }}</p>
+                                                <span style="font-size: 10px;">
+                                                    {{ $pesanans->kode_pesanan }} </span> <br>
+                                                {{-- <td>{!! DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) !!} --}}
+                                                <td>
+                                                    <img src="data:image/png;base64,{{ DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) }} "
+                                                        alt="barcode">
                                                 </td>
                                             </li>
                                             <li><strong>Tanggal Pemesanan:</strong>
