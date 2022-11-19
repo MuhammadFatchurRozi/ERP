@@ -11,6 +11,8 @@ use App\Http\Controllers\BoMController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\MaDController;
+use App\Http\Controllers\RfqController;
+use App\Http\Controllers\POController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +43,7 @@ Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->n
 #Pesanan
 Route::resource('pesanan', PesananController::class);
 Route::post('pesanan/{id}/proses', [PesananController::class, 'proses'])->name('pesanan.proses');  //Check Avibility (CA)
-Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('pesanan.cetak');  
+Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('pesanan.cetak');
 
 #Product
 Route::resource('product', ProductController::class);
@@ -65,5 +67,11 @@ Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1')
 Route::get('/bom/{id}/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF  
 
 #MaD
-Route::resource ('mad', MadController::class);
-Route::get('/mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak');  
+Route::resource('mad', MadController::class);
+Route::get('/mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak');
+
+#RFQ
+Route::resource('rfq', RfqController::class);
+
+#PO
+Route::resource('po', POController::class);
