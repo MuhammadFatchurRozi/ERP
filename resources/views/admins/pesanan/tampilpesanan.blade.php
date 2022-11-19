@@ -73,7 +73,7 @@
                                         <td>{{ $pesanan->kain }} </td>
                                         <td>{{ $pesanan->benang }} </td>
                                         <td>{{ $pesanan->tgl_pesan }} </td>
-                                        <td>{{ $pesanan->estimasi }} </td>
+                                        <td>{{ $pesanan->estimasi }}</td>
                                         <td><span class="badge bg-danger">Belum Diproses</span></td>
                                         <td>
                                             <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">

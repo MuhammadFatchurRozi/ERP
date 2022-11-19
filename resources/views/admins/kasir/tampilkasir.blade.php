@@ -27,7 +27,7 @@
                 <h5 class="card-header">Product</h5>
                 <div class="form-row" style="text-align: center">
                     <div class="col-md-3 mb-3 input-group-sm">
-                        <label for="id">kode Produk</label>
+                        <label for="id">Detail Product</label>
                         <select name="id" id="id" class="form-control input-lg dynamic" data-dynamic3="kode"
                             data-dynamic1="harga" data-dependent="nama" data-dynamic="ukuran" required>
                             <option disabled selected>---PILIH---</option>
@@ -105,6 +105,7 @@
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+    {{-- Ajax Total Harga --}}
     <script>
         function lembur() {
             var jumlah = document.getElementById("jumlah").value;
