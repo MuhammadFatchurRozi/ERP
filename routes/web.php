@@ -23,14 +23,15 @@ use App\Http\Controllers\POController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Auth::routes();
 
 #Login
-Route::get('/', [LoginController::class, 'Login'])->name('login');
-Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 #Logout
-Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
+// Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 #Register
 Route::get('register', [RegisterController::class, 'register'])->name('register');
