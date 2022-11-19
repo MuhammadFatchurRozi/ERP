@@ -11,7 +11,8 @@
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
 
     <!--Custom Font-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -31,8 +32,8 @@
     <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
     <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('style/js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('style/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('style/js/jquery.idle.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('style/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('style/js/jquery.idle.js') }}"></script>
     <script>
         function inputAngka(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
@@ -40,14 +41,6 @@
                 return false;
             return true;
         }
-    </script>
-    <script>
-        $(document).idle({
-            onIdle: function() {
-                window.location = "{{ route('actionlogout') }}";
-            },
-            idle: 1000000
-        });
     </script>
 </body>
 
