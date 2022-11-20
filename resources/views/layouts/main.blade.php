@@ -24,7 +24,8 @@
     {{-- CONTENT --}}
     @yield('container')
 
-    <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+        crossorigin="anonymous"></script>
     <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('style/js/chart.min.js') }}"></script>
     <script src="{{ asset('style/js/chart-data.js') }}"></script>
@@ -32,16 +33,7 @@
     <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
     <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('style/js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('style/js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('style/js/jquery.idle.js') }}"></script>
-    <script>
-        function inputAngka(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-            return true;
-        }
-    </script>
+    {{-- <script type="text/javascript" src="{{ asset('style/js/jquery.min.js') }}"></script> --}}
 </body>
 
 </html>

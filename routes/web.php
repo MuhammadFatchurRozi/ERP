@@ -59,6 +59,7 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 #Vendor
 Route::resource('datavendor', VendorController::class);
 Route::post('/datavendor/{id}/tambahstok', [VendorController::class, 'tambahstok'])->name('datavendor.stok'); //Tambah Stok Bahan Baku
+Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
 
 #BoM
 Route::resource('bom', BomController::class);
