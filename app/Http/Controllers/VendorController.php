@@ -108,4 +108,66 @@ class VendorController extends Controller
             return redirect()->route('datavendor.show', $id);
         }
     }
+
+     //Ajax Di Halaman AbsensiDataKaryawan.blade.php
+    public function action(Request $request)
+    {
+        if($request->ajax()){
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $search = vendor::Where('nama_vendor', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama_produk', 'LIKE', '%'.$query.'%')
+                ->orderBy('id', 'asc')->get();
+            }
+            else
+            {
+                $search = vendor::latest()->get();
+            }
+            $total_row = $search->count();
+
+            
+
+            if($total_row > 0)
+            {
+                $no = 1;
+
+                foreach($search as $v)
+                {
+                    $output .= '
+                    <tr>
+                        <td>'.$v->id.'</td>
+                        <td>'.$v->nama_produk .'</td>
+                        <td>'.$v->nama_vendor .'</td>
+                        <td>'.$v->no_telp .'</td>
+                        <td>'.$v->alamat .'</td>
+                        <td>
+                            '.$v->status .'
+                        </td>
+                        <td>
+                            <a href="'.route('datavendor.show', $v->id).'" class="btn btn-info btn-sm">Order</a>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <a href="/datavendor/'.$v->id.'/edit" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/datavendor/'.$v->id.'/delete" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    ';
+                }
+            }
+            else
+            {
+            $output = '
+            <tr>
+                <td align="center" colspan="15"><strong> No Data Found </strong></td>
+            </tr>
+            ';
+            }
+            $search = array('table_data' => $output);
+            echo json_encode($search);   
+        }
+    }
 }
