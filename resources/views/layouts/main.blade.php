@@ -9,6 +9,7 @@
     <link href="{{ asset('style/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style/css/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('style/css/animated.css') }}" rel="stylesheet">
 
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -33,6 +34,7 @@
     <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
     <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('style/js/custom.js') }}"></script>
+    <script src="{{ asset('style/js/animation.js') }}"></script>
     {{-- <script type="text/javascript" src="{{ asset('style/js/jquery.min.js') }}"></script> --}}
 </body>
 

@@ -191,22 +191,6 @@ class KasirController extends Controller
     }
 
     //Ajax for table Nama
-    function fetch3(Request $request)
-    {
-        $select = $request->get('select');
-        $value = $request->get('value');
-        $dynamic3 = $request->get('dynamic3');
-        $data = DB::table('products')
-            ->where($select, $value)
-            ->groupBy($dynamic3)
-            ->get();
-        foreach ($data as $row) {
-            $output = '<option value="' . $row->$dynamic3 . '" name="kode" selected>' . ucfirst($row->$dynamic3) . '</option>';
-        }
-        echo $output;
-    }
-
-    //Ajax for table Nama
     function fetch(Request $request)
     {
         $select = $request->get('select');
@@ -250,6 +234,22 @@ class KasirController extends Controller
             ->get();
         foreach ($data as $row) {
             $output = '<option value="' . $row->$dynamic1 . '" name="harga" selected>' . ucfirst($row->$dynamic1) . '</option>';
+        }
+        echo $output;
+    }
+
+    //Ajax for table Nama
+    function fetch3(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dynamic3 = $request->get('dynamic3');
+        $data = DB::table('products')
+            ->where($select, $value)
+            ->groupBy($dynamic3)
+            ->get();
+        foreach ($data as $row) {
+            $output = '<option value="' . $row->$dynamic3 . '" name="kode" selected>' . ucfirst($row->$dynamic3) . '</option>';
         }
         echo $output;
     }

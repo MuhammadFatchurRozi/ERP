@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rfqs', function (Blueprint $table) {
+        Schema::create('puchase_orders', function (Blueprint $table) {
             $table->id();
+            $table->boolean('validate')->default(0);
+            $table->boolean('paid')->default(0);
             $table->string('kode_rfq');
             $table->string('nama_vendor');
             $table->string('alamat');
@@ -24,9 +26,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('total');
             $table->string('tgl_pesan');
-            $table->integer('status');
-            $table->string('tgl_confirm_vendor');
-            $table->string('tgl_pembayaran');
+            $table->string('tgl_bayar');
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rfqs');
+        Schema::dropIfExists('puchase_orders');
     }
 };

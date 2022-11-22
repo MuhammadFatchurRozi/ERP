@@ -22,6 +22,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'A',
             'nama_produk' => 'Benang',
             'status' => 'aktif',
+            'harga' => '20000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. B',
@@ -30,6 +32,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'B',
             'nama_produk' => 'Benang',
             'status' => 'aktif',
+            'harga' => '20000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. C',
@@ -38,6 +42,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'C',
             'nama_produk' => 'Benang',
             'status' => 'nonaktif',
+            'harga' => '20000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. D',
@@ -46,6 +52,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'D',
             'nama_produk' => 'Benang',
             'status' => 'nonaktif',
+            'harga' => '20000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. E',
@@ -54,6 +62,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'E',
             'nama_produk' => 'Kain',
             'status' => 'aktif',
+            'harga' => '50000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. F',
@@ -62,6 +72,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'F',
             'nama_produk' => 'Kain',
             'status' => 'aktif',
+            'harga' => '50000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. G',
@@ -70,6 +82,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'G',
             'nama_produk' => 'Kain',
             'status' => 'nonaktif',
+            'harga' => '50000',
+            'count_confirm_order' => 0,
         ]);
         vendor::create([
             'nama_vendor' => 'PT. H',
@@ -78,6 +92,8 @@ class VendorSeeder extends Seeder
             'kode_produk' => 'H',
             'nama_produk' => 'Kain',
             'status' => 'nonaktif',
+            'harga' => '50000',
+            'count_confirm_order' => 0,
         ]);
     }
 }

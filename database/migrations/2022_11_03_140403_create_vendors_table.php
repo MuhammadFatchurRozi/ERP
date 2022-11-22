@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('no_telp');
             $table->string('kode_produk');
             $table->string('nama_produk');
+            $table->integer('harga');
+            $table->integer('count_confirm_order');
             $table->string('status');
             $table->timestamps();
         });

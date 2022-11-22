@@ -13,6 +13,8 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\MaDController;
 use App\Http\Controllers\RfqController;
 use App\Http\Controllers\POController;
+use App\Http\Controllers\Confirm_OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,8 +60,9 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 
 #Vendor
 Route::resource('datavendor', VendorController::class);
-Route::post('/datavendor/{id}/tambahstok', [VendorController::class, 'tambahstok'])->name('datavendor.stok'); //Tambah Stok Bahan Baku
 Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
+    #Confirm Order
+    Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
 
 #BoM
 Route::resource('bom', BomController::class);
@@ -74,6 +77,15 @@ Route::get('/mad/{id}/cetak', [MadController::class, 'cetak'])->name('mad.cetak'
 
 #RFQ
 Route::resource('rfq', RfqController::class);
+Route::post('/rfq/fetch', [RfqController::class, 'fetch'])->name('rfq.dependent'); //Ajax Fetch Data nama produk from vendor
+Route::post('/rfq/fetch1', [RfqController::class, 'fetch1'])->name('rfq.fetch1'); //Ajax Fetch Data harga produk from vendor
+Route::post('/rfq/fetch2', [RfqController::class, 'fetch2'])->name('rfq.fetch2'); //Ajax Fetch Data nama vendor from vendor
+Route::post('/rfq/fetch3', [RfqController::class, 'fetch3'])->name('rfq.fetch3'); //Ajax Fetch Data alamat vendor from vendor
+Route::post('/rfq/fetch4', [RfqController::class, 'fetch4'])->name('rfq.fetch4'); //Ajax Fetch Data no_telp vendor from vendor
+Route::get('rfq/{id}/cetak', [RfqController::class, 'cetak'])->name('rfq.cetak');
 
 #PO
 Route::resource('po', POController::class);
+
+#Confirm Order
+Route::resource('confirm', Confirm_OrderController::class);
