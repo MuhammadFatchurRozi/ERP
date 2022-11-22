@@ -3,45 +3,57 @@
     @include('sweetalert::alert')
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb wow fadeInLeft">
                 <li><a href="#">
                         <em class="fa fa-home"></em>
                     </a></li>
-                <li class="active">Dashboard</li>
+                <li class="wow fadeInLeft active">Dashboard</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header wow fadeInUp">Dashboard</h1>
             </div>
         </div>
         <!--/.row-->
 
         <div class="panel panel-container">
             <div class="row">
-                <div class="col-xs-6 col-md-3 col-lg-4 no-padding">
-                    <div class="panel panel-teal panel-widget border-right">
-                        <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                            <div class="large">{{ $all_pesanan }}</div>
-                            <div class="text-muted">Semua Pesanan</div>
+                <div class="wow fadeInLeft">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
+                                <div class="large">{{ $all_pesanan }}</div>
+                                <div class="text-muted">Semua Pesanan</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-hashtag color-purple"></em>
+                                <div class="large">{{ $sum_product }}</div>
+                                <div class="text-muted">Product Terjual</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-md-3 col-lg-4 no-padding">
-                    <div class="panel panel-blue panel-widget border-right">
-                        <div class="row no-padding"><em class="fa fa-xl fa-child color-orange"></em>
-                            <div class="large"><strong>{{ $kain->stok }} </strong> (Kg)</div>
-                            <div class="text-muted">Kain</div>
+                <div class="wow fadeInRight">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-child color-orange"></em>
+                                <div class="large"><strong>{{ $kain->stok }} </strong> (Kg)</div>
+                                <div class="text-muted">Kain</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-6 col-md-3 col-lg-4 no-padding">
-                    <div class="panel panel-orange panel-widget border-right">
-                        <div class="row no-padding"><em class="fa fa-xl fa-bars color-teal"></em>
-                            <div class="large"><strong> {{ $benang->stok }}</strong> (yard)</div>
-                            <div class="text-muted">benang</div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-bars color-teal"></em>
+                                <div class="large"><strong> {{ $benang->stok }}</strong> (yard)</div>
+                                <div class="text-muted">benang</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,7 +143,7 @@
         <!--/.row--> --}}
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default chat">
+                <div class="panel panel-default chat wow fadeInLeft">
                     <div class="panel-heading">
                         All Orders
                         <span class="pull-right clickable panel-toggle panel-button-tab-left"><em
@@ -168,7 +180,7 @@
                                         </tr>
                                     @empty
                                         ` <tr>
-                                            <td colspan="6" class="text-center">Tidak ada data</td>
+                                            <td colspan="7" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -179,8 +191,11 @@
                 <!--/.col-->
             </div>
             <!--/.col-->
-            <div class="col-sm-12">
-                <p class="back-link">ERP Produksi Kaos Polos 2022</p>
+            <div class="wow fadeInDown">
+                <div class="col-sm-12">
+                    <p class="back-link">ERP Produksi Kaos Polos
+                        2022</p>
+                </div>
             </div>
         </div>
         <!--/.row-->

@@ -1,30 +1,33 @@
 @extends('layouts.main')
 @section('container')
     @include('sweetalert::alert')
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li><a href="{{ route('home') }}">
-                        <em class="fa fa-home"></em>
-                    </a></li>
-                <li class="active">Data Product</li>
-            </ol>
-        </div>
-        <!--/.row-->
+    <div class="wow fadeInLeft">
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('home') }}">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Data Product</li>
+                </ol>
+            </div>
+            <!--/.row-->
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Detail Product</h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Detail Product</h2>
+                </div>
             </div>
         </div>
+        <!--/.main-->
     </div>
-    <!--/.main-->
 
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    {{-- <div class="panel-heading">
+    <div class="wow fadeInRight">
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        {{-- <div class="panel-heading">
                         <form class="form-inline">
                             <div class="form-group">
                             </div>
@@ -37,63 +40,64 @@
                             </div>
                         </form>
                     </div> --}}
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover">
-                            <thead class="text-center" style="vertical-align:middle;">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode Produk</th>
-                                    <th>Nama Produk</th>
-                                    <th>Ukuran</th>
-                                    <th>Harga</th>
-                                    <th>Terjual</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center" style="vertical-align:middle;">
-                                @forelse ($product as $products)
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead class="text-center" style="vertical-align:middle;">
                                     <tr>
-                                        <td>{{ $products->id }} </td>
-                                        <td>{{ $products->kode }}</td>
-                                        <td>Kaos Polos {{ $products->nama }} </td>
-                                        <td>{{ $products->ukuran }} </td>
-                                        <td>Rp. @idr($products->harga) </td>
-                                        <td>
-                                            @if ($products->penjualan == 0)
-                                                <span class="badge bg-danger">Belum Terjual</span>
-                                            @else
-                                                <span class="badge bg-success">{{ $products->penjualan }}</span>
-                                        </td>
-                                @endif
-                                <td>
-                                    <div class="action">
-                                        <a href="{{ route('product.edit', $products->id) }}"
-                                            class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-                                        <form action="{{ route('product.destroy', $products->id) }}" method="POST"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="action btn btn-sm btn-danger"
-                                                onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                                </tr>
-                            @empty
-                                ` <tr>
-                                    <td colspan="6" class="text-center">Tidak ada data</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                        <th>No</th>
+                                        <th>Kode Produk</th>
+                                        <th>Nama Produk</th>
+                                        <th>Ukuran</th>
+                                        <th>Harga</th>
+                                        <th>Terjual</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" style="vertical-align:middle;">
+                                    @forelse ($product as $products)
+                                        <tr>
+                                            <td>{{ $products->id }} </td>
+                                            <td>{{ $products->kode }}</td>
+                                            <td>Kaos Polos {{ $products->nama }} </td>
+                                            <td>{{ $products->ukuran }} </td>
+                                            <td>Rp. @idr($products->harga) </td>
+                                            <td>
+                                                @if ($products->penjualan == 0)
+                                                    <span class="badge bg-danger">Belum Terjual</span>
+                                                @else
+                                                    <span class="badge bg-success">{{ $products->penjualan }}</span>
+                                            </td>
+                                    @endif
+                                    <td>
+                                        <div class="action">
+                                            <a href="{{ route('product.edit', $products->id) }}"
+                                                class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                            <form action="{{ route('product.destroy', $products->id) }}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="action btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                @empty
+                                    ` <tr>
+                                        <td colspan="6" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    {!! $product->withQueryString()->links() !!}
                 </div>
-                {!! $product->withQueryString()->links() !!}
-            </div>
-            <div class="col-sm-12">
-                <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>
+                <div class="col-sm-12">
+                    <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>
+                </div>
             </div>
         </div>
     </div>

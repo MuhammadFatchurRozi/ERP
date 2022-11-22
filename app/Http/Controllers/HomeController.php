@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\pesanan;
 use App\Models\bahan_baku;
+use App\Models\product;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeController extends Controller
         $all_pesanan = pesanan::count('id');
         $kain = bahan_baku::where('id', 1)->first();
         $benang = bahan_baku::where('id', 2)->first();
-        return view('home',compact('all_pesanan','kain','benang','pesanans'));
+        $sum_product = product::sum('penjualan');
+        return view('home',compact('all_pesanan','kain','benang','pesanans','sum_product'));
     }
 }
