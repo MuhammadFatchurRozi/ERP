@@ -53,7 +53,7 @@ class POController extends Controller
     public function show($id)
     {
         $pos = puchase_order::find($id);
-        $pos->validate = 1;
+        $pos->validate = 0;
         $pos->paid = 1;
         $pos->save();
 
@@ -97,10 +97,10 @@ class POController extends Controller
         $bahan_baku->save();
 
         if ($pos && $rfq && $bahan_baku) {
-            Alert::success('Data Berhasil Di Validasi', 'Tervalidai');
+            Alert::success('Paid Berhasil', 'Paid');
             return redirect()->route('po.index');
         } else {
-            Alert::error('Data Gagal Di Validasi', 'Maaf');
+            Alert::error('Paid Gagal', 'Maaf');
             return redirect()->route('po.index');
         }
     }
@@ -125,20 +125,21 @@ class POController extends Controller
      */
     public function destroy($id)
     {
-        //
+     //   
     }
 
     public function receive($id)
     {
         $pos = puchase_order::find($id);
-        $pos->validate = 0;
+        $pos->receive = 1;
+        $pos->validate = 1;
         $pos->save();
-
+    
         if ($pos) {
-            Alert::success('Data Berhasil Di Validasi', 'Tervalidai');
+            Alert::success('Receive Berhasil ', 'Receive');
             return redirect()->route('po.index');
         } else {
-            Alert::error('Data Gagal Di Validasi', 'Maaf');
+            Alert::error('Receive Gagal', 'Maaf');
             return redirect()->route('po.index');
         }
     }

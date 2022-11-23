@@ -87,7 +87,7 @@ Route::get('rfq/{id}/cetak', [RfqController::class, 'cetak'])->name('rfq.cetak')
 #PO
 Route::resource('po', POController::class);
 #Confirm Order
-Route::post('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
+Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
 
 #Confirm Order
 Route::resource('confirm', Confirm_OrderController::class);
