@@ -69,8 +69,8 @@ class Confirm_OrderController extends Controller
         $confirm_order = confirm_order::find($id);
         $purchase_order = puchase_order::create([
             'receive' => 0,
-            'validate' => 0,
-            'paid' => 0,
+            'validate' => 1,
+            'paid' => 1,
             'tgl_bayar' => 'Waiting To Bill',
             'kode_rfq' => $confirm_order->kode_rfq,
             'nama_vendor' => $confirm_order->nama_vendor,

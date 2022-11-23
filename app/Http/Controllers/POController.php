@@ -53,8 +53,8 @@ class POController extends Controller
     public function show($id)
     {
         $pos = puchase_order::find($id);
-        $pos->validate = 0;
-        $pos->paid = 1;
+        $pos->validate = 3;
+        $pos->paid = 2;
         $pos->save();
 
         $rfq = rfq::where('kode_rfq', $pos->kode_rfq)->first();
@@ -83,7 +83,7 @@ class POController extends Controller
         $now = Carbon::now();
 
         $pos = puchase_order::find($id);
-        $pos->paid = 0;
+        $pos->paid = 3;
         $pos->tgl_bayar = $now->format('Y-m-d, H:i');
         $pos->save();
 
@@ -132,7 +132,7 @@ class POController extends Controller
     {
         $pos = puchase_order::find($id);
         $pos->receive = 1;
-        $pos->validate = 1;
+        $pos->validate = 2;
         $pos->save();
     
         if ($pos) {
