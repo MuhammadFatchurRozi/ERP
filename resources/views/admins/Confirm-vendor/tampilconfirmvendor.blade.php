@@ -56,7 +56,10 @@
                                     @forelse ($confirm as $r)
                                         <tr>
                                             <td>{{ $r->id }}</td>
-                                            <td>{{ $r->kode_rfq }}</td>
+                                            <td>{!! DNS1D::getBarcodeHTML($r->kode_rfq, 'C39', 0.8, 30) !!}
+                                                <p style="font-size: 10px; margin-top: 5px;">
+                                                    {{ $r->kode_rfq }}</p>
+                                            </td>
                                             <td>{{ $r->nama_vendor }}</td>
                                             <td>{{ $r->nohp }}</td>
                                             <td>{{ $r->alamat }}</td>

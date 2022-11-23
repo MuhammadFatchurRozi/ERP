@@ -91,10 +91,12 @@ class KasirController extends Controller
         $current = Carbon::now(); // ambil tanggal,waktu sekarang
         $sunday = $current->isSunday(); // cek apakah hari ini minggu
         $saturday = $current->isSaturday(); // cek apakah hari ini sabtu
-        $estimasi =  $boms->estimasi * $request->jumlah + 12; //Estimasi per lusin
+
+        //Perhitungan Estimasi
+        $estimasi =  $boms->estimasi * $request->jumlah * 12; //Estimasi per lusin // 12 pcs/lusin
         $sum_estimasi = pesanan::sum('total_estimasi'); // menghitung semua estimasi pada tabel pesanan
 
-        // cek apakah pesanan lebih dari satu maka estimasi ditambahkan dengan estimasi sebelumnya
+        // cek apakah pesanan lebih dari satu Jika lebih dari satu maka estimasi ditambahkan dengan estimasi yang telah ada sebelumnya
             if(pesanan::count() >= 1){
                 $sum_estimasi = pesanan::sum('total_estimasi') + $estimasi;
             }
