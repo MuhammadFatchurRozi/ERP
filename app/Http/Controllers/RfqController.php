@@ -133,6 +133,12 @@ class RfqController extends Controller
         //
     }
 
+    public function cetak($id)
+    {
+        $rfqs = rfq::find($id);
+        return view('admins.RFQ.cetakrfq',compact('rfqs'));
+    }
+
     //Ajax for table Nama
     function fetch(Request $request)
     {

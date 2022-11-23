@@ -8,11 +8,20 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" media="print" href="{{ asset('style/css/bootstrap.css') }}" />
+
+    <link rel="stylesheet" media="screen" href="{{ asset('style/css/bootstrap.css') }}" />
 
     <style>
         @page {
-            size: A4;
+            size: 200mm 160mm;
             margin: 0;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+            }
         }
 
         @media print {
@@ -20,11 +29,33 @@
                 visibility: hidden;
             }
 
+            .well {
+                min-height: 20px;
+                padding: 19px;
+                margin-bottom: 20px;
+                background-color: #f5f5f5 !important;
+                border: 1px solid #e3e3e3;
+                border-radius: 4px;
+                -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+                box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+            }
+
+            .label-danger {
+                background-color: #d9534f !important;
+            }
+
+            .label {
+                color: #fff !important;
+                border-radius: 0.25em !important;
+                border: none !important;
+            }
+
             html,
             body {
                 width: 210mm;
                 height: auto;
             }
+
 
             .invoice {
                 margin: 0;
@@ -66,12 +97,13 @@
                                         <ul class="list-unstyled mb0">
                                             <li><strong>Invoice</strong>
                                                 <span style="font-size: 10px;">
-                                                    {{ $pesanans->kode_pesanan }} </span> <br>
-                                                {{-- <td>{!! DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) !!} --}}
-                                                <td>
-                                                    <img src="data:image/png;base64,{{ DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) }} "
-                                                        alt="barcode">
+                                                </span> <br>
+                                                <td>{!! DNS1D::getBarcodeSVG($pesanans->kode_pesanan, 'C39', 1, 35) !!}
                                                 </td>
+                                                {{-- <td>{!! DNS1D::getBarcodeHTML($pesanans->kode_pesanan, 'C39', 0.8, 30) !!}
+                                                    <p style="font-size: 10px; margin-top: 5px;">
+                                                        {{ $pesanans->kode_pesanan }}</p>
+                                                </td> --}}
                                             </li>
                                             <li><strong>Tanggal Pemesanan:</strong>
                                                 {{ date('l, j F Y, H:i A', strtotime($pesanans->tgl_pesan)) }}</li>
@@ -102,7 +134,8 @@
                                             <thead>
                                                 <tr>
                                                     <th class="per70 text-center">Description</th>
-                                                    <th class="per5 text-center">Qty</th>
+                                                    <th class="per5 text-center">Quantity/<small
+                                                            style="font-size: 9px; font-weight: 900;">Lusin</small></th>
                                                     <th class="per25 text-center">Total</th>
                                                 </tr>
                                             </thead>
@@ -111,7 +144,8 @@
                                                     <td>Kaos Polos - {{ $pesanans->nama }} - {{ $pesanans->ukuran }}
                                                         ({{ $pesanans->tgl_pesan }})
                                                     </td>
-                                                    <td class="text-center">{{ $pesanans->jumlah }}</td>
+                                                    <td class="text-center">{{ $pesanans->jumlah }} <small
+                                                            style="font-size: 9px; font-weight: 900;">Lusin</small></td>
                                                     <td class="text-center">Rp. @idr($pesanans->total)</td>
                                                 </tr>
                                             </tbody>
@@ -155,6 +189,7 @@
     </style>
 
     <script type="text/javascript"></script>
+
 </body>
 
 </html>
