@@ -25,7 +25,7 @@ class VendorController extends Controller
         // $where_id_vendor = confirm_order::where('id_vendor', $vendors->id)->get();
         // $count_confirm = $vendors->confirm_order->count('id_vendor', '>', 0);
         // $count = vendor::with('confirm_order')->count('id_vendor', '>', 0)->get();
-        return view('admins.data-vendor.tampilvendor',compact('vendors'));
+        return view('admins.data-vendor.tampilvendor', compact('vendors'));
     }
 
     /**
@@ -64,11 +64,11 @@ class VendorController extends Controller
      */
     public function show($id)
     {
-        $confirm = confirm_order::where('id_vendor',$id)->get();
+        $confirm = confirm_order::where('id_vendor', $id)->get();
         // $vendors = vendor::find($id);
         $vendors = vendor::with(['confirm_order'])->find($id);
         // dd($vendors->confirm_order->count());
-        return view('admins.data-vendor.Confirm-vendor.tampilconfirmvendor', compact('confirm','vendors'));
+        return view('admins.data-vendor.Confirm-vendor.tampilconfirmvendor', compact('confirm', 'vendors'));
     }
 
     /**
@@ -113,7 +113,7 @@ class VendorController extends Controller
         //     $update_status_rfq->status = 2;
         //     $update_status_rfq->tgl_confirm_vendor = $now->format('Y-m-d, H:i');
         //     $update_status_rfq->save();
-            
+
         //     $delete_confirm = confirm_order::find($id)->delete();
 
         //     if ($purchase_order) {
@@ -136,7 +136,7 @@ class VendorController extends Controller
         //
     }
 
-    public function confirm (Request $request,$id)
+    public function confirm(Request $request, $id)
     {
         // $bahan = vendor::find($id);
         // $bahan_baku = bahan_baku::where('bahan', $bahan->nama_produk)->first();
@@ -151,7 +151,7 @@ class VendorController extends Controller
         // }
     }
 
-     //Ajax Di Halaman AbsensiDataKaryawan.blade.php
+    //Ajax Di Halaman AbsensiDataKaryawan.blade.php
     public function action(Request $request)
     {
         // $vendors = vendor::where('status','aktif')->get();
@@ -162,65 +162,58 @@ class VendorController extends Controller
         //     $search_status = 'Aktif';
         // }
         // dd($search_status);
-        if($request->ajax()){
+        if ($request->ajax()) {
             $output = '';
             $query = $request->get('query');
-            if($query != '')
-            {
-                $search = vendor::Where('nama_vendor', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_produk', 'LIKE', '%'.$query.'%')
-                ->orderBy('id', 'asc')->get();
-            }
-            else
-            {
+            if ($query != '') {
+                $search = vendor::Where('nama_vendor', 'LIKE', '%' . $query . '%')
+                    ->orWhere('nama_produk', 'LIKE', '%' . $query . '%')
+                    ->orderBy('id', 'asc')->get();
+            } else {
                 $search = vendor::latest()->get();
             }
             $total_row = $search->count();
 
-            
-            
 
-            if($total_row > 0)
-            {
+
+
+            if ($total_row > 0) {
                 $no = 1;
 
 
-                foreach($search as $v)
-                {
+                foreach ($search as $v) {
                     $output .= '
                     <tr>
-                        <td>'.$v->id.'</td>
-                        <td>'.$v->nama_produk .'</td>
-                        <td>'.$v->nama_vendor .'</td>
-                        <td>'.$v->no_telp .'</td>
-                        <td>'.$v->alamat .'</td>
-                        <td>'.$v->harga .'</td>
+                        <td>' . $v->id . '</td>
+                        <td>' . $v->nama_produk . '</td>
+                        <td>' . $v->nama_vendor . '</td>
+                        <td>' . $v->no_telp . '</td>
+                        <td>' . $v->alamat . '</td>
+                        <td>' . $v->harga . '</td>
                         <td>
-                            '.$v->status.'
+                            ' . $v->status . '
                         </td>
                         <td>
-                            <a href="'.route('datavendor.show', $v->id).'" class="btn btn-info btn-sm">Order</a>
+                            <a href="' . route('datavendor.show', $v->id) . '" class="btn btn-info btn-sm">Order</a>
                         </td>
                         <td>
                             <div class="action">
-                                <a href="'.route('datavendor.edit', $v->id).'" class="btn btn-warning btn-sm">Edit</a> <br>
-                                <a href="'.route('datavendor.destroy', $v->id).'" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Hapus</a>
+                                <a href="' . route('datavendor.edit', $v->id) . '" class="btn btn-warning btn-sm">Edit</a> <br>
+                                <a href="' . route('datavendor.destroy', $v->id) . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Hapus</a>
                             </div>
                         </td>
                     </tr>
                     ';
                 }
-            }
-            else
-            {
-            $output = '
+            } else {
+                $output = '
             <tr>
                 <td align="center" colspan="15"><strong> No Data Found </strong></td>
             </tr>
             ';
             }
             $search = array('table_data' => $output);
-            echo json_encode($search);   
+            echo json_encode($search);
         }
     }
 }

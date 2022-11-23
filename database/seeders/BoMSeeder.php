@@ -25,6 +25,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 16,
+            'harga' => 75000,
         ]);
         bom::Create([
             'id' => 2,
@@ -35,6 +36,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 16,
+            'harga' => 75000,
         ]);
         bom::Create([
             'id' => 3,
@@ -45,6 +47,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 16,
+            'harga' => 75000,
         ]);
         bom::Create([
             'id' => 4,
@@ -55,6 +58,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 15,
+            'harga' => 70000,
         ]);
         bom::Create([
             'id' => 5,
@@ -65,6 +69,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 15,
+            'harga' => 70000,
         ]);
         bom::Create([
             'id' => 6,
@@ -75,7 +80,7 @@ class BoMSeeder extends Seeder
             'benang' => 125,
             'quantity' => 1,
             'estimasi' => 15,
+            'harga' => 70000,
         ]);
-
     }
 }

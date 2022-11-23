@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('benang');
             $table->integer('quantity');
             $table->integer('estimasi');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

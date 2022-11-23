@@ -19,7 +19,7 @@ class POController extends Controller
     public function index()
     {
         $pos = puchase_order::all();
-        return view('admins.PO.tampilpo',compact('pos'));
+        return view('admins.PO.tampilpo', compact('pos'));
     }
 
     /**
@@ -126,5 +126,20 @@ class POController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function receive($id)
+    {
+        $pos = puchase_order::find($id);
+        $pos->validate = 0;
+        $pos->save();
+
+        if ($pos) {
+            Alert::success('Data Berhasil Di Validasi', 'Tervalidai');
+            return redirect()->route('po.index');
+        } else {
+            Alert::error('Data Gagal Di Validasi', 'Maaf');
+            return redirect()->route('po.index');
+        }
     }
 }
