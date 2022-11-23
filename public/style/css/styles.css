@@ -10,10 +10,8 @@ p {
     color: #777;
 }
 
-a {
-    color: white;
-}
 
+a,
 a:hover,
 a:focus {
     color: blue;
