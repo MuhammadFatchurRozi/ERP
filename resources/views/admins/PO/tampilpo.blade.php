@@ -97,8 +97,8 @@
                                                 </td>
                                             @elseif ($r->validate == 1)
                                                 <td>
-                                                    <a href="{{ route('po.show', $r->id) }}" class="btn btn-success"><i
-                                                            class="fa fa-check"></i> Validate</a>
+                                                    <a href="{{ route('po.show', $r->id) }}" class="btn btn-danger"><i
+                                                            class="fa fa-times"></i> Validate</a>
                                                 </td>
                                             @endif
 
@@ -111,7 +111,7 @@
                                                 </td>
                                             @elseif ($r->paid == 1)
                                                 <td>
-                                                    <a href="{{ route('po.edit', $r->id) }}" class="btn btn-danger"><i
+                                                    <a href="{{ route('po.paid', $r->id) }}" class="btn btn-danger"><i
                                                             class="fa fa-credit-card-alt"></i> Paid</a>
                                                 </td>
                                             @endif

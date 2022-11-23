@@ -98,7 +98,7 @@ class POController extends Controller
 
         if ($pos && $rfq && $bahan_baku) {
             Alert::success('Paid Berhasil', 'Paid');
-            return redirect()->route('po.index');
+            return redirect()->route('rfq.index');
         } else {
             Alert::error('Paid Gagal', 'Maaf');
             return redirect()->route('po.index');
@@ -142,5 +142,11 @@ class POController extends Controller
             Alert::error('Receive Gagal', 'Maaf');
             return redirect()->route('po.index');
         }
+    }
+
+    public function paid($id)
+    {
+        $po = puchase_order::find($id);
+        return view('admins.PO.paidpo', compact('po'));
     }
 }
