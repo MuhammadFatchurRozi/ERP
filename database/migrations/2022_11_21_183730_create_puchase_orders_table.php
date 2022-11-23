@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('puchase_orders', function (Blueprint $table) {
             $table->id();
             $table->boolean('receive')->default(0);
-            $table->boolean('validate')->default(0);
-            $table->boolean('paid')->default(0);
+            $table->integer('validate');
+            $table->integer('paid');
             $table->string('kode_rfq');
             $table->string('nama_vendor');
             $table->string('alamat');

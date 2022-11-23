@@ -90,29 +90,38 @@
                                             @endif
 
                                             {{-- Button Validate --}}
-                                            @if ($r->validate == 0)
+                                            @if ($r->validate == 1)
                                                 <td>
-                                                    <button class="btn btn-success" disabled><i class="fa fa-check"></i>
+                                                    <button class="btn btn-danger" disabled><i class="fa fa-times"></i>
                                                         Validate</button>
                                                 </td>
-                                            @elseif ($r->validate == 1)
+                                            @elseif ($r->validate == 2)
                                                 <td>
                                                     <a href="{{ route('po.show', $r->id) }}" class="btn btn-danger"><i
                                                             class="fa fa-times"></i> Validate</a>
                                                 </td>
+                                            @elseif ($r->validate == 3)
+                                                <td>
+                                                    <button class="btn btn-success" disabled><i class="fa fa-check"></i>
+                                                        Validate</button>
+                                                </td>
                                             @endif
 
                                             {{-- Button Paid --}}
-                                            @if ($r->paid == 0)
+                                            @if ($r->paid == 1)
                                                 <td>
-                                                    <button class="btn btn-danger" disabled><i
-                                                            class="fa fa-credit-card-alt"></i>
-                                                        Paid</button>
+                                                    <button class="btn btn-danger" disabled><i class="fa fa-times"></i>
+                                                        Unpaid</button>
                                                 </td>
-                                            @elseif ($r->paid == 1)
+                                            @elseif ($r->paid == 2)
                                                 <td>
                                                     <a href="{{ route('po.paid', $r->id) }}" class="btn btn-danger"><i
-                                                            class="fa fa-credit-card-alt"></i> Paid</a>
+                                                            class="fa fa-times"></i> Unpaid</a>
+                                                </td>
+                                            @elseif ($r->paid == 3)
+                                                <td>
+                                                    <button class="btn btn-warning" disabled><i class="fa fa-smile-o"></i>
+                                                        Paid</button>
                                                 </td>
                                             @endif
                                         </tr>
