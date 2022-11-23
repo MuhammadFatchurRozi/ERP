@@ -63,6 +63,8 @@
                                 <th>Quantity</th>
                                 <th>Kain</th>
                                 <th>Benang</th>
+                                <th>Harga</th>
+                                <th>Estimasi Waktu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,6 +73,8 @@
                                 <td class="col-md-3"> {{ $boms->quantity }}</td>
                                 <td class="col-md-3"> {{ $boms->kain }}<small>/KG</small> </td>
                                 <td class="col-md-3"> {{ $boms->benang }}<small>/Yard</small> </td>
+                                <td class="col-md-3"> Rp.@idr($boms->harga)</td>
+                                <td class="col-md-3"> {{ $boms->estimasi }}</td>
                             </tr>
                         </tbody>
                     </table>

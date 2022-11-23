@@ -61,8 +61,8 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 #Vendor
 Route::resource('datavendor', VendorController::class);
 Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
-    #Confirm Order
-    Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
+#Confirm Order
+Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
 
 #BoM
 Route::resource('bom', BomController::class);
@@ -86,6 +86,8 @@ Route::get('rfq/{id}/cetak', [RfqController::class, 'cetak'])->name('rfq.cetak')
 
 #PO
 Route::resource('po', POController::class);
+#Confirm Order
+Route::post('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
 
 #Confirm Order
 Route::resource('confirm', Confirm_OrderController::class);
