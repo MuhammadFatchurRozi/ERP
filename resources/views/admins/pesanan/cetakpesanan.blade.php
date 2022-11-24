@@ -14,7 +14,7 @@
 
     <style>
         @page {
-            size: 200mm 160mm;
+            size: 140mm 110mm;
             margin: 0;
         }
 
@@ -26,7 +26,7 @@
 
         @media print {
             .cetak {
-                visibility: hidden;
+                display: none;
             }
 
             .well {
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="invoice-footer mt25">
                                     <p class="text-center">ERP PRODUKSI KAOS POLOS 2022 <br> <br>
-                                        <a onclick="window.print()" href="#" class="btn btn-default ml15 cetak"><i
+                                        <a onclick="window.print()" class="btn btn-default ml15 cetak"><i
                                                 class="fa fa-print mr5"></i>
                                             Print</a>
                                     </p>
