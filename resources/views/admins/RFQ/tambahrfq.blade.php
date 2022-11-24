@@ -48,8 +48,7 @@
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="harga">Harga/<small>pcs</small></label>
-                        <select type="text" class="form-control dd" id="harga" placeholder="" name="harga" onchange="total_harga();" readonly="readonly">
-                        </select>
+                        <select type="text" class="form-control dd" id="harga" placeholder="" name="harga" onchange="total_harga();" readonly="readonly"></select>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="quantity">Quantity</label>

@@ -1,64 +1,85 @@
 @extends('layouts.main')
 @section('container')
-    @include('sweetalert::alert')
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <ol class="breadcrumb wow fadeInLeft">
-                <li><a href="#">
-                        <em class="fa fa-home"></em>
-                    </a></li>
-                <li class="wow fadeInLeft active">Dashboard</li>
-            </ol>
-        </div>
-        <!--/.row-->
+@include('sweetalert::alert')
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb wow fadeInLeft">
+            <li><a href="#">
+                    <em class="fa fa-home"></em>
+                </a></li>
+            <li class="wow fadeInLeft active">Dashboard</li>
+        </ol>
+    </div>
+    <!--/.row-->
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header wow fadeInUp">Dashboard</h1>
-            </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header wow fadeInUp">Dashboard</h1>
         </div>
-        <!--/.row-->
+    </div>
+    <!--/.row-->
 
-        <div class="panel panel-container">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="chat wow fadeInUp">
             <div class="row">
-                <div class="wow fadeInLeft">
-                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                        <div class="panel panel-teal panel-widget border-right">
-                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                                <div class="large">{{ $all_pesanan }}</div>
-                                <div class="text-muted">Semua Pesanan</div>
-                            </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <div class="large"><strong>{{ $all_pesanan }}</strong></div>
+                            <div class="text"><strong>Semua Pesanan</strong></div>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                        <div class="panel panel-teal panel-widget border-right">
-                            <div class="row no-padding"><em class="fa fa-xl fa-hashtag color-purple"></em>
-                                <div class="large">{{ $sum_product }}</div>
-                                <div class="text-muted">Product Terjual</div>
-                            </div>
+                        <div class="icon">
+                            <i class="fa fa-cart-plus"></i>
                         </div>
+                        <a href="{{ route('pesanan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="wow fadeInRight">
-                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                        <div class="panel panel-blue panel-widget border-right">
-                            <div class="row no-padding"><em class="fa fa-xl fa-child color-orange"></em>
-                                <div class="large"><strong>{{ $kain->stok }} </strong> (Kg)</div>
-                                <div class="text-muted">Kain</div>
-                            </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <div class="large"><strong>{{ $sum_product }}</strong></div>
+                            <div class="text"><strong>Produk Terjual</strong></div>
                         </div>
+                        <div class="icon">
+                            <i class="fa fa-shopping-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                        <div class="panel panel-orange panel-widget border-right">
-                            <div class="row no-padding"><em class="fa fa-xl fa-bars color-teal"></em>
-                                <div class="large"><strong> {{ $benang->stok }}</strong> (yard)</div>
-                                <div class="text-muted">benang</div>
-                            </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <div class="large"><strong>{{ $kain->stok }} </strong><small>Kg</small></div>
+                            <div class="text"><strong>Kain</strong></div>
                         </div>
+                        <div class="icon">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <a href="{{ route('bahan.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <div class="large"><strong> {{ $benang->stok }}</strong><small> Yard</small></div>
+                            <div class="text"><strong>Benang</strong></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <a href="{{ route('bahan.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <!--/.row-->
+            <!-- ./col -->
         </div>
         {{-- <div class="row">
             <div class="col-md-12">
@@ -142,12 +163,11 @@
         </div>
         <!--/.row--> --}}
         <div class="row">
-            <div class="col-md-6">
+            <div class="container-fluid">
                 <div class="panel panel-default chat wow fadeInLeft">
                     <div class="panel-heading">
                         All Orders
-                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em
-                                class="fa fa-toggle-up"></em></span>
+                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
                     </div>
                     <div class="panel-body">
                         <ul>
@@ -165,23 +185,23 @@
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
                                     @forelse ($pesanans as $pesanan)
-                                        <tr>
-                                            <td>{{ $pesanan->id }} </td>
-                                            <td>{{ $pesanan->nama }} </td>
-                                            <td>{{ $pesanan->jumlah }} </td>
-                                            <td>{{ $pesanan->ukuran }} </td>
-                                            <td>{{ $pesanan->kain }} </td>
-                                            <td>{{ $pesanan->benang }} </td>
-                                            @if ($pesanan->status == 0)
-                                                <td><span class="badge bg-danger">Belum Diproses</span></td>
-                                            @elseif ($pesanan->status == 1)
-                                                <td><span class="badge bg-success">Sudah Diproses</span></td>
-                                            @endif
-                                        </tr>
+                                    <tr>
+                                        <td>{{ $pesanan->id }} </td>
+                                        <td>{{ $pesanan->nama }} </td>
+                                        <td>{{ $pesanan->jumlah }} </td>
+                                        <td>{{ $pesanan->ukuran }} </td>
+                                        <td>{{ $pesanan->kain }} </td>
+                                        <td>{{ $pesanan->benang }} </td>
+                                        @if ($pesanan->status == 0)
+                                        <td><span class="badge bg-danger">Belum Diproses</span></td>
+                                        @elseif ($pesanan->status == 1)
+                                        <td><span class="badge bg-success">Sudah Diproses</span></td>
+                                        @endif
+                                    </tr>
                                     @empty
-                                        ` <tr>
-                                            <td colspan="7" class="text-center">Tidak ada data</td>
-                                        </tr>
+                                    ` <tr>
+                                        <td colspan="7" class="text-center">Tidak ada data</td>
+                                    </tr>
                                     @endforelse
                                 </tbody>
                             </table>
@@ -201,4 +221,4 @@
         <!--/.row-->
     </div>
     <!--/.main-->
-@endsection
+    @endsection
