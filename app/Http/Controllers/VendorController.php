@@ -21,7 +21,7 @@ class VendorController extends Controller
     public function index()
     {
         // $vendors = vendor::orderBy('status', 'asc')->paginate(10);
-        $vendors = vendor::with('confirm_order')->get();
+        $vendors = vendor::with('confirm_order')->orderBy('status','asc')->paginate(10);
         // $where_id_vendor = confirm_order::where('id_vendor', $vendors->id)->get();
         // $count_confirm = $vendors->confirm_order->count('id_vendor', '>', 0);
         // $count = vendor::with('confirm_order')->count('id_vendor', '>', 0)->get();

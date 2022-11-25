@@ -19,7 +19,7 @@ class RfqController extends Controller
      */
     public function index()
     {
-        $rfqs = rfq::latest()->paginate(10);
+        $rfqs = rfq::orderBy('id','desc')->paginate(10);
         return view('admins.RFQ.tampilrfq',compact('rfqs'));
     }
 

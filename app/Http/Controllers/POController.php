@@ -18,7 +18,7 @@ class POController extends Controller
      */
     public function index()
     {
-        $pos = puchase_order::all();
+        $pos = puchase_order::orderBy('id','desc')->paginate(10);
         return view('admins.PO.tampilpo', compact('pos'));
     }
 

@@ -160,6 +160,7 @@
                                         <th>Ukuran</th>
                                         <th>Kain/<small>Kg</small></th>
                                         <th>Benang/<small>Yard</small></th>
+                                        <th>Estimasi Produk</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -172,6 +173,7 @@
                                             <td>{{ $pesanan->ukuran }} </td>
                                             <td>{{ $pesanan->kain }} </td>
                                             <td>{{ $pesanan->benang }} </td>
+                                            <td>{{ $pesanan->estimasi }} </td>
                                             @if ($pesanan->status == 0)
                                                 <td><span class="badge bg-danger">Belum Diproses</span></td>
                                             @elseif ($pesanan->status == 1)
