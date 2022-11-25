@@ -62,7 +62,7 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 Route::resource('datavendor', VendorController::class);
 Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
 #Confirm Order
-Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
+// Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
 
 #BoM
 Route::resource('bom', BomController::class);
@@ -92,3 +92,4 @@ Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Re
 
 #Confirm Order
 Route::resource('confirm', Confirm_OrderController::class);
+

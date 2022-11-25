@@ -22,7 +22,7 @@ class PesananController extends Controller
      */
     public function index()
     {
-        $pesanans = pesanan::latest()->paginate(5);
+        $pesanans = pesanan::orderBy('tgl_pesan','desc')->paginate(5);
         return view('admins.pesanan.tampilpesanan', compact('pesanans'));
     }
 

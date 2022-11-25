@@ -18,7 +18,7 @@ class Confirm_OrderController extends Controller
      */
     public function index()
     {
-        $confirm = confirm_order::all();
+        $confirm = confirm_order::orderBy('id','desc')->paginate(10);
         return view('admins.Confirm-vendor.tampilconfirmvendor', compact('confirm'));
     }
 
