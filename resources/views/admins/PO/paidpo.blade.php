@@ -5,13 +5,13 @@
     <meta charset="utf-8">
 
     @if ($po->status == 1)
-        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
+    <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 2)
-        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
+    <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 3)
-        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
+    <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 4)
-        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
+    <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @endif
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,8 +55,7 @@
 
             <div class="page-tools cetak">
                 <div class="action-buttons">
-                    <a onclick="window.print()" class="btn bg-white btn-light mx-1px text-95" href="#"
-                        data-title="PDF">
+                    <a onclick="window.print()" class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
                         <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
                         Print
                     </a>
@@ -104,12 +103,10 @@
                                 </div>
 
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Tanggal Pemesanan : </span> {{ $po->tgl_pesan }}
+                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Pemesanan : </span> {{ $po->tgl_pesan }}
                                 </div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Tanggal bayar :</span>
+                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal bayar :</span>
                                     {{ $po->tgl_bayar }}
                                 </div>
                             </div>
@@ -176,29 +173,28 @@
                                         </div>
                                         <div class="col-2">
                                             @if ($po->status == 4)
-                                                <span class="text-120 text-secondary-d1">Rp.@idr($po->total)</span>
+                                            <span class="text-120 text-secondary-d1">Rp.@idr($po->total)</span>
                                             @else
-                                                <span class="text-120 text-secondary-d1">Nothing To Bill</span>
+                                            <span class="text-120 text-secondary-d1">Nothing To Bill</span>
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- 
-                                    <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+
+                                    <!-- <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                         <div class="col-7 text-right">
                                             Total Amount
                                         </div>
                                         <div class="col-5">
                                             <span class="text-150 text-success-d3 opacity-2">Rp.@idr($po->total)</span>
                                         </div>
-                                    </div> --}}
+                                    </div>  -->
                                 </div>
                             </div>
 
                             <hr />
 
                             <div class="center-text">
-                                <a href="javascript:setTimeout(()=>{window.location = '{{ route('po.edit', $po->id) }}' },10000);"
-                                    class="btn btn-info btn-bold px-4 mt-3 mt-lg-0 order cetak">
+                                <a href="javascript:setTimeout(()=>{window.location = '{{ route('po.edit', $po->id) }}' },10000);" class="btn btn-info btn-bold px-4 mt-3 mt-lg-0 order cetak">
                                     <span class="default">PAID</span>
                                     <span class="success">SUCCESS PAID
                                         <svg viewbox="0 0 12 10">
@@ -792,7 +788,19 @@
         </style>
 
         <script type="text/javascript"></script>
-        <script src="{{ asset('style/js/complete_order.js') }}"></script>
+        <!-- <script src="{{ asset('style/js/complete_order.js') }}"></script> -->
+        <script>
+            $(".order").click(function(e) {
+                let button = $(this);
+
+                if (!button.hasClass("animate")) {
+                    button.addClass("animate");
+                    setTimeout(() => {
+                        button.removeClass("animate");
+                    }, 10000);
+                }
+            });
+        </script>
 </body>
 
 </html>

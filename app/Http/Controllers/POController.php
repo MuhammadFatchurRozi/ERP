@@ -18,7 +18,7 @@ class POController extends Controller
      */
     public function index()
     {
-        $pos = puchase_order::orderBy('id','desc')->paginate(10);
+        $pos = puchase_order::orderBy('id', 'desc')->paginate(10);
         return view('admins.PO.tampilpo', compact('pos'));
     }
 
@@ -125,7 +125,7 @@ class POController extends Controller
      */
     public function destroy($id)
     {
-     //   
+        //   
     }
 
     public function receive($id)
@@ -134,7 +134,7 @@ class POController extends Controller
         $pos->receive = 1;
         $pos->validate = 2;
         $pos->save();
-    
+
         if ($pos) {
             Alert::success('Receive Berhasil ', 'Receive');
             return redirect()->route('po.index');

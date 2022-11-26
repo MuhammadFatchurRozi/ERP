@@ -87,7 +87,7 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        $vendors = vendor::findOrFail($id);
+        $vendors = vendor::find($id);
         return view('admins.data-vendor.editvendor', compact('vendors'));
     }
 
@@ -100,22 +100,8 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama_bahan_baku'  => 'required',
-            'harga'            => 'required',
-            'nama'             => 'required',
-            'alamat'           => 'required',
-            'no_telp'          => 'required'
-        ]);
-
-        $vendors = vendor::findOrFail($id);
-        $vendors->update([
-            'nama_bahan_baku'  => $request->nama_bahan_baku,
-            'harga'            => $request->harga,
-            'nama'             => $request->nama,
-            'alamat'           => $request->alamat,
-            'no_telp'          => $request->no_telp
-        ]);
+        $vendors = vendor::find($id);
+        $vendors->update($request->all());
         if ($vendors) {
             Alert::success('Data Vendor Berhasil diupdate', 'Selamat');
             return redirect()->route('datavendor.index');
@@ -123,38 +109,6 @@ class VendorController extends Controller
             Alert::error('Data Vendor Gagal diupdate', 'Maaf');
             return redirect()->route('datavendor.edit');
         }
-        // $now = carbon::now();
-
-        // // $confirm_order = confirm_order::find('id_vendor',$id)->first();
-        // $confirm_order = confirm_order::with(['vendors'])->find($id);
-        // dd($confirm_order->confirm_order->kode_rfq);
-        //     $purchase_order = puchase_order::create([
-        //         'id_vendor' => $confirm_order->confirm_order->id_vendor,
-        //         'kode_rfq' => $confirm_order->confirm_order->kode_rfq,
-        //         'nama_vendor' => $confirm_order->confirm_order->nama_vendor,
-        //         'alamat' => $confirm_order->confirm_order->alamat,
-        //         'nohp' => $confirm_order->confirm_order->nohp,
-        //         'nama_bahan_baku' => $confirm_order->confirm_order->nama_bahan_baku,
-        //         'harga' => $confirm_order->confirm_order->harga,
-        //         'quantity' => $confirm_order->confirm_order->quantity,
-        //         'total' => $confirm_order->confirm_order->total,
-        //         'tgl_pesan' => $confirm_order->confirm_order->tgl_pesan,
-        //     ]);
-
-        //     $update_status_rfq = rfq::where('kode_rfq', $confirm_order->kode_rfq)->first();
-        //     $update_status_rfq->status = 2;
-        //     $update_status_rfq->tgl_confirm_vendor = $now->format('Y-m-d, H:i');
-        //     $update_status_rfq->save();
-
-        //     $delete_confirm = confirm_order::find($id)->delete();
-
-        //     if ($purchase_order) {
-        //         Alert::success('Data Berhasil Dikonfirmasi', 'Selamat');
-        //         return redirect()->route('datavendor.index');
-        //     } else {
-        //         Alert::error('Data Gagal Dikonfirmasi', 'Maaf');
-        //         return redirect()->route('datavendor.index');
-        //     }
     }
 
     /**
@@ -175,11 +129,6 @@ class VendorController extends Controller
             Alert::error('Data Vendor Gagal Dihapus', 'Maaf');
             return redirect()->route('datavendor.index');
         }
-    }
-
-    public function confirm($id)
-    {
-        //
     }
 
     //Ajax Di Halaman AbsensiDataKaryawan.blade.php

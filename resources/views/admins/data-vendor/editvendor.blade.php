@@ -32,8 +32,8 @@
                 <div class="form-row" style="text-align: center">
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="nama">Nama Bahan Baku</label>
-                        <select name="nama_bahan_baku" id="" class="form-control input-lg" value="{{ old('nama_bahan_baku', $vendors->nama_bahan_baku) }}" required>
-                            <option disabled selected>Silahkan Pilih Bahan Baku</option>
+                        <select name="nama_bahan_baku" id="" class="form-control input-lg" required>
+                            <option value="{{ old('nama_bahan_baku', $vendors->nama_bahan_baku) }}" readonly="readonly" selected>{{ old('nama_bahan_baku', $vendors->nama_bahan_baku) }}</option>
                             <option value="Kain">Kain</option>
                             <option value="Benang">Benang</option>
                         </select>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="Alamat">Alamat</label>
-                        <textarea type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="{{ old('alamat', $vendors->alamat) }}" required></textarea>
+                        <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="{{ old('alamat', $vendors->alamat) }}" required></textarea>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label for="No.Hp">No.Hp</label>

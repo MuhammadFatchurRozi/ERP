@@ -51,8 +51,8 @@ class Confirm_OrderController extends Controller
      */
     public function show($id)
     {
-        $confirm = confirm_order::where('id_vendor', $id)->orderBy('id','desc')->get();
-        return view ('admins.data-vendor.confirm-vendor.tampilconfirmvendor', compact('confirm'));
+        $confirm = confirm_order::where('id_vendor', $id)->orderBy('id', 'desc')->get();
+        return view('admins.data-vendor.confirm-vendor.tampilconfirmvendor', compact('confirm'));
     }
 
     /**
@@ -89,7 +89,7 @@ class Confirm_OrderController extends Controller
         //
     }
 
-    public function confirm($id , $kode_rfq)
+    public function confirm($id, $kode_rfq)
     {
         $now = carbon::now();
 
@@ -114,13 +114,13 @@ class Confirm_OrderController extends Controller
         $update_status_rfq->status = 2;
         $update_status_rfq->tgl_confirm_vendor = $now->format('Y-m-d, H:i');
         $update_status_rfq->save();
-        
+
         $update_count_vendor = vendor::where('id', $confirm_order->id_vendor)->first();
         $update_count_vendor->count_confirm_order = $update_count_vendor->count_confirm_order - 1;
         $update_count_vendor->save();
 
-        $delete_confirm = confirm_order::where('kode_rfq' , $kode_rfq)->first()->delete();
-        
+        $delete_confirm = confirm_order::where('kode_rfq', $kode_rfq)->first()->delete();
+
 
         if ($purchase_order) {
             Alert::success('Data Berhasil Dikonfirmasi', 'Selamat');

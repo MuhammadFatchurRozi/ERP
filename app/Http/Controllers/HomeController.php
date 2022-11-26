@@ -16,6 +16,13 @@ class HomeController extends Controller
         $kain = bahan_baku::where('id', 1)->first();
         $benang = bahan_baku::where('id', 2)->first();
         $sum_product = product::sum('penjualan');
-        return view('home',compact('all_pesanan','kain','benang','pesanans','sum_product'));
+        return view('home', compact('all_pesanan', 'kain', 'benang', 'pesanans', 'sum_product'));
+    }
+
+    public function kain()
+    {
+        $bahans = bahan_baku::find(1);
+        // dd($bahans);
+        return view('admins.bahan.tampilbahan', compact('bahans'));
     }
 }
