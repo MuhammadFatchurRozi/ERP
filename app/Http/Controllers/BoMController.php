@@ -20,7 +20,6 @@ class BoMController extends Controller
     {
         $boms = bom::latest()->paginate(8);
         return view('admins.bom.tampilbom', compact('boms'));
-
     }
 
     /**
@@ -71,7 +70,8 @@ class BoMController extends Controller
      */
     public function edit($id)
     {
-        //
+        $boms = bom::findOrFail($id);
+        return view('admins.bom.editbom', compact('boms'));
     }
 
     /**
@@ -83,7 +83,27 @@ class BoMController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'harga'     => 'required',
+            'kain'      => 'required',
+            'benang'    => 'required',
+            'estimasi'  => 'required'
+        ]);
+
+        $boms = bom::findOrFail($id);
+        $boms->update([
+            'harga'      => $request->harga,
+            'kain'       => $request->kain,
+            'benang'     => $request->benang,
+            'estimasi'   => $request->estimasi
+        ]);
+        if ($boms) {
+            Alert::success('Data BOM Berhasil diupdate', 'Selamat');
+            return redirect()->route('bom.index');
+        } else {
+            Alert::error('Data BOM Gagal diupdate', 'Maaf');
+            return redirect()->route('bom.edit');
+        }
     }
 
     /**
@@ -94,7 +114,16 @@ class BoMController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $boms = bom::findOrFail($id);
+        $boms->delete();
+
+        if ($boms) {
+            Alert::success('Data BOM Berhasil dihapus', 'Selamat');
+            return redirect()->route('bom.index');
+        } else {
+            Alert::error('Data BOM Gagal Dihapus', 'Maaf');
+            return redirect()->route('bom.index');
+        }
     }
 
     //Cetak

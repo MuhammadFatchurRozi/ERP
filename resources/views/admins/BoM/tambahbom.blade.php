@@ -76,7 +76,6 @@
                         <input type="text" class="form-control" id="estimasi" placeholder="" name="estimasi" required>
                     </div>
                 </div>
-
         </div>
         <div class="form-row">
             <div class="form-group col-md-4 mb-3">
