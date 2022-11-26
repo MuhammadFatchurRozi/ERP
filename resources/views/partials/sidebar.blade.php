@@ -11,7 +11,8 @@
                         <div class="profile-usertitle-name">
                             Admin
                         </div>
-                        <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                        <div class="profile-usertitle-status"><span class="indicator label-success blink"></span>Online
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -44,12 +45,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ request()->is('datavendor*') ? 'active' : '' }} "><a
-                            href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em>
-                            Vendor</a></li>
-                    {{-- <li class="{{ request()->is('datavendor*') ? 'active' : '' }}"><a
-                            href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em> Data
-                            Vendor</a></li> --}}
+                    <li class="{{ request()->is('datavendor*') ? 'active' : '' }} ">
+                        <a href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em>
+                            Vendor</a>
+                    </li>
                     <li class="{{ request()->is('kasir*') ? 'active' : '' }}"><a href="{{ route('kasir.index') }}"><em
                                 class="fa fa-money  ">&nbsp;</em> Kasir</a></li>
                     <li class="{{ request()->is('pesanan*') ? 'active' : '' }}"><a
