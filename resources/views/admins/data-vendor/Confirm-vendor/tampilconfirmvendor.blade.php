@@ -64,11 +64,11 @@
                                             <td>{{ $r->nama_vendor }}</td>
                                             <td>{{ $r->nohp }}</td>
                                             <td>{{ $r->alamat }}</td>
-                                            <td>{{ $r->nama_produk }}</td>
+                                            <td>{{ $r->nama_bahan_baku }}</td>
                                             <td>Rp.@idr($r->harga)</td>
-                                            @if ($r->nama_produk == 'Benang')
+                                            @if ($r->nama_bahan_baku == 'Benang')
                                                 <td>{{ $r->quantity }} <small>Yard</small></td>
-                                            @elseif ($r->nama_produk == 'Kain')
+                                            @elseif ($r->nama_bahan_baku == 'Kain')
                                                 <td>{{ $r->quantity }} <small>Kg</small></td>
                                             @endif
                                             <td>Rp.@idr($r->total)</td>

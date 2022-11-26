@@ -44,7 +44,7 @@ class VendorController extends Controller
     {
         $count_id = vendor::count();
         $count_id = $count_id + 1;
-        $kode_vendor = "$request->nama_vendor-$request->nama_produk-00$count_id";
+        $kode_vendor = "$request->nama_vendor-$request->nama_bahan_baku-00$count_id";
         $masuk = vendor::create([
             'kode_vendor' => $kode_vendor,
             'nama_bahan_baku' => $request->nama_bahan_baku,
@@ -110,7 +110,7 @@ class VendorController extends Controller
         //         'nama_vendor' => $confirm_order->confirm_order->nama_vendor,
         //         'alamat' => $confirm_order->confirm_order->alamat,
         //         'nohp' => $confirm_order->confirm_order->nohp,
-        //         'nama_produk' => $confirm_order->confirm_order->nama_produk,
+        //         'nama_bahan_baku' => $confirm_order->confirm_order->nama_bahan_baku,
         //         'harga' => $confirm_order->confirm_order->harga,
         //         'quantity' => $confirm_order->confirm_order->quantity,
         //         'total' => $confirm_order->confirm_order->total,
@@ -165,7 +165,7 @@ class VendorController extends Controller
             $query = $request->get('query');
             if ($query != '') {
                 $search = vendor::Where('nama_vendor', 'LIKE', '%' . $query . '%')
-                    ->orWhere('nama_produk', 'LIKE', '%' . $query . '%')
+                    ->orWhere('nama_bahan_baku', 'LIKE', '%' . $query . '%')
                     ->orderBy('id', 'asc')->get();
             } else {
                 $search = vendor::latest()->get();
@@ -183,7 +183,7 @@ class VendorController extends Controller
                     $output .= '
                     <tr>
                         <td>' . $v->id . '</td>
-                        <td>' . $v->nama_produk . '</td>
+                        <td>' . $v->nama_bahan_baku . '</td>
                         <td>' . $v->nama_vendor . '</td>
                         <td>' . $v->no_telp . '</td>
                         <td>' . $v->alamat . '</td>

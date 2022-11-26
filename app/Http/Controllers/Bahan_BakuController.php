@@ -114,11 +114,11 @@ class Bahan_BakuController extends Controller
     public function vendor($id)
     {
         if ($id == 1){
-            $vendors = vendor::where('nama_produk', 'Kain')->where('status','aktif')->get();
+            $vendors = vendor::where('nama_bahan_baku', 'Kain')->where('status','aktif')->get();
             return view('admins.data-vendor.tampilvendor', compact('vendors'));
         }
         elseif ($id == 2){
-            $vendors = vendor::where('nama_produk', 'Benang')->where('status','aktif')->get();
+            $vendors = vendor::where('nama_bahan_baku', 'Benang')->where('status','aktif')->get();
             return view('admins.data-vendor.tampilvendor', compact('vendors'));
         }
     }

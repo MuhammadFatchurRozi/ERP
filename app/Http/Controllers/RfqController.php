@@ -50,7 +50,7 @@ class RfqController extends Controller
             'kode_rfq' => $kode_rfq,
             'alamat' => $request->alamat,
             'nohp' => $request->no_telp,
-            'nama_produk' => $request->nama_produk,
+            'nama_bahan_baku' => $request->nama_bahan_baku,
             'harga' => $request->harga,
             'quantity' => $request->quantity,
             'total' => $request->total,
@@ -66,7 +66,7 @@ class RfqController extends Controller
             'nama_vendor' => $request->nama_vendor,
             'alamat' => $request->alamat,
             'nohp' => $request->no_telp,
-            'nama_produk' => $request->nama_produk,
+            'nama_bahan_baku' => $request->nama_bahan_baku,
             'harga' => $request->harga,
             'quantity' => $request->quantity,
             'total' => $request->total,
@@ -150,7 +150,7 @@ class RfqController extends Controller
             ->groupBy($dependent)
             ->get();
         foreach ($data as $row) {
-            $output = '<option value="' . $row->$dependent . '" name="nama_produk" selected>' . ucfirst($row->$dependent) . '</option>';
+            $output = '<option value="' . $row->$dependent . '" name="nama_bahan_baku" selected>' . ucfirst($row->$dependent) . '</option>';
         }
         echo $output;
     }

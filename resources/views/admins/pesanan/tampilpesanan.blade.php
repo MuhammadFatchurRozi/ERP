@@ -72,8 +72,8 @@
                                             <td>Rp.@idr($pesanan->harga) </td>
                                             <td>{{ $pesanan->jumlah }} </td>
                                             <td>Rp.@idr($pesanan->total) </td>
-                                            <td>{{ $pesanan->kain }} </td>
-                                            <td>{{ $pesanan->benang }} </td>
+                                            <td>{{ $pesanan->kain }}<small>Kg</small></td>
+                                            <td>{{ $pesanan->benang }}<small>yard</small></td>
                                             <td>{{ $pesanan->tgl_pesan }} </td>
                                             <td>{{ $pesanan->estimasi }}</td>
                                             <td><span class="badge bg-danger">Belum Diproses</span></td>
