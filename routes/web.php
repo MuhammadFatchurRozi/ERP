@@ -25,10 +25,9 @@ use App\Http\Controllers\Confirm_OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Auth::routes();
+
 
 #Login
-Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 #Logout
@@ -36,8 +35,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 #Register
-Route::get('register', [RegisterController::class, 'register'])->name('register');
-Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+// Route::get('register', [RegisterController::class, 'register'])->name('register');
+// Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
