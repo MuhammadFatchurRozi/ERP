@@ -38,7 +38,9 @@ use App\Http\Controllers\Confirm_OrderController;
 // Route::get('register', [RegisterController::class, 'register'])->name('register');
 // Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
 
+#Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard/kain', [HomeController::class, 'kain'])->name('home.kain');
 
 
 #Bahan baku
@@ -63,9 +65,9 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 #Vendor
 Route::resource('datavendor', VendorController::class);
 Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
-    #Confirm Order
-    Route::resource('confirm', Confirm_OrderController::class);
-    Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 'confirm'])->name('confirm.konfirmasi'); //Confirm Order
+#Confirm Order
+Route::resource('confirm', Confirm_OrderController::class);
+Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 'confirm'])->name('confirm.konfirmasi'); //Confirm Order
 
 #BoM
 Route::resource('bom', BomController::class);
@@ -91,4 +93,3 @@ Route::resource('po', POController::class);
 #Confirm Order
 Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
 Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
-
