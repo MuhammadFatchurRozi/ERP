@@ -33,7 +33,7 @@
                                         <th rowspan="2">No</th>
                                         <th rowspan="2">Kode RFQ</th>
                                         <th colspan="3">Data Vendor</th>
-                                        <th colspan="2">Data Produk</th>
+                                        <th colspan="2">Data Bahan Baku</th>
                                         <th rowspan="2">Quantity</th>
                                         <th rowspan="2">Total Harga</th>
                                         <th rowspan="2">Tanggal Pemesanan</th>
@@ -44,8 +44,8 @@
                                         <th>Nama Vendor</th>
                                         <th>No Vendor</th>
                                         <th>Alamat Vendor</th>
-                                        <th>Nama Produk</th>
-                                        <th>Harga Produk</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Harga Bahan Baku</th>
                                         <th>Receive Product</th>
                                         <th>Validate</th>
                                         <th>Paid</th>
@@ -62,12 +62,12 @@
                                             <td>{{ $r->nama_vendor }}</td>
                                             <td>{{ $r->nohp }}</td>
                                             <td>{{ $r->alamat }}</td>
-                                            <td>{{ $r->nama_produk }}</td>
+                                            <td>{{ $r->nama_bahan_baku }}</td>
                                             <td>Rp.@idr($r->harga)</td>
 
-                                            @if ($r->nama_produk == 'Benang')
+                                            @if ($r->nama_bahan_baku == 'Benang')
                                                 <td>{{ $r->quantity }} <small>Yard</small></td>
-                                            @elseif ($r->nama_produk == 'Kain')
+                                            @elseif ($r->nama_bahan_baku == 'Kain')
                                                 <td>{{ $r->quantity }} <small>Kg</small></td>
                                             @endif
 

@@ -19,12 +19,6 @@ class BoMController extends Controller
     public function index()
     {
         $boms = bom::latest()->paginate(8);
-                // // get the current time
-                // $current = Carbon::now();
-
-                // // add 30 days to the current time
-                // $trialExpires = $current->addMinutes(30);
-                // dd($trialExpires);
         return view('admins.bom.tampilbom', compact('boms'));
 
     }

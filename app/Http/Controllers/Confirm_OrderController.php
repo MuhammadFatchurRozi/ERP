@@ -103,7 +103,7 @@ class Confirm_OrderController extends Controller
             'nama_vendor' => $confirm_order->nama_vendor,
             'alamat' => $confirm_order->alamat,
             'nohp' => $confirm_order->nohp,
-            'nama_produk' => $confirm_order->nama_produk,
+            'nama_bahan_baku' => $confirm_order->nama_bahan_baku,
             'harga' => $confirm_order->harga,
             'quantity' => $confirm_order->quantity,
             'total' => $confirm_order->total,

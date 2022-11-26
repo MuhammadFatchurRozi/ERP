@@ -5,13 +5,13 @@
     <meta charset="utf-8">
 
     @if ($po->status == 1)
-        <title>Cetak Halaman - {{ $po->nama_produk }} - {{ $po->tgl_bayar }}</title>
+        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 2)
-        <title>Cetak Halaman - {{ $po->nama_produk }} - {{ $po->tgl_bayar }}</title>
+        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 3)
-        <title>Cetak Halaman - {{ $po->nama_produk }} - {{ $po->tgl_bayar }}</title>
+        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @elseif ($po->status == 4)
-        <title>Cetak Halaman - {{ $po->nama_produk }} - {{ $po->tgl_bayar }}</title>
+        <title>Cetak Halaman - {{ $po->nama_bahan_baku }} - {{ $po->tgl_bayar }}</title>
     @endif
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,7 +120,7 @@
                     <div class="mt-4">
                         <div class="row text-600 text-white bgc-default-tp1 py-25 bora">
                             <div class="d-none d-sm-block col-1">#</div>
-                            <div class="col-9 col-sm-5">Nama Produk</div>
+                            <div class="col-9 col-sm-5">Nama Bahan Baku</div>
                             <div class="d-none d-sm-block col-4 col-sm-2">Harga</div>
                             <div class="d-none d-sm-block col-sm-2">Quantity</div>
                             <div class="col-2">Total Harga</div>
@@ -129,7 +129,7 @@
                         <div class="text-95 text-secondary-d3">
                             <div class="row mb-2 mb-sm-0 py-25">
                                 <div class="d-none d-sm-block col-1">1</div>
-                                <div class="col-9 col-sm-5">{{ $po->nama_produk }}</div>
+                                <div class="col-9 col-sm-5">{{ $po->nama_bahan_baku }}</div>
                                 <div class="d-none d-sm-block col-2">Rp.@idr($po->harga)</div>
                                 <div class="d-none d-sm-block col-2 text-95">{{ $po->quantity }}</div>
                                 <div class="col-2 text-secondary-d2">Rp.@idr($po->total)</div>

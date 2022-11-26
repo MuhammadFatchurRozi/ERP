@@ -92,7 +92,7 @@ class POController extends Controller
         $rfq->tgl_pembayaran = $now->format('Y-m-d, H:i');
         $rfq->save();
 
-        $bahan_baku = bahan_baku::where('bahan', $pos->nama_produk)->first();
+        $bahan_baku = bahan_baku::where('bahan', $pos->nama_bahan_baku)->first();
         $bahan_baku->stok = $bahan_baku->stok + $rfq->quantity;
         $bahan_baku->save();
 

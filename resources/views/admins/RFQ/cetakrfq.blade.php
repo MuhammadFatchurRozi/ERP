@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     @if ($rfqs->status == 1)
-        <title>Cetak Halaman - {{ $rfqs->nama_produk }} - {{ $rfqs->tgl_pembayaran }}</title>
+        <title>Cetak Halaman - {{ $rfqs->nama_bahan_baku }} - {{ $rfqs->tgl_pembayaran }}</title>
     @elseif ($rfqs->status == 2)
-        <title>Cetak Halaman - {{ $rfqs->nama_produk }} - {{ $rfqs->tgl_pembayaran }}</title>
+        <title>Cetak Halaman - {{ $rfqs->nama_bahan_baku }} - {{ $rfqs->tgl_pembayaran }}</title>
     @elseif ($rfqs->status == 3)
-        <title>Cetak Halaman - {{ $rfqs->nama_produk }} - {{ $rfqs->tgl_pembayaran }}</title>
+        <title>Cetak Halaman - {{ $rfqs->nama_bahan_baku }} - {{ $rfqs->tgl_pembayaran }}</title>
     @elseif ($rfqs->status == 4)
-        <title>Cetak Halaman - {{ $rfqs->nama_produk }} - {{ $rfqs->tgl_pembayaran }}</title>
+        <title>Cetak Halaman - {{ $rfqs->nama_bahan_baku }} - {{ $rfqs->tgl_pembayaran }}</title>
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -143,7 +143,7 @@
                         <div class="text-95 text-secondary-d3">
                             <div class="row mb-2 mb-sm-0 py-25">
                                 <div class="d-none d-sm-block col-1">1</div>
-                                <div class="col-9 col-sm-5">{{ $rfqs->nama_produk }}</div>
+                                <div class="col-9 col-sm-5">{{ $rfqs->nama_bahan_baku }}</div>
                                 <div class="d-none d-sm-block col-2">Rp.@idr($rfqs->harga)</div>
                                 <div class="d-none d-sm-block col-2 text-95">{{ $rfqs->quantity }}</div>
                                 <div class="col-2 text-secondary-d2">Rp.@idr($rfqs->total)</div>

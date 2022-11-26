@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama_vendor');
             $table->string('alamat');
             $table->string('nohp');
-            $table->string('nama_produk');
+            $table->string('nama_bahan_baku');
             $table->integer('harga');
             $table->integer('quantity');
             $table->integer('total');
