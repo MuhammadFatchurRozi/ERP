@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('confirm_orders', function (Blueprint $table) {
             $table->id();
-                //relastionship from table id_vendor (confirm_order) to id (vendors)
-                $table->unsignedBigInteger('id_vendor')->on('vendors')->references('id');
+            $table->unsignedBigInteger('id_vendor');
             $table->string('kode_rfq');
             $table->string('nama_vendor');
             $table->string('alamat');

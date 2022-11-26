@@ -53,9 +53,10 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
+                                    <?php $no = 1; ?>
                                     @forelse ($confirm as $r)
                                         <tr>
-                                            <td>{{ $r->id }}</td>
+                                            <td>{{ $no++ }}</td>
                                             <td>{!! DNS1D::getBarcodeHTML($r->kode_rfq, 'C39', 0.8, 30) !!}
                                                 <p style="font-size: 10px; margin-top: 5px;">
                                                     {{ $r->kode_rfq }}</p>
@@ -75,7 +76,7 @@
                                             <td>
                                                 {{-- <button type="submit" class="btn btn-primary me-2">Konfirmasi
                                                 Order</button> --}}
-                                                <a href="{{ route('confirm.edit', $r->id) }}"
+                                                <a href="{{ route('confirm.konfirmasi', ['id' => $r->id, 'kode_rfq' => $r->kode_rfq]) }}"
                                                     class="btn btn-success me-2"><i class="fa fa-check"
                                                         aria-hidden="true"></i> Konfirmasi
                                                     Order</a>

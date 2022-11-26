@@ -61,14 +61,14 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 #Vendor
 Route::resource('datavendor', VendorController::class);
 Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
-#Confirm Order
-// Route::post('/datavendor/{kode_rfq}/konfirmasi', [VendorController::class, 'confirm'])->name('datavendor.confirm'); //Confirm Order
+    #Confirm Order
+    Route::resource('confirm', Confirm_OrderController::class);
+    Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 'confirm'])->name('confirm.konfirmasi'); //Confirm Order
 
 #BoM
 Route::resource('bom', BomController::class);
 Route::post('/bom/fetch', [BomController::class, 'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
 Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
-// Route::post('/bom/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF
 Route::get('/bom/{id}/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF  
 
 #MaD
@@ -89,7 +89,4 @@ Route::resource('po', POController::class);
 #Confirm Order
 Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
 Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
-
-#Confirm Order
-Route::resource('confirm', Confirm_OrderController::class);
 
