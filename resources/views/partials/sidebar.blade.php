@@ -44,25 +44,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ request()->is('datavendor*' && 'confirm*') ? 'active' : '' }}, parent"><a
-                            href="#sub-item-2" data-toggle="collapse" aria-expanded="false"><em
-                                class="fa fa-handshake-o ">&nbsp;</em> Data
-                            Vendor
-                            <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em
-                                    class="fa fa-plus"></em></span></a>
-                        <ul class="children collapse" id="sub-item-2">
-                            <li>
-                                <a class="{{ request()->is('datavendor*') ? 'active' : '' }}"
-                                    href="{{ route('datavendor.index') }}"><span
-                                        class="fa fa-arrow-right">&nbsp;</span>Vendor</a>
-                            </li>
-                            <li>
-                                <a class="{{ request()->is('confirm*') ? 'active' : '' }}"
-                                    href="{{ route('confirm.index') }}"><span
-                                        class="fa fa-arrow-right">&nbsp;</span>Confirm Vendor</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li class="{{ request()->is('datavendor*') ? 'active' : '' }} "><a
+                            href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em>
+                            Vendor</a></li>
                     {{-- <li class="{{ request()->is('datavendor*') ? 'active' : '' }}"><a
                             href="{{ route('datavendor.index') }}"><em class="fa fa-handshake-o ">&nbsp;</em> Data
                             Vendor</a></li> --}}

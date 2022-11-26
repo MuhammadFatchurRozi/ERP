@@ -45,28 +45,29 @@
                                 <thead class="text-center" style="vertical-align:middle;">
                                     <tr>
                                         <th rowspan="2">No</th>
-                                        <th rowspan="2">Kode Produk</th>
-                                        <th rowspan="2">Nama Produk</th>
+                                        <th rowspan="2">Kode Vendor</th>
+                                        <th rowspan="2">Nama Bahan Baku</th>
                                         <th colspan="3">Informasi Vendor</th>
                                         <th rowspan="2">Harga<small>Per pcs</small></th>
                                         <th rowspan="2">Status</th>
-                                        {{-- <th rowspan="2">Jumlah Request Order</th>
-                                    <th rowspan="2">Request Order</th> --}}
-                                        <th rowspan="2">Action</th>
+                                        <th rowspan="2">Request Order</th>
+                                        <th colspan="2">Action</th>
                                     </tr>
                                     <tr>
                                         <th>Nama Vendor</th>
                                         <th>No.Hp</th>
                                         <th>Alamat</th>
+                                        <th>Edit Delete</th>
+                                        <th>Jumlah Request Order</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center tbody" style="vertical-align:middle;">
                                     @forelse ($vendors as $v)
                                         <tr>
                                             <td>{{ $v->id }}</td>
-                                            <td>{!! DNS1D::getBarcodeHTML("$v->kode_produk", 'C39') !!}</td>
+                                            <td style="height:auto; width:200px">#{{ $v->kode_vendor }}</td>
                                             {{-- <td>{{ $v->code }}</td> --}}
-                                            <td>{{ $v->nama_produk }}</td>
+                                            <td>{{ $v->nama_bahan_baku }}</td>
                                             <td>{{ $v->nama_vendor }}</td>
                                             <td>{{ $v->no_telp }}</td>
                                             <td>{{ $v->alamat }}</td>
@@ -78,27 +79,28 @@
                                                 <td><span class="badge bg-danger">Tidak Aktif</span></td>
                                             @endif
 
-                                            {{-- @if ($v->count_confirm == 0)
-                                            <td><span class="badge bg-danger">Belum Ada Order</span></td>
-                                        @else
-                                            <td><span class="badge bg-gray-300">{{ $v->count_confirm }}</span></td>
-                                        @endif
-
-                                        <td>
-                                            @if ($v->status == 'aktif')
-                                                <a href="{{ route('datavendor.show', $v->id) }} "
-                                                    class=" btn btn-sm btn-info">Check Order</a>
-                                            @elseif ($v->status == 'nonaktif')
-                                                <button class=" btn btn-sm btn-info" disabled>Check Order</button>
+                                            @if ($v->count_confirm_order == 0)
+                                                <td><span class="badge bg-danger">Belum Ada Order</span></td>
+                                            @else
+                                                <td><span class="badge bg-gray-300">{{ $v->count_confirm_order }}</span>
+                                                </td>
                                             @endif
-                                        </td> --}}
+
+                                            <td>
+                                                @if ($v->status == 'aktif')
+                                                    <a href="{{ route('confirm.show', $v->id) }} "
+                                                        class=" btn btn-sm btn-info">Check Order</a>
+                                                @elseif ($v->status == 'nonaktif')
+                                                    <button class=" btn btn-sm btn-info" disabled>Check Order</button>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="action">
                                                     <a href="{{ route('datavendor.edit', $v->id) }} "
                                                         class="action btn btn-sm btn-warning"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <form action="{{ route('datavendor.destroy', $v->id) }} " method="POST"
-                                                        class="d-inline">
+                                                    <form action="{{ route('datavendor.destroy', $v->id) }} "
+                                                        method="POST" class="d-inline">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="action btn btn-sm btn-danger"

@@ -30,16 +30,17 @@
                     <h5 class="card-header">Product</h5>
                     <div class="form-row" style="text-align: center">
                         <div class="col-md-3 mb-3 input-group-sm">
-                            <label for="kode">kode Produk</label>
-                            <input type="text" id="#" name="kode_produk" class="form-control input-lg">
-                        </div>
-                        <div class="col-md-3 mb-3 input-group-sm">
-                            <label for="nama">Nama Produk</label>
-                            <select name="nama_produk" id="" class="form-control input-lg">
-                                <option readonly="readonly">Silahkan Pilih Produk</option>
+                            <label for="nama">Nama Bahan Baku</label>
+                            <select name="nama_bahan_baku" id="" class="form-control input-lg" required>
+                                <option disabled selected>Silahkan Pilih Bahan Baku</option>
                                 <option value="Kain">Kain</option>
                                 <option value="Benang">Benang</option>
                             </select>
+                        </div>
+                        <div class="col-md-3 mb-3 input-group-sm">
+                            <label for="harga">Harga</label>
+                            <input type="number" id="#" name="harga" placeholder="45000"
+                                class="form-control input-lg" required>
                         </div>
                         <br>
                         <br>
@@ -47,25 +48,22 @@
                         <h5 class="card-header">Informasi Vendor</h5>
                         <div class="col-md-3 mb-3 input-group-sm">
                             <label for="nama">Nama Vendor</label>
-                            <input type="text" class="form-control" id="nama" placeholder="" name="nama_vendor"
+                            <input type="text" class="form-control" id="nama" placeholder="PT.A" name="nama_vendor"
                                 required>
                         </div>
                         <div class="col-md-3 mb-3 input-group-sm">
                             <label for="Alamat">Alamat</label>
-                            <textarea type="text" class="form-control" id="alamat" placeholder="" name="alamat" required></textarea>
+                            <textarea type="text" class="form-control" id="alamat" placeholder="JL.A" name="alamat" required></textarea>
                         </div>
                         <div class="col-md-3 mb-3 input-group-sm">
                             <label for="No.Hp">No.Hp</label>
-                            <input type="text" class="form-control" id="NoHp" placeholder="" name="no_telp"
-                                required>
+                            <input type="text" class="form-control" id="NoHp" placeholder="08912345678"
+                                name="no_telp" required>
                         </div>
                         <div class="col-md-3 mb-3 input-group-sm">
                             <label for="status">Status</label>
-                            <select name="status" id="" class="form-control input-lg">
-                                <option disabled>Silahkan Pilih Status</option>
-                                <option value="aktif">Aktif</option>
-                                <option value="nonaktif">Nonaktif</option>
-                            </select>
+                            <input type="text" class="form-control" name="status" placeholder="Aktif" value="aktif"
+                                readonly>
                         </div>
                     </div>
 

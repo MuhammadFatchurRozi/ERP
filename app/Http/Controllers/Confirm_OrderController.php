@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\confirm_order;
 use App\Models\puchase_order;
 use App\Models\rfq;
+use App\Models\vendor;
 use Carbon\Carbon;
 use Alert;
 
@@ -18,8 +19,7 @@ class Confirm_OrderController extends Controller
      */
     public function index()
     {
-        $confirm = confirm_order::orderBy('id','desc')->paginate(10);
-        return view('admins.Confirm-vendor.tampilconfirmvendor', compact('confirm'));
+        //
     }
 
     /**
@@ -51,7 +51,8 @@ class Confirm_OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $confirm = confirm_order::where('id_vendor', $id)->orderBy('id','desc')->get();
+        return view ('admins.data-vendor.confirm-vendor.tampilconfirmvendor', compact('confirm'));
     }
 
     /**
@@ -60,43 +61,9 @@ class Confirm_OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    //ALih Fungsi Menjadi Konfirmasi Vendor
     public function edit($id)
     {
-        $now = carbon::now();
-
-        $confirm_order = confirm_order::find($id);
-        $purchase_order = puchase_order::create([
-            'receive' => 0,
-            'validate' => 1,
-            'paid' => 1,
-            'tgl_bayar' => 'Waiting To Bill',
-            'kode_rfq' => $confirm_order->kode_rfq,
-            'nama_vendor' => $confirm_order->nama_vendor,
-            'alamat' => $confirm_order->alamat,
-            'nohp' => $confirm_order->nohp,
-            'nama_produk' => $confirm_order->nama_produk,
-            'harga' => $confirm_order->harga,
-            'quantity' => $confirm_order->quantity,
-            'total' => $confirm_order->total,
-            'tgl_pesan' => $confirm_order->tgl_pesan,
-        ]);
-
-        $update_status_rfq = rfq::where('kode_rfq', $confirm_order->kode_rfq)->first();
-        $update_status_rfq->status = 2;
-        $update_status_rfq->tgl_confirm_vendor = $now->format('Y-m-d, H:i');
-        $update_status_rfq->save();
-
-        $delete_confirm = confirm_order::find($id)->delete();
-
-        if ($purchase_order) {
-            Alert::success('Data Berhasil Dikonfirmasi', 'Selamat');
-            return redirect()->route('rfq.index');
-        } else {
-            Alert::error('Data Gagal Dikonfirmasi', 'Maaf');
-            return redirect()->route('confirm.index');
-        }
+        //
     }
 
     /**
@@ -120,5 +87,47 @@ class Confirm_OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function confirm($id , $kode_rfq)
+    {
+        $now = carbon::now();
+
+        $confirm_order = confirm_order::where('kode_rfq', $kode_rfq)->first();
+        $purchase_order = puchase_order::create([
+            'receive' => 0,
+            'validate' => 1,
+            'paid' => 1,
+            'tgl_bayar' => 'Waiting To Bill',
+            'kode_rfq' => $confirm_order->kode_rfq,
+            'nama_vendor' => $confirm_order->nama_vendor,
+            'alamat' => $confirm_order->alamat,
+            'nohp' => $confirm_order->nohp,
+            'nama_produk' => $confirm_order->nama_produk,
+            'harga' => $confirm_order->harga,
+            'quantity' => $confirm_order->quantity,
+            'total' => $confirm_order->total,
+            'tgl_pesan' => $confirm_order->tgl_pesan,
+        ]);
+
+        $update_status_rfq = rfq::where('kode_rfq', $kode_rfq)->first();
+        $update_status_rfq->status = 2;
+        $update_status_rfq->tgl_confirm_vendor = $now->format('Y-m-d, H:i');
+        $update_status_rfq->save();
+        
+        $update_count_vendor = vendor::where('id', $confirm_order->id_vendor)->first();
+        $update_count_vendor->count_confirm_order = $update_count_vendor->count_confirm_order - 1;
+        $update_count_vendor->save();
+
+        $delete_confirm = confirm_order::where('kode_rfq' , $kode_rfq)->first()->delete();
+        
+
+        if ($purchase_order) {
+            Alert::success('Data Berhasil Dikonfirmasi', 'Selamat');
+            return redirect()->route('rfq.index');
+        } else {
+            Alert::error('Data Gagal Dikonfirmasi', 'Maaf');
+            return redirect()->route('confirm.index');
+        }
     }
 }

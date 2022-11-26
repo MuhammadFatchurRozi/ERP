@@ -20,11 +20,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        // $vendors = vendor::orderBy('status', 'asc')->paginate(10);
-        $vendors = vendor::with('confirm_order')->orderBy('status','asc')->paginate(10);
-        // $where_id_vendor = confirm_order::where('id_vendor', $vendors->id)->get();
-        // $count_confirm = $vendors->confirm_order->count('id_vendor', '>', 0);
-        // $count = vendor::with('confirm_order')->count('id_vendor', '>', 0)->get();
+        $vendors = vendor::orderBy('status','asc')->paginate(10);
         return view('admins.data-vendor.tampilvendor', compact('vendors'));
     }
 
@@ -46,7 +42,19 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        $masuk = vendor::create($request->all());
+        $count_id = vendor::count();
+        $count_id = $count_id + 1;
+        $kode_vendor = "$request->nama_vendor-$request->nama_produk-00$count_id";
+        $masuk = vendor::create([
+            'kode_vendor' => $kode_vendor,
+            'nama_bahan_baku' => $request->nama_bahan_baku,
+            'nama_vendor' => $request->nama_vendor,
+            'harga' => $request->harga,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'status' => $request->status,
+            'count_confirm_order' => 0,
+        ]);
         if ($masuk) {
             Alert::success('Data Vendor Berhasil Ditambahkan', 'Selamat');
             return redirect()->route('datavendor.index');
@@ -136,19 +144,9 @@ class VendorController extends Controller
         //
     }
 
-    public function confirm(Request $request, $id)
+    public function confirm($id)
     {
-        // $bahan = vendor::find($id);
-        // $bahan_baku = bahan_baku::where('bahan', $bahan->nama_produk)->first();
-        // $bahan_baku->stok = $bahan_baku->stok + $request->stok;
-        // $bahan_baku->save();
-        // if ($bahan_baku) {
-        //     Alert::success('Stok Berhasil Ditambahkan', 'Selamat');
-        //     return redirect()->route('bahan.index');
-        // } else {
-        //     Alert::error('Stok Gagal Ditambahkan', 'Maaf');
-        //     return redirect()->route('datavendor.show', $id);
-        // }
+        //
     }
 
     //Ajax Di Halaman AbsensiDataKaryawan.blade.php
