@@ -20,7 +20,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = vendor::orderBy('status','asc')->paginate(10);
+        $vendors = vendor::orderBy('status', 'asc')->paginate(10);
         return view('admins.data-vendor.tampilvendor', compact('vendors'));
     }
 
@@ -87,7 +87,8 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vendors = vendor::findOrFail($id);
+        return view('admins.data-vendor.editvendor', compact('vendors'));
     }
 
     /**
@@ -99,6 +100,29 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama_bahan_baku'  => 'required',
+            'harga'            => 'required',
+            'nama'             => 'required',
+            'alamat'           => 'required',
+            'no_telp'          => 'required'
+        ]);
+
+        $vendors = vendor::findOrFail($id);
+        $vendors->update([
+            'nama_bahan_baku'  => $request->nama_bahan_baku,
+            'harga'            => $request->harga,
+            'nama'             => $request->nama,
+            'alamat'           => $request->alamat,
+            'no_telp'          => $request->no_telp
+        ]);
+        if ($vendors) {
+            Alert::success('Data Vendor Berhasil diupdate', 'Selamat');
+            return redirect()->route('datavendor.index');
+        } else {
+            Alert::error('Data Vendor Gagal diupdate', 'Maaf');
+            return redirect()->route('datavendor.edit');
+        }
         // $now = carbon::now();
 
         // // $confirm_order = confirm_order::find('id_vendor',$id)->first();
@@ -141,7 +165,16 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vendors = vendor::findOrFail($id);
+        $vendors->delete();
+
+        if ($vendors) {
+            Alert::success('Data Vendor Berhasil dihapus', 'Selamat');
+            return redirect()->route('datavendor.index');
+        } else {
+            Alert::error('Data Vendor Gagal Dihapus', 'Maaf');
+            return redirect()->route('datavendor.index');
+        }
     }
 
     public function confirm($id)
