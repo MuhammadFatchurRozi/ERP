@@ -6,7 +6,10 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">
-                            <em class="fa fa-home"></em>
+                            <em class="">
+                                <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                                    srcset="">
+                            </em>
                         </a></li>
                     <li class="active">Data Pemesanan</li>
                 </ol>
@@ -15,7 +18,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Detail Pesanan</h2>
+                    <h2 class="page-header">Detail Pemesanan</h2>
                 </div>
             </div>
         </div>

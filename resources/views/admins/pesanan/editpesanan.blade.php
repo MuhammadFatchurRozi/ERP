@@ -5,7 +5,10 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="{{ route('home') }}">
-                        <em class="fa fa-home"></em>
+                    <em class="">
+                        <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                            srcset="">
+                    </em>
                     </a></li>
                 <li class="breadcrumb-item"><a href="{{ route('pesanan.index') }}"> Detail Pesanan</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> Tambah Pesanan</li>
