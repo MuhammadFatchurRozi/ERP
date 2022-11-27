@@ -24,7 +24,7 @@
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <div class="wow fadeInLeft">
+            <div class="wow fadeIn">
                 <form class="needs-validation" method="post" action="{{ route('kasir.store') }} ">
                     @csrf
                     <h5 class="card-header">Product</h5>
@@ -78,7 +78,7 @@
                         <br>
                         <br>
                     </div>
-                    <div class="wow fadeInRight">
+                    <div class="wow fadeIn">
                         <h5 class="card-header">Informasi Pemesan</h5>
                         <div class="col-md-4 mb-3 input-group-sm">
                             <label for="nama">Nama</label>
@@ -98,7 +98,7 @@
             </div>
 
         </div>
-        <div class="wow fadeInDown">
+        <div class="wow fadeInUp">
             <div class="form-row">
                 <div class="form-group col-md-4 mb-3">
                     </br>

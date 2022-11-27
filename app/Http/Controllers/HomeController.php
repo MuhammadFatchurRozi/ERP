@@ -21,8 +21,13 @@ class HomeController extends Controller
 
     public function kain()
     {
-        $bahans = bahan_baku::find(1);
-        // dd($bahans);
+        $bahans = bahan_baku::where('bahan', 'Kain')->paginate(5);
+        return view('admins.bahan.tampilbahan', compact('bahans'));
+    }
+
+    public function benang()
+    {
+        $bahans = bahan_baku::where('bahan', 'Benang')->paginate(5);
         return view('admins.bahan.tampilbahan', compact('bahans'));
     }
 }

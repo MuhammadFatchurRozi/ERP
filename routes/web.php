@@ -40,12 +40,13 @@ use App\Http\Controllers\Confirm_OrderController;
 
 #Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard/kain', [HomeController::class, 'kain'])->name('home.kain');
+Route::get('bahan/kain', [HomeController::class, 'kain'])->name('home.kain');
+Route::get('bahan/benang', [HomeController::class, 'benang'])->name('home.benang');
 
 
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
-Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
+// Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
