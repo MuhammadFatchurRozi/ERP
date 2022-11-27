@@ -6,7 +6,10 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">
-                            <em class="fa fa-home"></em>
+                            <em class="">
+                                <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                                    srcset="">
+                            </em>
                         </a></li>
                     <li class="active">Data Product</li>
                 </ol>
@@ -17,6 +20,9 @@
                 <div class="col-lg-12">
                     <h2 class="page-header">Detail Product</h2>
                 </div>
+                {{-- <div class="col-lg-12">
+                    <img src="{{ asset('style/gambar/product.png') }}" width="25%" height="auto" alt="">
+                </div> --}}
             </div>
         </div>
         <!--/.main-->

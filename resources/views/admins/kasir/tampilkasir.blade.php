@@ -6,7 +6,10 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">
-                            <em class="fa fa-home"></em>
+                            <em class="">
+                                <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                                    srcset="">
+                            </em>
                         </a></li>
                     <li class="breadcrumb-item active" aria-current="page"> Pemesan</li>
                 </ol>
@@ -15,7 +18,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Pemesan</h2>
+                    <h2 class="page-header">Pemesanan</h2>
                 </div>
             </div>
         </div>
@@ -82,8 +85,8 @@
                         <h5 class="card-header">Informasi Pemesan</h5>
                         <div class="col-md-4 mb-3 input-group-sm">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" placeholder="" name="nama_pemesan"
-                                required>
+                            <input type="text" class="form-control" id="nama" placeholder="Julian"
+                                name="nama_pemesan" required>
                         </div>
                         <div class="col-md-4 mb-3 input-group-sm">
                             <label for="Alamat">Alamat</label>

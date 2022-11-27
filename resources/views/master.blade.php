@@ -5,7 +5,10 @@
         <div class="row">
             <ol class="breadcrumb wow fadeInLeft">
                 <li><a href="#">
-                        <em class="fa fa-home"></em>
+                        <em class="">
+                            <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                                srcset="">
+                        </em>
                     </a></li>
                 <li class="wow fadeInLeft active">Dashboard</li>
             </ol>
@@ -14,7 +17,7 @@
 
         <div class="row image_dashboard mt-1 mx-auto">
             <div class="col-lg-12">
-                <img src="{{ asset('style/gambar/welcome.svg') }}" alt="dashboard" class="wow fadeInUp">
+                <img src="{{ asset('style/gambar/dashboard.gif') }}" alt="dashboard" class="wow fadeInUp">
             </div>
         </div>
         <!--/.row-->
