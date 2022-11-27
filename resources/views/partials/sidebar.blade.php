@@ -5,7 +5,7 @@
             <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar wow fadeInLeft">
                 <div class="profile-sidebar">
                     <div class="profile-userpic">
-                        <img src="{{ asset('style/gambar/user.png') }}" class="img-responsive" alt="">
+                        <img src="{{ asset('style/gambar/user.svg') }}" class="img-responsive" alt="">
                     </div>
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
