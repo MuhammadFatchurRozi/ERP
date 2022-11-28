@@ -167,9 +167,19 @@ input:hover {
     transition: opacity .3s;
 }
 
+.right {
+    margin-left: 5rem;
+}
+
+
+/* Style Dropdown */
+
 .dd {
     appearance: none;
 }
+
+
+/* End Style Dropdown */
 
 .bootstrap-table input.form-control {
     height: 34px;

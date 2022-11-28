@@ -65,7 +65,7 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 
 #Vendor
 Route::resource('datavendor', VendorController::class);
-Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
+
 #Confirm Order
 Route::resource('confirm', Confirm_OrderController::class);
 Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 'confirm'])->name('confirm.konfirmasi'); //Confirm Order
