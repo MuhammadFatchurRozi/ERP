@@ -30,16 +30,21 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <form class="form-inline">
+                            <form class="form-inline" action="{{ route('datavendor.index') }}" method="GET">
                                 <div class="form-group">
-                                    <input class="form-control search" id="search" type="text"
-                                        placeholder="Pencarian.." name="search">
-                                </div>
-                                <div class="form-group">
-                                    <a type="button" class="btn btn-danger" href="{{ route('datavendor.create') }}"><i
-                                            class="fa fa-plus"></i> Tambah</a>
-                                    <a type="button" class="btn btn-primary" href="{{ route('rfq.create') }}"><i
-                                            class="fa fa-plus"></i> Order Bahan Baku</a>
+                                    <div class="form-group">
+                                        <a type="button" class="btn btn-danger" href="{{ route('datavendor.create') }}"><i
+                                                class="fa fa-plus"></i> Tambah</a>
+                                        <a type="button" class="btn btn-warning" href="{{ route('rfq.create') }}"><i
+                                                class="fa fa-plus"></i> Order Bahan Baku</a>
+                                    </div>
+                                    <div class="form-group right">
+                                        <input class="input form-control" value="{{ old('search') }}" id="search"
+                                            type="text" placeholder="Pencarian.." name="search">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -116,7 +121,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center">
+                                            <td colspan="11" class="text-center">
                                                 Data Kosong
                                             </td>
                                         </tr>
