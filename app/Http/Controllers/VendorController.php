@@ -18,9 +18,25 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vendors = vendor::orderBy('status', 'asc')->paginate(10);
+        if($request->has('search'))
+        {
+            $vendors = vendor::where('nama_bahan_baku','like',"%".$request->search."%")
+            ->orWhere('kode_vendor','like',"%".$request->search."%")
+            ->orWhere('nama_vendor','like',"%".$request->search."%")
+            ->orWhere('alamat','like',"%".$request->search."%")
+            ->orWhere('no_telp','like',"%".$request->search."%")
+            ->orWhere('status', 'regexp',"(^| ){$request->search}.*( |$)")
+            ->orWhere('id', 'regexp',"(^| ){$request->search}.*( |$)")
+            ->orderBy('status', 'asc')
+            ->paginate(10);
+        }
+        else
+        {
+            $vendors = vendor::orderBy('status', 'asc')
+            ->paginate(10);
+        }
         return view('admins.data-vendor.tampilvendor', compact('vendors'));
     }
 

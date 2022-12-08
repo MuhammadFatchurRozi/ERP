@@ -6,7 +6,10 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">
-                            <em class="fa fa-home"></em>
+                            <em class="">
+                                <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
+                                    srcset="">
+                            </em>
                         </a></li>
                     <li class="breadcrumb-item active" aria-current="page"> Pemesan</li>
                 </ol>
@@ -15,7 +18,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Pemesan</h2>
+                    <h2 class="page-header">Pemesanan</h2>
                 </div>
             </div>
         </div>
@@ -24,7 +27,7 @@
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <div class="wow fadeInLeft">
+            <div class="wow fadeIn">
                 <form class="needs-validation" method="post" action="{{ route('kasir.store') }} ">
                     @csrf
                     <h5 class="card-header">Product</h5>
@@ -78,12 +81,12 @@
                         <br>
                         <br>
                     </div>
-                    <div class="wow fadeInRight">
+                    <div class="wow fadeIn">
                         <h5 class="card-header">Informasi Pemesan</h5>
                         <div class="col-md-4 mb-3 input-group-sm">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" placeholder="" name="nama_pemesan"
-                                required>
+                            <input type="text" class="form-control" id="nama" placeholder="Julian"
+                                name="nama_pemesan" required>
                         </div>
                         <div class="col-md-4 mb-3 input-group-sm">
                             <label for="Alamat">Alamat</label>
@@ -98,7 +101,7 @@
             </div>
 
         </div>
-        <div class="wow fadeInDown">
+        <div class="wow fadeInUp">
             <div class="form-row">
                 <div class="form-group col-md-4 mb-3">
                     </br>

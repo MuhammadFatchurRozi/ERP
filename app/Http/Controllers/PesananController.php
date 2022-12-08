@@ -130,7 +130,8 @@ class PesananController extends Controller
         $pesanans = pesanan::find($id); //Mengambil Data Pesanan Berdasarkan ID
         $produk = product::find($pesanans->id_produk); //Mengambil Data Produk Berdasarkan id_produk Pesanan
 
-        // $produk_match_pesanan = product::where('nama', 'regexp',"(^| ){$pesanans->nama}.*( |$)")->where('ukuran', 'regexp',"(^| ){$pesanans->ukuran}.*( |$)")->get(); //Cari Produk Yang Sesuai Dengan Pesanan dan Product Berdasarkan Nama dan Ukuran
+        //Mecari Produk Gagal :)
+            // $produk_match_pesanan = product::where('nama', 'regexp',"(^| ){$pesanans->nama}.*( |$)")->where('ukuran', 'regexp',"(^| ){$pesanans->ukuran}.*( |$)")->get(); //Cari Produk Yang Sesuai Dengan Pesanan dan Product Berdasarkan Nama dan Ukuran
         
         $kain_pesanan = $pesanans->kain; //Mengambil Data Kain Dari Pesanan
         $benang_pesanan = $pesanans->benang; //Mengambil Data Benang Dari Pesanan

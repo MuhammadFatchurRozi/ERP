@@ -43,12 +43,13 @@ use App\Http\Controllers\QuotationController;
 
 #Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard/kain', [HomeController::class, 'kain'])->name('home.kain');
+Route::get('bahan/kain', [HomeController::class, 'kain'])->name('home.kain');
+Route::get('bahan/benang', [HomeController::class, 'benang'])->name('home.benang');
 
 
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
-Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
+// Route::get('datavendor/{id}/vendor', [Bahan_BakuController::class, 'vendor'])->name('bahan.vendor'); //Memesan Stok Dari vendor
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
@@ -67,7 +68,7 @@ Route::post('/kasir/fetch2', [KasirController::class, 'fetch2'])->name('kasir.fe
 
 #Vendor
 Route::resource('datavendor', VendorController::class);
-Route::get('/datavendor_search/action', [VendorController::class, 'action'])->name('datavendor.action');
+
 #Confirm Order
 Route::resource('confirm', Confirm_OrderController::class);
 Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 'confirm'])->name('confirm.konfirmasi'); //Confirm Order

@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/gagalin');
 body {
     background: #f1f4f7;
     padding-top: 60px;
@@ -5,13 +6,12 @@ body {
     line-height: 1.5;
     font-size: 14px;
     color: #444444;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif,"Source Sans Pro",system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif, "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 p {
     color: #777;
 }
-
 
 a,
 a:hover,
@@ -94,20 +94,92 @@ h4 {
     font-size: 2em;
 }
 
-input.form-control {
-    border: 1px solid #ddd;
-    box-shadow: none;
-    height: 46px;
+
+/* From uiverse.io by @alexruix */
+
+.input {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    -webkit-transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-input.form-control:focus {
-    border-color: #30a5ff;
-    box-shadow: none;
+.input:focus,
+input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #7a9cc6;
 }
+
+.form-control::-webkit-input-placeholder {
+    color: #777;
+}
+
+.form-control::-moz-placeholder {
+    color: #777;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #777;
+}
+
+.form-control::-ms-input-placeholder {
+    color: #777;
+}
+
+.form-control::placeholder {
+    color: #777;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    opacity: 0;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.form-control:focus::-moz-placeholder {
+    opacity: 0;
+    -moz-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.form-control:focus:-ms-input-placeholder {
+    opacity: 0;
+    -ms-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.form-control:focus::-ms-input-placeholder {
+    opacity: 0;
+    -ms-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.form-control:focus::placeholder {
+    opacity: 0;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.right {
+    margin-left: 5rem;
+}
+
+
+/* Style Dropdown */
 
 .dd {
     appearance: none;
 }
+
+
+/* End Style Dropdown */
 
 .bootstrap-table input.form-control {
     height: 34px;
@@ -144,10 +216,11 @@ input.form-control:focus {
 }
 
 .navbar-header .navbar-brand {
-    color: #fff;
+    font-family: 'Gagalin', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 500;
+    color: #fff;
     height: 60px;
     padding-top: 18px;
     text-align: center;
@@ -552,20 +625,21 @@ a.label:focus {
 
 .label-success {
     background-color: #008000;
-
 }
 
-.blink{
+.blink {
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
-@keyframes blink-animation{
-    to{
+
+@keyframes blink-animation {
+    to {
         visibility: hidden;
     }
 }
-@-webkit-keyframes blink-animation{
-    to{
+
+@-webkit-keyframes blink-animation {
+    to {
         visibility: hidden;
     }
 }
@@ -1285,6 +1359,7 @@ a.label:focus {
     width: 50px;
     height: 50px;
     border-radius: 9999px !important;
+    border: 0.1px solid rgb(175, 175, 175);
 }
 
 .profile-usertitle {
@@ -1316,6 +1391,12 @@ a.label:focus {
 h1.page-header {
     margin-top: 20px;
     border-bottom: 0;
+}
+
+h2.page-header {
+    margin-top: 20px;
+    border-bottom: 0;
+    font-family: 'Gagalin', sans-serif;
 }
 
 .main-chart {
@@ -1588,84 +1669,85 @@ p.back-link {
     display: block;
     margin-bottom: 20px;
     position: relative;
-    box-sizing:content-box;
-  }
-  
-  .small-box > .inner {
+    box-sizing: content-box;
+}
+
+.small-box>.inner {
     padding: 20px;
-  }
-  
-  .small-box > .small-box-footer {
+}
+
+.small-box>.small-box-footer {
     background-color: rgba(0, 0, 0, 0.1);
     color: rgba(255, 255, 255, 0.8);
     display: block;
-   padding: 3px 0;
+    padding: 3px 0;
     position: relative;
     text-align: center;
     text-decoration: none;
     z-index: 10;
-  }
-  
-  .small-box > .small-box-footer:hover {
+}
+
+.small-box>.small-box-footer:hover {
     background-color: rgba(0, 0, 0, 0.15);
     color: #fff;
-  }
-  
-  .small-box h3 {
+}
+
+.small-box h3 {
     font-size: 2.2rem;
     font-weight: 700;
     margin: 0 0 10px;
     padding: 0;
     white-space: nowrap;
-  }
-  @media (min-width: 992px) {
+}
+
+@media (min-width: 992px) {
     .col-xl-2 .small-box h3,
     .col-lg-2 .small-box h3,
     .col-md-2 .small-box h3 {
-      font-size: 1.6rem;
+        font-size: 1.6rem;
     }
     .col-xl-3 .small-box h3,
     .col-lg-3 .small-box h3,
     .col-md-3 .small-box h3 {
-      font-size: 1.6rem;
+        font-size: 1.6rem;
     }
-  }
-  
-  @media (min-width: 1200px) {
+}
+
+@media (min-width: 1200px) {
     .col-xl-2 .small-box h3,
     .col-lg-2 .small-box h3,
     .col-md-2 .small-box h3 {
-      font-size: 2.2rem;
+        font-size: 2.2rem;
     }
     .col-xl-3 .small-box h3,
     .col-lg-3 .small-box h3,
     .col-md-3 .small-box h3 {
-      font-size: 2.2rem;
+        font-size: 2.2rem;
     }
-  }
-  
-  .small-box p {
+}
+
+.small-box p {
     font-size: 1rem;
-  }
-  
-  .small-box p > small {
+}
+
+.small-box p>small {
     color: #f8f9fa;
     display: block;
     font-size: .9rem;
     margin-top: 5px;
-  }
-  
-  .small-box h3,
-  .small-box p {
+}
+
+.small-box h3,
+.small-box p {
     z-index: 5;
-  }
-  
-  .small-box .icon {
+}
+
+.small-box .icon {
     color: rgba(0, 0, 0, 0.15);
     z-index: 0;
-  }
-  
-  .small-box .icon > i {
+}
+
+.small-box .icon>i {
     font-size: 90px;
     position: absolute;
     right: 15px;
@@ -1673,14 +1755,20 @@ p.back-link {
     transition: -webkit-transform 0.3s linear;
     transition: transform 0.3s linear;
     transition: transform 0.3s linear, -webkit-transform 0.3s linear;
-  }
-  
-  .small-box .icon > i.fa, .small-box .icon > i.fas, .small-box .icon > i.far, .small-box .icon > i.fab, .small-box .icon > i.fal, .small-box .icon > i.fad, .small-box .icon > i.ion {
+}
+
+.small-box .icon>i.fa,
+.small-box .icon>i.fas,
+.small-box .icon>i.far,
+.small-box .icon>i.fab,
+.small-box .icon>i.fal,
+.small-box .icon>i.fad,
+.small-box .icon>i.ion {
     font-size: 70px;
     top: 20px;
-  }
-  
-  .small-box .icon svg {
+}
+
+.small-box .icon svg {
     font-size: 70px;
     position: absolute;
     right: 15px;
@@ -1688,33 +1776,60 @@ p.back-link {
     transition: -webkit-transform 0.3s linear;
     transition: transform 0.3s linear;
     transition: transform 0.3s linear, -webkit-transform 0.3s linear;
-  }
-  
-  .small-box:hover {
+}
+
+.small-box:hover {
     text-decoration: none;
-  }
-  
-  .small-box:hover .icon > i, .small-box:hover .icon > i.fa, .small-box:hover .icon > i.fas, .small-box:hover .icon > i.far, .small-box:hover .icon > i.fab, .small-box:hover .icon > i.fal, .small-box:hover .icon > i.fad, .small-box:hover .icon > i.ion {
+}
+
+.small-box:hover .icon>i,
+.small-box:hover .icon>i.fa,
+.small-box:hover .icon>i.fas,
+.small-box:hover .icon>i.far,
+.small-box:hover .icon>i.fab,
+.small-box:hover .icon>i.fal,
+.small-box:hover .icon>i.fad,
+.small-box:hover .icon>i.ion {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-  }
-  
-  .small-box:hover .icon > svg {
+}
+
+.small-box:hover .icon>svg {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-  }
-  
-  @media (max-width: 767.98px) {
+}
+
+@media (max-width: 767.98px) {
     .small-box {
-      text-align: center;
+        text-align: center;
     }
     .small-box .icon {
-      display: none;
+        display: none;
     }
     .small-box p {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-.bg-info, .bg-info{
+}
+
+.bg-info,
+.bg-info {
     color: #fff !important;
+}
+
+.image_dashboard img {
+    width: 30%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.center_image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
