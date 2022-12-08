@@ -49,8 +49,7 @@
                         </a>
                         <ul class="children collapse" id="sub-item-1">
                             <li>
-                                <a class="{{ request()->is('rfq*') ? 'active' : '' }}"
-                                    href="{{ route('rfq.index') }}">
+                                <a class="{{ request()->is('rfq*') ? 'active' : '' }}" href="{{ route('rfq.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     RFQ
                                 </a>
@@ -59,6 +58,35 @@
                                 <a class="{{ request()->is('po*') ? 'active' : '' }}" href="{{ route('po.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Purchase Order
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{{ request()->is('costumer*' && 'quotation*') ? 'active' : '' }}, parent">
+                        <a href="#sub-item-2" data-toggle="collapse" aria-expanded="false">
+                            <em class="fa fa-shopping-basket ">&nbsp;</em>
+                            Sales
+                            <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right">
+                                <em class="fa fa-plus"></em>
+                            </span>
+                        </a>
+                        <ul class="children collapse" id="sub-item-2">
+                            <li>
+                                <a class="{{ request()->is('costumer*') ? 'active' : '' }}" href="{{ route('costumer.index') }}">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Costumer
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('quotation*') ? 'active' : '' }}" href="{{ route('quotation.index') }}">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Quotations
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('order*') ? 'active' : '' }}" href="{{ route('order.index') }}">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Order
                                 </a>
                             </li>
                         </ul>

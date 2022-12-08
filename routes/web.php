@@ -14,6 +14,9 @@ use App\Http\Controllers\MaDController;
 use App\Http\Controllers\RfqController;
 use App\Http\Controllers\POController;
 use App\Http\Controllers\Confirm_OrderController;
+use App\Http\Controllers\CostumerController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\QuotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,3 +96,12 @@ Route::resource('po', POController::class);
 #Confirm Order
 Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
 Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
+
+#Costumer
+Route::resource('costumer', CostumerController::class);
+
+#Order
+Route::resource('order', OrderController::class);
+
+#Quotation
+Route::resource('quotation', QuotationController::class);
