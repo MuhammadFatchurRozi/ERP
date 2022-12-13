@@ -131,7 +131,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="10" class="text-center">
+                                            <td colspan="14" class="text-center">
                                                 Tidak Ada Data
                                             </td>
                                         </tr>

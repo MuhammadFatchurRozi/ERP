@@ -27,34 +27,33 @@
     </div>
     <div class="wow fadeInRight">
         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-            <div class="row">
-                <form class="needs-validation" method="post" action="{{ route('costumer.store') }} ">
-                    @csrf
+            <form class="needs-validation" method="post" action="{{ route('costumer.store') }} ">
+                @csrf
+                <div class="row">
                     <h5 class="card-header">Data Costumer</h5>
                     <div class="form-row" style="text-align: center">
                         <div class="col-md-4 mb-4 input-group-sm">
                             <label for="nama">Nama</label>
-                            <input type="text" id="#" name="harga" placeholder="" class="form-control input-lg"
+                            <input type="text" id="#" name="name" placeholder="" class="form-control input-lg"
                                 required>
                         </div>
                         <div class="col-md-4 mb-4 input-group-sm">
                             <label for="Alamat">Alamat</label>
-                            <textarea type="text" class="form-control" id="alamat" placeholder="" name="alamat" required></textarea>
+                            <textarea type="text" class="form-control" id="alamat" placeholder="" name="address" required></textarea>
                         </div>
                         <div class="col-md-4 mb-4 input-group-sm">
                             <label for="harga">No.HP</label>
-                            <input type="number" id="#" name="harga" placeholder="" class="form-control input-lg"
+                            <input type="number" id="#" name="phone" placeholder="" class="form-control input-lg"
                                 required>
                         </div>
                     </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4 mb-3">
-                    </br>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
                 </div>
-            </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-3">
+                        </br>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-sm-12">

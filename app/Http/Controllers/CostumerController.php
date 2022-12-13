@@ -15,7 +15,8 @@ class CostumerController extends Controller
      */
     public function index()
     {
-        return view('admins.costumer.tampilcostumer');
+        $costumers = costumer::orderBy('id', 'desc')->paginate(10);
+        return view('admins.costumer.tampilcostumer',compact('costumers'));
     }
 
     /**
@@ -36,7 +37,15 @@ class CostumerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $costumers = costumer::create($request->all());
+        
+        if ($costumers) {
+            Alert::success('Success', 'Data Berhasil Ditambahkan');
+            return redirect()->route('costumer.index');
+        } else {
+            Alert::error('Error', 'Data Gagal Ditambahkan');
+            return redirect()->route('costumer.index');
+        }
     }
 
     /**
@@ -58,7 +67,8 @@ class CostumerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $costumers = costumer::find($id);
+        return view('admins.costumer.editcostumer',compact('costumers'));
     }
 
     /**
@@ -70,7 +80,15 @@ class CostumerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $costumers = costumer::find($id)->update($request->all());
+        
+        if ($costumers) {
+            Alert::success('Success', 'Data Berhasil Diubah');
+            return redirect()->route('costumer.index');
+        } else {
+            Alert::error('Error', 'Data Gagal Diubah');
+            return redirect()->route('costumer.index');
+        }
     }
 
     /**
@@ -81,6 +99,14 @@ class CostumerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $costumers = costumer::find($id)->delete();
+        
+        if ($costumers) {
+            Alert::success('Success', 'Data Berhasil Dihapus');
+            return redirect()->route('costumer.index');
+        } else {
+            Alert::error('Error', 'Data Gagal Dihapus');
+            return redirect()->route('costumer.index');
+        }
     }
 }

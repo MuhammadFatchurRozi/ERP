@@ -58,6 +58,8 @@ Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('pes
 
 #Product
 Route::resource('product', ProductController::class);
+Route::get('/product/{id}/stok', [ProductController::class, 'stok'])->name('product.stok'); //Add Stock
+Route::put('/product/{id}/Add_stok', [ProductController::class, 'add_stok'])->name('product.add_stok'); //Add Stock
 
 #Kasir
 Route::resource('kasir', KasirController::class);
@@ -97,12 +99,20 @@ Route::resource('po', POController::class);
     #Confirm Order
     Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
     Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
-
-#Costumer
-Route::resource('costumer', CostumerController::class);
-
-#Order
-Route::resource('order', OrderController::class);
+    
+    #Costumer
+    Route::resource('costumer', CostumerController::class);
+    
+    #Order
+    Route::resource('order', OrderController::class);
+    Route::get('order/{id}/validate', [OrderController::class, 'validates'])->name('order.validate'); //validate Order
+    Route::get('order/{id}/paid', [OrderController::class, 'paid'])->name('order.paid'); //Paid Order
+    Route::get('order/{id}/delivery', [OrderController::class, 'delivery'])->name('order.delivery'); //Delivery Order
 
 #Quotation
 Route::resource('quotation', QuotationController::class);
+Route::post('/quotation/costumer1', [QuotationController::class, 'costumer1'])->name('quotation.costumer1'); //Ajax Fetch Data phone cotumer from costumer
+Route::post('/quotation/costumer2', [QuotationController::class, 'costumer2'])->name('quotation.costumer2'); //Ajax Fetch Data address sotumer from costumer
+Route::post('/quotation/product1', [QuotationController::class, 'product1'])->name('quotation.product1'); //Ajax Fetch Data ukruan produk from products
+Route::post('/quotation/product2', [QuotationController::class, 'product2'])->name('quotation.product2'); //Ajax Fetch Data harga produk from products
+Route::post('/quotation/product3', [QuotationController::class, 'product3'])->name('quotation.product3'); //Ajax Fetch Data stok produk from products

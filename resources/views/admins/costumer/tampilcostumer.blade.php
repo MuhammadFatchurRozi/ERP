@@ -5,12 +5,14 @@
         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
             <div class="row">
                 <ol class="breadcrumb">
-                    <li><a href="{{ route('home') }}">
+                    <li>
+                        <a href="{{ route('home') }}">
                             <em class="">
                                 <img src="{{ asset('style/gambar/home.gif') }}" width="20px" height="auto" alt=""
                                     srcset="">
                             </em>
-                        </a></li>
+                        </a>
+                    </li>
                     <li class="active">Data Kostumer</li>
                 </ol>
             </div>
@@ -45,16 +47,44 @@
                                     <tr>
                                         <th rowspan="2">No</th>
                                         <th rowspan="2">Nama</th>
-                                        <th colspan="2">Alamat</th>
-                                        <th colspan="2">No.Hp</th>
-                                        <th rowspan="2">Action</th>
+                                        <th rowspan="2">Alamat</th>
+                                        <th rowspan="2">No.Hp</th>
+                                        <th colspan="2">Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
-
+                                    @forelse ($costumers as $c)
+                                        <tr>
+                                            <td>{{ $c->id }}</td>
+                                            <td>{{ $c->name }}</td>
+                                            <td>{{ $c->address }}</td>
+                                            <td>{{ $c->phone }}</td>
+                                            <td>
+                                                <a href="{{ route('costumer.edit', $c->id) }}" class="btn btn-warning"><i
+                                                        class="fa fa-edit"> Edit</i></a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('costumer.destroy', $c->id) }}" method="post"
+                                                    class="d-inline">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah anda yakin?')">
+                                                        <i class="fa fa-trash"> Delete</i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
+                        {!! $costumers->withQueryString()->links() !!}
                     </div>
                 </div>
                 <div class="col-sm-12">

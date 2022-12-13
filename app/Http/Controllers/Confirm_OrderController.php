@@ -91,6 +91,7 @@ class Confirm_OrderController extends Controller
 
     public function confirm($id, $kode_rfq)
     {
+        //Menggunakan 2 parameter dikarenakan terdapat lebih 1 tabel dalam 1 relasi
         $now = carbon::now();
 
         $confirm_order = confirm_order::where('kode_rfq', $kode_rfq)->first();
