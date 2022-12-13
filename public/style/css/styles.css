@@ -1,4 +1,10 @@
-@import url('https://fonts.cdnfonts.com/css/gagalin');
+@import url(//db.onlinewebfonts.com/c/240a7cb10b49b02c94ceddc459d385a9?family=Gagalin);
+@font-face {
+    font-family: "Gagalin";
+    src: url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.eot");
+    src: url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.woff") format("woff"), url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/240a7cb10b49b02c94ceddc459d385a9.svg#Gagalin") format("svg");
+}
+
 body {
     background: #f1f4f7;
     padding-top: 60px;

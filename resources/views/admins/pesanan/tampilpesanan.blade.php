@@ -104,7 +104,7 @@
                             </table>
                         </div>
                     </div>
-                    {!! $pesanans->withQueryString()->links() !!}
+                    {!! $costumers->withQueryString()->links() !!}
                 </div>
                 <div class="col-sm-12">
                     <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>

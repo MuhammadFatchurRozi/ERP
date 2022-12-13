@@ -44,28 +44,82 @@
                                 <thead class="text-center" style="vertical-align:middle;">
                                     <tr>
                                         <th rowspan="2">No</th>
-                                        <th rowspan="2">Kode Sales</th>
-                                        <th rowspan="2">Costumer</th>
-                                        <th colspan="2">Data Produk</th>
+                                        <th rowspan="2">Kode Quotation</th>
+                                        <th colspan="3">Data Costumer</th>
+                                        <th colspan="3">Data Produk</th>
                                         <th rowspan="2">Quantity</th>
                                         <th rowspan="2">Total Harga</th>
                                         <th rowspan="2">Tanggal Pemesanan</th>
                                         <th rowspan="2">Tanggal Pembayaran</th>
                                         <th rowspan="2">Status</th>
-                                        <th colspan="2">Action</th>
+                                        {{-- <th colspan="2">Action</th> --}}
                                     </tr>
                                     <tr>
+                                        <th>Nama Costumer</th>
+                                        <th>Alamat</th>
+                                        <th>No. Telp</th>
                                         <th>Nama Produk</th>
+                                        <th>Ukuran Produk</th>
                                         <th>Harga Produk</th>
-                                        <th>Confirm</th>
+                                        {{-- <th>Confirm</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
-                                    <tr>
-                                        <td colspan="14">
-                                            Belum ada data
-                                        </td>
-                                    </tr>
+                                    @forelse ($quotations as $q)
+                                        <tr>
+                                            <td>{{ $q->id }}</td>
+                                            <td>{!! DNS1D::getBarcodeHTML($q->kode_quotation, 'C39', 0.6, 30) !!}
+                                                <p style="font-size: 10px; margin-top: 5px;">
+                                                    {{ $q->kode_quotation }}</p>
+                                            </td>
+                                            <td>{{ $q->name }}</td>
+                                            <td>{{ $q->address }}</td>
+                                            <td>{{ $q->phone }}</td>
+                                            <td>{{ $q->nama_produk }}</td>
+                                            <td>{{ $q->ukuran }}</td>
+                                            <td>Rp.@idr($q->harga)</td>
+                                            <td>{{ $q->quantity }}</td>
+                                            <td>Rp.@idr($q->total)</td>
+                                            <td>{{ $q->tgl_pemesanan }}</td>
+                                            <td>
+                                                @if ($q->tgl_pembayaran == 'Not Billed')
+                                                    <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
+                                                @else
+                                                    <span class="badge bg-success">{{ $q->tgl_pembayaran }}</span>
+                                                @endif
+                                            <td>
+                                                @if ($q->status == 0)
+                                                    <span class="badge bg-danger">Waiting Register</span>
+                                                @elseif ($q->status == 1)
+                                                    <span>Validasi Sebelum
+                                                        <i class="badge bg-danger">{{ $q->last_paid }}</i>
+                                                        <i class="badge bg-warning">Segera Validasi</i>
+                                                    </span>
+                                                @elseif ($q->status == 2)
+                                                    <span class="badge bg-info">Waiting Paid</span>
+                                                @elseif ($q->status == 3)
+                                                    <span class="badge bg-success">Delivery</span>
+                                                @elseif ($q->status == 4)
+                                                    <span class="badge bg-success">Pesanan Selesai</span>
+                                                @elseif ($q->status == 5)
+                                                    <span class="badge bg-danger">Pesanan Gagal</span>
+                                                @endif
+                                            </td>
+                                            {{-- <td>
+                                                @if ($q->status == 3)
+                                                    <a href="{{ route('quotation.edit', $q->id) }}"
+                                                        class="btn btn-success btn-sm"><i class="fa fa-edit">Confirm</i></a>
+                                                @else
+                                                    <button class="btn btn-danger btn-sm" disabled><i class="fa fa-times">
+                                                            Confirm</i></button>
+                                                @endif
+                                            </td> --}}
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="14" class="text-center">Data Kosong</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

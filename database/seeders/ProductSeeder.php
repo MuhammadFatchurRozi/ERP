@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Panjang',
             'ukuran' => 'M',
             'harga' => 75000,
+            'stok' => 0,
             'penjualan' => 0,
         ]);
         product::create([
@@ -27,6 +28,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Panjang',
             'ukuran' => 'L',
             'harga' => 75000,
+            'stok' => 0,
             'penjualan' => 0,
         ]);
         product::create([
@@ -34,6 +36,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Panjang',
             'ukuran' => 'XL',
             'harga' => 75000,
+            'stok' => 0,
             'penjualan' => 0,
         ]);
         product::create([
@@ -41,6 +44,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Pendek',
             'ukuran' => 'M',
             'harga' => 70000,
+            'stok' => 0,
             'penjualan' => 0,
         ]);
         product::create([
@@ -48,6 +52,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Pendek',
             'ukuran' => 'L',
             'harga' => 70000,
+            'stok' => 0,
             'penjualan' => 0,
         ]);
         product::create([
@@ -56,6 +61,7 @@ class ProductSeeder extends Seeder
             'ukuran' => 'XL',
             'harga' => 70000,
             'penjualan' => 0,
+            'stok' => 0,
         ]);
     }
 }

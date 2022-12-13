@@ -19,6 +19,7 @@ return new class extends Migration
             $table-> string('nama');
             $table-> string('ukuran');
             $table-> double('harga');
+            $table-> integer('stok');
             $table-> integer('penjualan');
             $table->timestamps();
         });

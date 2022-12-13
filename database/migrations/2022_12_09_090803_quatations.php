@@ -15,17 +15,20 @@ return new class extends Migration
     {
         Schema::create('quatations', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_sales');
+            $table->integer('id_product');
+            $table->string('kode_quotation');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
             $table->string('nama_produk');
+            $table->string('ukuran');
             $table->integer('harga');
             $table->integer('quantity');
             $table->double('total');
             $table->string('tgl_pemesanan');
             $table->string('tgl_pembayaran');
             $table->integer('status');
+            $table->string('last_paid')->nullable();
             $table->timestamps();
         });
     }

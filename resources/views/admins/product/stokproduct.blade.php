@@ -25,7 +25,7 @@
     <!--/.main-->
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <form method="POST" action="{{ route('product.update', $product->id) }}">
+        <form method="POST" action="{{ route('product.add_stok', $products->id) }}">
             @csrf
             @method('PUT')
             <div class="row">
@@ -34,36 +34,29 @@
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label>Kode Produk</label>
                         <input type="text" name="kode" class="form-control" placeholder="" required=""
-                            value="{{ old('kode', $product->kode) }}">
+                            value="{{ old('kode', $products->kode) }}" readonly>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label>Nama Produk</label>
-                        <select name="nama" class="form-control">
-                            <option value="{{ old('produk', $product->nama) }}" disabled selected>
-                                {{ old('produk', $product->nama) }}
-                            </option>
-                            <option disabled>------------------------------------------------------</option>
-                            <option value="Kaos Lengan Pendek" required="">Kaos Lengan Pendek</option>
-                            <option value="Kaos Lengan Panjang" required="">Kaos Lengan Panjang</option>
-                        </select>
+                        <input type="text" name="nama" class="form-control" placeholder="" required=""
+                            value="{{ old('nama', $products->nama) }}" readonly>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label>Ukuran</label>
-                        <select name="ukuran" class="form-control">
-                            <option value="{{ old('ukuran', $product->ukuran) }}" selected>
-                                {{ old('ukuran', $product->ukuran) }}
-                            </option>
-                            <option>------------------------------------------------------</option>
-                            <option value="M" required="">M</option>
-                            <option value="L" required="">L</option>
-                            <option value="XL" required="">XL</option>
-                            <option value="XXL" required="">XXL</option>
-                        </select>
+                        <input type="text" name="ukuran" class="form-control" placeholder="" required=""
+                            value="{{ old('ukuran', $products->ukuran) }}" readonly>
                     </div>
                     <div class="col-md-3 mb-3 input-group-sm">
                         <label>Harga</label>
                         <input type="text" name="harga" class="form-control" placeholder="" required=""
-                            value="{{ old('harga', $product->harga) }}">
+                            value="{{ old('harga', $products->harga) }}" readonly>
+                    </div>
+                    <br> <br> <br>
+                    <h5 class="card-header">Stok</h5>
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label>Stok</label>
+                        <input type="number" name="stok" class="form-control" placeholder="" required=""
+                            value="{{ old('stok', $products->stok) }}">
                     </div>
                 </div>
             </div>
