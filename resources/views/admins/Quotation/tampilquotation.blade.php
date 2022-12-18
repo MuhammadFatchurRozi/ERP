@@ -66,62 +66,66 @@
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
                                     @forelse ($quotations as $q)
-                                        <tr>
-                                            <td>{{ $q->id }}</td>
-                                            <td>{!! DNS1D::getBarcodeHTML($q->kode_quotation, 'C39', 0.6, 30) !!}
-                                                <p style="font-size: 10px; margin-top: 5px;">
-                                                    {{ $q->kode_quotation }}</p>
-                                            </td>
-                                            <td>{{ $q->name }}</td>
-                                            <td>{{ $q->address }}</td>
-                                            <td>{{ $q->phone }}</td>
-                                            <td>{{ $q->nama_produk }}</td>
-                                            <td>{{ $q->ukuran }}</td>
-                                            <td>Rp.@idr($q->harga)</td>
-                                            <td>{{ $q->quantity }}</td>
-                                            <td>Rp.@idr($q->total)</td>
-                                            <td>{{ $q->tgl_pemesanan }}</td>
-                                            <td>
-                                                @if ($q->tgl_pembayaran == 'Not Billed')
-                                                    <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
-                                                @elseif ($q->tgl_pembayaran == 'Validasi Sebelum')
-                                                    <i class="badge bg-danger">(24 Jam)</i>
-                                                    <i class="badge bg-info">{{ $q->last_paid }}</i>
-                                                    <i class="badge bg-warning">Segera Validasi</i>
-                                                @elseif ($q->tgl_pembayaran == 'Order Expired')
-                                                    <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
-                                                @else
-                                                    <span class="badge bg-success">{{ $q->tgl_pembayaran }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($q->status == 0)
-                                                    <span class="badge bg-info">Sales Order</span>
-                                                @elseif ($q->status == 1)
-                                                    <span class="badge bg-info">To Invoice</span>
-                                                @elseif ($q->status == 2)
-                                                    <span class="badge bg-success">Draft</span>
-                                                @elseif ($q->status == 3)
-                                                    <span class="badge bg-success">Delivery</span>
-                                                @elseif ($q->status == 4)
-                                                    <span class="badge bg-success">Pesanan Selesai</span>
-                                                @elseif ($q->status == 5)
-                                                    <span class="badge bg-danger">Pesanan Gagal</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($q->status == 0)
-                                                    <a href="{{ route('quotation.show', Crypt::encrypt($q->id)) }}"
-                                                        class="btn btn-info btn-sm"><i class="fa fa-times">
-                                                            Confirm</i></a>
-                                                @elseif ($q->status == 5)
-                                                    <button class="btn btn-danger btn-sm" disabled><i class="fa fa-times">
-                                                            Confirm Failed</i></button>
-                                                @else
-                                                    <button class="btn btn-success btn-sm" disabled><i class="fa fa-check">
-                                                            Confirm Done</i></button>
-                                                @endif
-                                            </td>
+                                        @if ($q->status == 5)
+                                            <tr class="info">
+                                            @else
+                                            <tr>
+                                        @endif
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{!! DNS1D::getBarcodeHTML($q->kode_quotation, 'C39', 0.6, 30) !!}
+                                            <p style="font-size: 10px; margin-top: 5px;">
+                                                {{ $q->kode_quotation }}</p>
+                                        </td>
+                                        <td>{{ $q->name }}</td>
+                                        <td>{{ $q->address }}</td>
+                                        <td>{{ $q->phone }}</td>
+                                        <td>{{ $q->nama_produk }}</td>
+                                        <td>{{ $q->ukuran }}</td>
+                                        <td>Rp.@idr($q->harga)</td>
+                                        <td>{{ $q->quantity }}</td>
+                                        <td>Rp.@idr($q->total)</td>
+                                        <td>{{ $q->tgl_pemesanan }}</td>
+                                        <td>
+                                            @if ($q->tgl_pembayaran == 'Not Billed')
+                                                <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
+                                            @elseif ($q->tgl_pembayaran == 'Validasi Sebelum')
+                                                <i class="badge bg-danger">(24 Jam)</i>
+                                                <i class="badge bg-info">{{ $q->last_paid }}</i>
+                                                <i class="badge bg-warning">Segera Validasi</i>
+                                            @elseif ($q->tgl_pembayaran == 'Order Expired')
+                                                <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
+                                            @else
+                                                <span class="badge bg-success">{{ $q->tgl_pembayaran }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($q->status == 0)
+                                                <span class="badge bg-info">Sales Order</span>
+                                            @elseif ($q->status == 1)
+                                                <span class="badge bg-info">To Invoice</span>
+                                            @elseif ($q->status == 2)
+                                                <span class="badge bg-success">Draft</span>
+                                            @elseif ($q->status == 3)
+                                                <span class="badge bg-success">Delivery</span>
+                                            @elseif ($q->status == 4)
+                                                <span class="badge bg-success">Pesanan Selesai</span>
+                                            @elseif ($q->status == 5)
+                                                <span class="badge bg-danger">Pesanan Gagal</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($q->status == 0)
+                                                <a href="{{ route('quotation.show', Crypt::encrypt($q->id)) }}"
+                                                    class="btn btn-info btn-sm"><i class="fa fa-times">
+                                                        Confirm</i></a>
+                                            @elseif ($q->status == 5)
+                                                <button class="btn btn-danger btn-sm" disabled><i class="fa fa-times">
+                                                        Confirm Failed</i></button>
+                                            @else
+                                                <button class="btn btn-success btn-sm" disabled><i class="fa fa-check">
+                                                        Confirm Done</i></button>
+                                            @endif
+                                        </td>
                                         </tr>
                                     @empty
                                         <tr>
