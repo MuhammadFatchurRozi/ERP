@@ -29,9 +29,8 @@ return new class extends Migration
             $table->string('tgl_pembayaran');
             $table->integer('status');   
             $table->string('last_paid')->nullable();
-            $table->integer('register_payment');
+            $table->integer('invoice');
             $table->integer('validate');
-            $table->integer('paid');
             $table->integer('delivery');
             $table->timestamps();
         });

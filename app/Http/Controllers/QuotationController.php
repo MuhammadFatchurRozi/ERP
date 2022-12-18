@@ -11,6 +11,7 @@ use App\Models\order;
 
 use Alert;
 use Carbon\Carbon;
+use Crypt;
 
 class QuotationController extends Controller
 {
@@ -78,8 +79,9 @@ class QuotationController extends Controller
             'harga' => $request->harga,
             'quantity' => $request->quantity,
             'total' => $request->total,
-            'tgl_pemesanan' => $now->format('Y-m-d-H-i-s'),
+            'tgl_pemesanan' => $now->format('Y-m-d H:i:s'),
             'tgl_pembayaran' => "Not Billed",
+            'status' => 0,
         ]);
 
         // Post Stok Order
@@ -94,12 +96,12 @@ class QuotationController extends Controller
             'harga' => $request->harga,
             'quantity' => $request->quantity,
             'total' => $request->total,
-            'tgl_pemesanan' => $now->format('Y-m-d-H-i-s'),
+            'tgl_pemesanan' => $now->format('Y-m-d H:i:s'),
             'tgl_pembayaran' => "Not Billed",
-            'register_payment' => 1,
+            'invoice' => 1,
             'validate' => 1,
-            'paid' => 1,
             'delivery' => 1,
+            'status' => 0,
         ]);
 
         if($quotations){
@@ -117,9 +119,32 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Di fungsi alihkan menjadi button confirm di halaman tampil quotation
     public function show($id)
     {
-        //
+        $id = Crypt::decrypt($id); // Decrypt ID
+        $quotations = quatation::find($id);
+
+        //Changed Status Quoatation
+        $quotations->update([
+            'status' => 1,
+        ]);
+
+        // Post Stok Order
+        $orders = order::where('kode_order',$quotations->kode_quotation)->where('tgl_pemesanan', $quotations->tgl_pemesanan)->update([
+            'invoice' => 2,
+            'validate' => 1,
+            'delivery' => 1,
+            'status' => 1,
+        ]);
+        if($quotations && $orders){
+            Alert::success('Berhasil', 'Data Berhasil Ditambahkan');
+            return redirect()->route('order.index');
+        }else{
+            Alert::error('Gagal', 'Data Gagal Ditambahkan');
+            return redirect()->back();
+        }
     }
 
     /**
