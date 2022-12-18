@@ -52,7 +52,7 @@
                                         <th rowspan="2">Tanggal Pemesanan</th>
                                         <th rowspan="2">Tanggal Pembayaran</th>
                                         <th rowspan="2">Status</th>
-                                        {{-- <th colspan="2">Action</th> --}}
+                                        <th colspan="2">Action</th>
                                     </tr>
                                     <tr>
                                         <th>Nama Costumer</th>
@@ -61,7 +61,7 @@
                                         <th>Nama Produk</th>
                                         <th>Ukuran Produk</th>
                                         <th>Harga Produk</th>
-                                        {{-- <th>Confirm</th> --}}
+                                        <th>Confirm</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
@@ -84,19 +84,23 @@
                                             <td>
                                                 @if ($q->tgl_pembayaran == 'Not Billed')
                                                     <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
+                                                @elseif ($q->tgl_pembayaran == 'Validasi Sebelum')
+                                                    <i class="badge bg-danger">(24 Jam)</i>
+                                                    <i class="badge bg-info">{{ $q->last_paid }}</i>
+                                                    <i class="badge bg-warning">Segera Validasi</i>
+                                                @elseif ($q->tgl_pembayaran == 'Order Expired')
+                                                    <span class="badge bg-danger">{{ $q->tgl_pembayaran }}</span>
                                                 @else
                                                     <span class="badge bg-success">{{ $q->tgl_pembayaran }}</span>
                                                 @endif
+                                            </td>
                                             <td>
                                                 @if ($q->status == 0)
-                                                    <span class="badge bg-danger">Waiting Register</span>
+                                                    <span class="badge bg-info">Sales Order</span>
                                                 @elseif ($q->status == 1)
-                                                    <span>Validasi Sebelum
-                                                        <i class="badge bg-danger">{{ $q->last_paid }}</i>
-                                                        <i class="badge bg-warning">Segera Validasi</i>
-                                                    </span>
+                                                    <span class="badge bg-info">To Invoice</span>
                                                 @elseif ($q->status == 2)
-                                                    <span class="badge bg-info">Waiting Paid</span>
+                                                    <span class="badge bg-success">Draft</span>
                                                 @elseif ($q->status == 3)
                                                     <span class="badge bg-success">Delivery</span>
                                                 @elseif ($q->status == 4)
@@ -105,15 +109,19 @@
                                                     <span class="badge bg-danger">Pesanan Gagal</span>
                                                 @endif
                                             </td>
-                                            {{-- <td>
-                                                @if ($q->status == 3)
-                                                    <a href="{{ route('quotation.edit', $q->id) }}"
-                                                        class="btn btn-success btn-sm"><i class="fa fa-edit">Confirm</i></a>
-                                                @else
+                                            <td>
+                                                @if ($q->status == 0)
+                                                    <a href="{{ route('quotation.show', Crypt::encrypt($q->id)) }}"
+                                                        class="btn btn-info btn-sm"><i class="fa fa-times">
+                                                            Confirm</i></a>
+                                                @elseif ($q->status == 5)
                                                     <button class="btn btn-danger btn-sm" disabled><i class="fa fa-times">
-                                                            Confirm</i></button>
+                                                            Confirm Failed</i></button>
+                                                @else
+                                                    <button class="btn btn-success btn-sm" disabled><i class="fa fa-check">
+                                                            Confirm Done</i></button>
                                                 @endif
-                                            </td> --}}
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

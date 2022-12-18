@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lengan Panjang',
             'ukuran' => 'M',
             'harga' => 75000,
-            'stok' => 0,
+            'stok' => 6789,
             'penjualan' => 0,
         ]);
         product::create([

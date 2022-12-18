@@ -10,6 +10,7 @@ use App\Models\product;
 
 use Carbon\carbon;
 use Alert;
+use Crypt;
 
 class OrderController extends Controller
 {
@@ -53,7 +54,22 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return ('Belum Bisa Ehe');
+        $id = Crypt::decrypt($id);
+        $orders = order::find($id);
+
+        $match_products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first(); 
+
+        $match_kode = quatation::where('kode_quotation', $orders->kode_order)->first();
+        $update_qoutations = $match_kode->update(['status' => 2]);
+
+        $update_orders = $orders->update(['status' => 2]);
+
+        if ($update_orders && $update_qoutations == true) {
+            return view('admins.order.invoice_order', compact('orders','match_products'));
+        } else {
+            Alert::error('Error', 'Gagal');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -81,39 +97,7 @@ class OrderController extends Controller
     // Alih fungsi menjadi button Register Payment untuk post data
     public function update(Request $request, $id)
     {
-        //get date now
-        $now = carbon::now();
-        
-        // find order
-        $order = order::find($id);
-
-        //inisilisasi tanggal expired
-        $expired = $now->addDays($request->lastpaid);
-
-        //fetch kode
-        $quotations = quatation::where('kode_quotation', $order->kode_order)->first();
-
-        //update table quotation
-        $quotations->status = 1;
-        $quotations->last_paid= $expired;
-        $quotations->save();
-
-        //update table order
-        $order->status = 1;
-        $order->register_payment = 2;
-        $order->validate = 2;
-        $order->last_paid = $expired;
-        $order->save();
-
-        if ($order && $quotations)
-        {
-            Alert::success('Success', 'Register Berhasil Segera Validasi');
-            Return redirect()->route('order.index');
-        }
-        else{
-            Alert::error('Error', 'Register Gagal');
-            Return redirect()->route('order.index');
-        }
+        //
     }
 
     /**
@@ -127,84 +111,97 @@ class OrderController extends Controller
         //
     }
 
+    public function posted($id)
+    {
+        $id = Crypt::decrypt($id); //decrypt id
+
+        //get date now
+        $now = carbon::now();
+        
+        // find order
+        $orders = order::find($id);
+
+        //inisilisasi jam expired
+        $expired = $now->addHours(24);
+
+        //fetch kode quotations
+        $quotations = quatation::where('kode_quotation', $orders->kode_order)->first();
+
+        //update table quotation
+        $quotations->status = 1;
+        $quotations->last_paid= $expired;
+        $quotations->tgl_pembayaran= "Validasi Sebelum";
+        $quotations->save();
+
+        //update table order
+        $orders->status = 2;
+        $orders->invoice= 3;
+        $orders->validate = 2;
+        $orders->last_paid = $expired;
+        $orders->tgl_pembayaran= "Validasi Sebelum";
+        $orders->save();
+
+        if ($orders && $quotations)
+        {
+            Alert::success('Success', 'Create Invoice Success');
+            Return redirect()->route('order.index');
+        }
+        else{
+            Alert::error('Error', 'Create Invoice Failed');
+            Return redirect()->route('order.index');
+        }
+    }
+
     public function validates($id)
     {
+        $id = Crypt::decrypt($id); //decrypt id
+        
         //find data order
         $orders = order::find($id);
 
         //fetch kode
         $quotations = quatation::where('kode_quotation', $orders->kode_order)->first();
 
-        //check tanggal sekarang dengan tanggal expired
+        //get date now
         $now = carbon::now();
-        $lastpaid = $orders->last_paid;
-
-        if($now > $lastpaid)
+        
+        //check tanggal sekarang dengan tanggal expired
+        if($now > $orders->last_paid)
         {
             $orders->validate = 1;
+            $orders->invoice = 1;
             $orders->status = 5;
+            $orders->tgl_pembayaran = "Order Expired";
             $orders->save();
 
             $quotations->status = 5;
+            $quotations->tgl_pembayaran = "Order Expired";
             $quotations->save();
+
             Alert::error('Error', 'Order Expired');
             return redirect()->route('order.index');
         }
         else
         {
             $orders->validate = 3;
-            $orders->status = 2;
-            $orders->paid = 2;
+            $orders->status = 3;
+            $orders->delivery = 2;
+            $orders->tgl_pembayaran = $now;
             $orders->save();
 
-            $quotations->status = 2;
+            $quotations->status = 3;
+            $quotations->tgl_pembayaran = $now;
             $quotations->save();
+
             Alert::success('Success', 'Order Valid');
             return redirect()->route('order.index');
         }
     }
 
-    public function paid($id)
-    {
-        //find data order
-        $orders = order::find($id);
-        //fetch kode
-        $quotations = quatation::where('kode_quotation', $orders->kode_order)->first();
-
-        //get date now
-        $now = carbon::now();
-
-        //check tanggal sekarang dengan tanggal expired
-        $lastpaid = $orders->last_paid;
-
-        if($now > $lastpaid)
-        {
-            $orders->paid = 1;
-            $orders->status = 5;
-            $orders->save();
-
-            $quotations->status = 5;
-            $quotations->save();
-            Alert::error('Error', 'Order Expired');
-            return redirect()->route('order.index');
-        }
-        else
-        {
-            $orders->paid = 3;
-            $orders->status = 3;
-            $orders->delivery = 2;
-            $orders->tgl_pembayaran = $now;
-            $orders->save();
-            
-            $quotations->status = 3;
-            $quotations->tgl_pembayaran = $now;
-            $quotations->save();
-            Alert::success('Success', 'Order Paid');
-            return redirect()->route('order.index');
-        }
-    }
     public function delivery($id)
     {
+        $id = Crypt::decrypt($id); //decrypt id
+
         //find data order
         $orders = order::find($id);
         //fetch kode
@@ -214,18 +211,21 @@ class OrderController extends Controller
         $products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first(); 
         //get date now
         $now = carbon::now();
-
+        
         //check tanggal sekarang dengan tanggal expired
-        $lastpaid = $orders->last_paid;
-
-        if($now > $lastpaid)
+        if($now > $orders->last_paid)
         {
+            $orders->validate = 1;
+            $orders->invoice = 1;
             $orders->delivery = 1;
             $orders->status = 5;
+            $orders->tgl_pembayaran = "Order Expired";
             $orders->save();
 
             $quotations->status = 5;
+            $quotations->tgl_pembayaran = "Order Expired";
             $quotations->save();
+
             Alert::error('Error', 'Order Expired');
             return redirect()->route('order.index');
         }

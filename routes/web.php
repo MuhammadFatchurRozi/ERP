@@ -103,11 +103,11 @@ Route::resource('po', POController::class);
     #Costumer
     Route::resource('costumer', CostumerController::class);
     
-    #Order
-    Route::resource('order', OrderController::class);
-    Route::get('order/{id}/validate', [OrderController::class, 'validates'])->name('order.validate'); //validate Order
-    Route::get('order/{id}/paid', [OrderController::class, 'paid'])->name('order.paid'); //Paid Order
-    Route::get('order/{id}/delivery', [OrderController::class, 'delivery'])->name('order.delivery'); //Delivery Order
+#Order
+Route::resource('order', OrderController::class);
+Route::get('order/{id}/posted', [OrderController::class, 'posted'])->name('order.posted'); //Posted Order
+Route::get('order/{id}/validate', [OrderController::class, 'validates'])->name('order.validate'); //validate Order
+Route::get('order/{id}/delivery', [OrderController::class, 'delivery'])->name('order.delivery'); //Delivery Order
 
 #Quotation
 Route::resource('quotation', QuotationController::class);
