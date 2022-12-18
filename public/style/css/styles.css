@@ -101,6 +101,21 @@ h4 {
 }
 
 
+/* info */
+
+.table tbody>tr.info td {
+    background-color: #30a5ff !important;
+}
+
+
+/* danger */
+
+.table tbody>tr.danger td {
+    background-color: yellow !important;
+    color: #fff;
+}
+
+
 /* From uiverse.io by @alexruix */
 
 .input {

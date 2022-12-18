@@ -58,95 +58,96 @@
                                 </thead>
                                 <tbody class="text-center" style="vertical-align:middle;">
                                     @forelse ($orders as $o)
-                                        {{-- @if ($o->status == 5)
-                                        @else
-                                        <tr>
-                                            @endif --}}
-                                        <tr class="table-danger">
-                                            <td>{{ $o->id }}</td>
-                                            <td>{!! DNS1D::getBarcodeHTML($o->kode_order, 'C39', 0.6, 30) !!}
-                                                <p style="font-size: 10px; margin-top: 5px;">
-                                                    {{ $o->kode_order }}</p>
-                                            </td>
-                                            <td>{{ $o->name }}</td>
-                                            <td>{{ $o->address }}</td>
-                                            <td>{{ $o->phone }}</td>
-                                            <td>{{ $o->nama_produk }}</td>
-                                            <td>{{ $o->ukuran }}</td>
-                                            <td>Rp.@idr($o->harga)</td>
-                                            <td>{{ $o->quantity }}</td>
-                                            <td>Rp.@idr($o->total)</td>
-                                            <td>{{ $o->tgl_pemesanan }}</td>
-                                            <td>
-                                                @if ($o->tgl_pembayaran == 'Not Billed')
-                                                    <span class="badge bg-danger">{{ $o->tgl_pembayaran }}</span>
-                                                @elseif ($o->tgl_pembayaran == 'Validasi Sebelum')
-                                                    <i class="badge bg-danger">(24 Jam)</i>
-                                                    <i class="badge bg-info">{{ $o->last_paid }}</i>
-                                                    <i class="badge bg-warning">Segera Validasi</i>
-                                                @elseif ($o->tgl_pembayaran == 'Order Expired')
-                                                    <span class="badge bg-danger">{{ $o->tgl_pembayaran }}</span>
-                                                @else
-                                                    <span class="badge bg-success">{{ $o->tgl_pembayaran }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($o->status == 0)
-                                                    <span class="badge bg-info">Sales Order</span>
-                                                @elseif ($o->status == 1)
-                                                    <span class="badge bg-info">To Invoice</span>
-                                                @elseif ($o->status == 2)
-                                                    <span class="badge bg-success">Draft</span>
-                                                @elseif ($o->status == 3)
-                                                    <span class="badge bg-success">Delivery</span>
-                                                @elseif ($o->status == 4)
-                                                    <span class="badge bg-success">Pesanan Selesai</span>
-                                                @elseif ($o->status == 5)
-                                                    <span class="badge bg-danger">Pesanan Gagal</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($o->invoice == 1)
-                                                    <button class="btn btn-danger" disabled>
-                                                        <i class="fa fa-times">
-                                                            Create Invoice</i>
-                                                    </button>
-                                                @elseif ($o->invoice == 2)
-                                                    <a href="{{ route('order.show', Crypt::encrypt($o->id)) }}"
-                                                        class="btn btn-primary">
-                                                        <i class="fa fa-file">
-                                                            Create Invoice</i>
-                                                    </a>
-                                                @elseif ($o->invoice == 3)
-                                                    <button class="btn btn-success" disabled>
-                                                        <i class="fa fa-check">
-                                                            Invoice Created</i>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($o->validate == 1)
-                                                    <button class="btn btn-danger" disabled><i class="fa fa-times">
-                                                            Validated</i></button>
-                                                @elseif ($o->validate == 2)
-                                                    <a href="{{ route('order.validate', Crypt::encrypt($o->id)) }}"
-                                                        class="btn btn-primary"><i class="fa fa-times"> Validate</i></a>
-                                                @elseif ($o->validate == 3)
-                                                    <button class="btn btn-success" disabled><i class="fa fa-check">
-                                                            Validated</i></button>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($o->delivery == 1)
-                                                    <button class="btn btn-danger" disabled><i class="fa fa-times">
-                                                            Delivered</i></button>
-                                                @elseif ($o->delivery == 2)
-                                                    <a href="{{ route('order.delivery', Crypt::encrypt($o->id)) }}"
-                                                        class="btn btn-primary"><i class="fa fa-times"> Delivery</i></a>
-                                                @elseif ($o->delivery == 3)
-                                                    <button class="btn btn-success" disabled><i class="fa fa-truck">
-                                                            Delivered</i></button>
-                                                @endif
-                                            </td>
+                                        @if ($o->status == 5)
+                                            <tr class="info">
+                                            @else
+                                            <tr>
+                                        @endif
+
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{!! DNS1D::getBarcodeHTML($o->kode_order, 'C39', 0.6, 30) !!}
+                                            <p style="font-size: 10px; margin-top: 5px;">
+                                                {{ $o->kode_order }}</p>
+                                        </td>
+                                        <td>{{ $o->name }}</td>
+                                        <td>{{ $o->address }}</td>
+                                        <td>{{ $o->phone }}</td>
+                                        <td>{{ $o->nama_produk }}</td>
+                                        <td>{{ $o->ukuran }}</td>
+                                        <td>Rp.@idr($o->harga)</td>
+                                        <td>{{ $o->quantity }}</td>
+                                        <td>Rp.@idr($o->total)</td>
+                                        <td>{{ $o->tgl_pemesanan }}</td>
+                                        <td>
+                                            @if ($o->tgl_pembayaran == 'Not Billed')
+                                                <span class="badge bg-danger">{{ $o->tgl_pembayaran }}</span>
+                                            @elseif ($o->tgl_pembayaran == 'Validasi Sebelum')
+                                                <i class="badge bg-danger">(24 Jam)</i>
+                                                <i class="badge bg-info">{{ $o->last_paid }}</i>
+                                                <i class="badge bg-warning">Segera Validasi</i>
+                                            @elseif ($o->tgl_pembayaran == 'Order Expired')
+                                                <span class="badge bg-danger">{{ $o->tgl_pembayaran }}</span>
+                                            @else
+                                                <span class="badge bg-success">{{ $o->tgl_pembayaran }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($o->status == 0)
+                                                <span class="badge bg-info">Sales Order</span>
+                                            @elseif ($o->status == 1)
+                                                <span class="badge bg-info">To Invoice</span>
+                                            @elseif ($o->status == 2)
+                                                <span class="badge bg-success">Draft</span>
+                                            @elseif ($o->status == 3)
+                                                <span class="badge bg-success">Delivery</span>
+                                            @elseif ($o->status == 4)
+                                                <span class="badge bg-success">Pesanan Selesai</span>
+                                            @elseif ($o->status == 5)
+                                                <span class="badge bg-danger">Pesanan Gagal</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($o->invoice == 1)
+                                                <button class="btn btn-danger" disabled>
+                                                    <i class="fa fa-times">
+                                                        Create Invoice</i>
+                                                </button>
+                                            @elseif ($o->invoice == 2)
+                                                <a href="{{ route('order.show', Crypt::encrypt($o->id)) }}"
+                                                    class="btn btn-primary">
+                                                    <i class="fa fa-file">
+                                                        Create Invoice</i>
+                                                </a>
+                                            @elseif ($o->invoice == 3)
+                                                <button class="btn btn-success" disabled>
+                                                    <i class="fa fa-check">
+                                                        Invoice Created</i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($o->validate == 1)
+                                                <button class="btn btn-danger" disabled><i class="fa fa-times">
+                                                        Validated</i></button>
+                                            @elseif ($o->validate == 2)
+                                                <a href="{{ route('order.validate', Crypt::encrypt($o->id)) }}"
+                                                    class="btn btn-primary"><i class="fa fa-times"> Validate</i></a>
+                                            @elseif ($o->validate == 3)
+                                                <button class="btn btn-success" disabled><i class="fa fa-check">
+                                                        Validated</i></button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($o->delivery == 1)
+                                                <button class="btn btn-danger" disabled><i class="fa fa-times">
+                                                        Delivered</i></button>
+                                            @elseif ($o->delivery == 2)
+                                                <a href="{{ route('order.delivery', Crypt::encrypt($o->id)) }}"
+                                                    class="btn btn-primary"><i class="fa fa-times"> Delivery</i></a>
+                                            @elseif ($o->delivery == 3)
+                                                <button class="btn btn-success" disabled><i class="fa fa-truck">
+                                                        Delivered</i></button>
+                                            @endif
+                                        </td>
                                         </tr>
                                     @empty
                                         <tr>
