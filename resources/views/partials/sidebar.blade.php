@@ -115,6 +115,35 @@
                             Data MaD
                         </a>
                     </li>
+                    <li class="{{ request()->is('accounting*') ? 'active' : '' }}, parent">
+                        <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
+                            <em class="fa fa-calculator ">&nbsp;</em>
+                            Accounting
+                            <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
+                                <em class="fa fa-plus"></em>
+                            </span>
+                        </a>
+                        <ul class="children collapse" id="sub-item-3">
+                            <li>
+                                <a class="{{ request()->is('costumerinvoice*') ? 'active' : '' }}" href="{{ route('accounting.index') }}">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Costumer Invoice
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('vendorbill*') ? 'active' : '' }}" href="{{ route('accounting.create') }}">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Vendor Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('payroll*') ? 'active' : '' }}" href="">
+                                    <span class="fa fa-arrow-right">&nbsp;</span>
+                                    Payroll
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </ul>
