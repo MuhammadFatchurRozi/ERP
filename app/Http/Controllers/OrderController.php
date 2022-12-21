@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\order;
 use App\Models\quatation;
 use App\Models\product;
+use App\Models\accounting_customer;
 
 use Carbon\carbon;
 use Alert;
@@ -22,7 +23,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = order::orderBy('tgl_pemesanan', 'desc')->get();
-        return view('admins.order.tampilorder',compact('orders'));
+        return view('admins.order.tampilorder', compact('orders'));
     }
 
     /**
@@ -57,7 +58,7 @@ class OrderController extends Controller
         $id = Crypt::decrypt($id);
         $orders = order::find($id);
 
-        $match_products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first(); 
+        $match_products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first();
 
         $match_kode = quatation::where('kode_quotation', $orders->kode_order)->first();
         $update_qoutations = $match_kode->update(['status' => 2]);
@@ -65,7 +66,7 @@ class OrderController extends Controller
         $update_orders = $orders->update(['status' => 2]);
 
         if ($update_orders && $update_qoutations == true) {
-            return view('admins.order.invoice_order', compact('orders','match_products'));
+            return view('admins.order.invoice_order', compact('orders', 'match_products'));
         } else {
             Alert::error('Error', 'Gagal');
             return redirect()->back();
@@ -117,7 +118,7 @@ class OrderController extends Controller
 
         //get date now
         $now = carbon::now();
-        
+
         // find order
         $orders = order::find($id);
 
@@ -129,33 +130,31 @@ class OrderController extends Controller
 
         //update table quotation
         $quotations->status = 1;
-        $quotations->last_paid= $expired;
-        $quotations->tgl_pembayaran= "Validasi Sebelum";
+        $quotations->last_paid = $expired;
+        $quotations->tgl_pembayaran = "Validasi Sebelum";
         $quotations->save();
 
         //update table order
         $orders->status = 2;
-        $orders->invoice= 3;
+        $orders->invoice = 3;
         $orders->validate = 2;
         $orders->last_paid = $expired;
-        $orders->tgl_pembayaran= "Validasi Sebelum";
+        $orders->tgl_pembayaran = "Validasi Sebelum";
         $orders->save();
 
-        if ($orders && $quotations)
-        {
+        if ($orders && $quotations) {
             Alert::success('Success', 'Create Invoice Success');
-            Return redirect()->route('order.index');
-        }
-        else{
+            return redirect()->route('order.index');
+        } else {
             Alert::error('Error', 'Create Invoice Failed');
-            Return redirect()->route('order.index');
+            return redirect()->route('order.index');
         }
     }
 
     public function validates($id)
     {
         $id = Crypt::decrypt($id); //decrypt id
-        
+
         //find data order
         $orders = order::find($id);
 
@@ -164,10 +163,9 @@ class OrderController extends Controller
 
         //get date now
         $now = carbon::now();
-        
+
         //check tanggal sekarang dengan tanggal expired
-        if($now > $orders->last_paid)
-        {
+        if ($now > $orders->last_paid) {
             $orders->validate = 1;
             $orders->invoice = 1;
             $orders->status = 5;
@@ -180,9 +178,7 @@ class OrderController extends Controller
 
             Alert::error('Error', 'Order Expired');
             return redirect()->route('order.index');
-        }
-        else
-        {
+        } else {
             $orders->validate = 3;
             $orders->status = 3;
             $orders->delivery = 2;
@@ -193,8 +189,28 @@ class OrderController extends Controller
             $quotations->tgl_pembayaran = $now;
             $quotations->save();
 
-            Alert::success('Success', 'Order Valid');
-            return redirect()->route('order.index');
+            $accounting_customer = accounting_customer::create([
+                'kode_accounting_customer' => $orders->kode_order,
+                'name' => $orders->name,
+                'phone' => $orders->phone,
+                'address' => $orders->address,
+                'nama_produk' => $orders->nama_produk,
+                'ukuran' => $orders->ukuran,
+                'harga' => $orders->harga,
+                'quantity' => $orders->quantity,
+                'total' => $orders->total,
+                'tgl_pemesanan' => $orders->tgl_pemesanan,
+                'tgl_pembayaran' => $orders->tgl_pembayaran,
+                'status' => 'Paid',
+            ]);
+
+            if ($orders && $quotations && $accounting_customer) {
+                Alert::success('Success', 'Order Valid');
+                return redirect()->route('order.index');
+            } else {
+                Alert::success('Failed', 'Order Failed');
+                return redirect()->route('order.index');
+            }
         }
     }
 
@@ -208,13 +224,12 @@ class OrderController extends Controller
         $quotations = quatation::where('kode_quotation', $orders->kode_order)->first();
 
         //fetch data product and order
-        $products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first(); 
+        $products = product::where('nama', $orders->nama_produk)->where('ukuran', $orders->ukuran)->first();
         //get date now
         $now = carbon::now();
-        
+
         //check tanggal sekarang dengan tanggal expired
-        if($now > $orders->last_paid)
-        {
+        if ($now > $orders->last_paid) {
             $orders->validate = 1;
             $orders->invoice = 1;
             $orders->delivery = 1;
@@ -228,13 +243,11 @@ class OrderController extends Controller
 
             Alert::error('Error', 'Order Expired');
             return redirect()->route('order.index');
-        }
-        else
-        {
+        } else {
             $orders->status = 4;
             $orders->delivery = 3;
             $orders->save();
-            
+
             $quotations->status = 4;
             $quotations->save();
 

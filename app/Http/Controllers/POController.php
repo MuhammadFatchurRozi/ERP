@@ -7,6 +7,7 @@ use App\Models\puchase_order;
 use App\Models\rfq;
 use App\Models\bahan_baku;
 use Alert;
+use App\Models\accounting_vendor;
 use Carbon\Carbon;
 
 class POController extends Controller
@@ -96,7 +97,21 @@ class POController extends Controller
         $bahan_baku->stok = $bahan_baku->stok + $rfq->quantity;
         $bahan_baku->save();
 
-        if ($pos && $rfq && $bahan_baku) {
+        $accounting_vendor = accounting_vendor::create([
+            'kode_vendor_customer' => $pos->kode_rfq,
+            'nama_vendor' => $pos->nama_vendor,
+            'alamat' => $pos->alamat,
+            'nohp' => $pos->nohp,
+            'nama_bahan_baku' => $pos->nama_bahan_baku,
+            'harga' => $pos->harga,
+            'quantity' => $pos->quantity,
+            'total' => $pos->total,
+            'tgl_pesanan' => $pos->tgl_pesan,
+            'tgl_pembayaran' => $pos->tgl_bayar,
+            'status' => 'Paid',
+        ]);
+
+        if ($pos && $rfq && $bahan_baku && $accounting_vendor) {
             Alert::success('Paid Berhasil', 'Paid');
             return redirect()->route('rfq.index');
         } else {

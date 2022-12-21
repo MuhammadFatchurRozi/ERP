@@ -17,7 +17,7 @@ use App\Http\Controllers\Confirm_OrderController;
 use App\Http\Controllers\CostumerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuotationController;
-
+use App\Http\Controllers\AccountingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,13 +96,13 @@ Route::get('rfq/{id}/cetak', [RfqController::class, 'cetak'])->name('rfq.cetak')
 
 #PO
 Route::resource('po', POController::class);
-    #Confirm Order
-    Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
-    Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
-    
-    #Costumer
-    Route::resource('costumer', CostumerController::class);
-    
+#Confirm Order
+Route::get('po/{id}/receive', [POController::class, 'receive'])->name('po.receive'); //Receiver Product
+Route::get('po/{id}/paid', [POController::class, 'paid'])->name('po.paid'); //Receiver Product
+
+#Costumer
+Route::resource('costumer', CostumerController::class);
+
 #Order
 Route::resource('order', OrderController::class);
 Route::get('order/{id}/posted', [OrderController::class, 'posted'])->name('order.posted'); //Posted Order
@@ -116,3 +116,6 @@ Route::post('/quotation/costumer2', [QuotationController::class, 'costumer2'])->
 Route::post('/quotation/product1', [QuotationController::class, 'product1'])->name('quotation.product1'); //Ajax Fetch Data ukruan produk from products
 Route::post('/quotation/product2', [QuotationController::class, 'product2'])->name('quotation.product2'); //Ajax Fetch Data harga produk from products
 Route::post('/quotation/product3', [QuotationController::class, 'product3'])->name('quotation.product3'); //Ajax Fetch Data stok produk from products
+
+#akunnting
+Route::resource('accounting', AccountingController::class);
