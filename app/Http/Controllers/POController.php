@@ -109,6 +109,7 @@ class POController extends Controller
             'tgl_pesanan' => $pos->tgl_pesan,
             'tgl_pembayaran' => $pos->tgl_bayar,
             'status' => 'Paid',
+            'to_accounting' => $now->format('Y-m-d'),
         ]);
 
         if ($pos && $rfq && $bahan_baku && $accounting_vendor) {

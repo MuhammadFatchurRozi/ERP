@@ -202,6 +202,7 @@ class OrderController extends Controller
                 'tgl_pemesanan' => $orders->tgl_pemesanan,
                 'tgl_pembayaran' => $orders->tgl_pembayaran,
                 'status' => 'Paid',
+                'to_accounting' => $now->format('Y-m-d'),
             ]);
 
             if ($orders && $quotations && $accounting_customer) {
