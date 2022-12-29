@@ -103,7 +103,7 @@
                             Kasir
                         </a>
                     </li>
-                    <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
                         <a href="{{ route('pesanan.index') }}">
                             <em class="fa fa-shopping-cart">&nbsp;</em>
                             Detail Pesanan
@@ -114,7 +114,7 @@
                             <em class="fa fa-check-circle  ">&nbsp;</em>
                             Data MaD
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->is('accounting*') ? 'active' : '' }}, parent">
                         <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-calculator ">&nbsp;</em>
