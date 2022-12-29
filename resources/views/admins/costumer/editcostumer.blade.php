@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-3 mb-3 input-group-sm">
                             <label for="harga">No.Hp</label>
-                            <input type="number" id="#" name="phone" placeholder=""
+                            <input type="text" id="#" name="phone" placeholder=""
                                 value="{{ old('phone', $costumers->phone) }}" class="form-control input-lg" required>
                         </div>
                     </div>
