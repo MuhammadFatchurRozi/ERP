@@ -6,6 +6,8 @@ use App\Models\accounting_customer;
 use App\Models\accounting_vendor;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class AccountingController extends Controller
 {
     /**
@@ -13,10 +15,25 @@ class AccountingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $accounting_customer = accounting_customer::all();
-        return view('admins.accounting.tampilinvoice', compact('accounting_customer'));
+
+        if($request->has('cetak'))
+        {
+            $accounting_customer = accounting_customer::whereDate('to_accounting', $request->cetak)->get();
+            $title_date = accounting_customer::whereDate('to_accounting', $request->cetak)->first();
+
+            $sum_totals = accounting_customer::whereDate('to_accounting', $request->cetak)->sum('total');
+
+            return view ('admins.accounting.cetak_customer', compact('accounting_customer', 'sum_totals', 'title_date'));
+        }
+        else
+        {
+            $accounting_customer = accounting_customer::orderBy('created_at', 'desc')
+            ->get();
+            
+            return view('admins.accounting.tampilinvoice', compact('accounting_customer'));
+        }
     }
 
     /**

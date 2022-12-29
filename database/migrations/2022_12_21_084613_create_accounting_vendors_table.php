@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('tgl_pesanan');
             $table->string('tgl_pembayaran');
             $table->string('status');
+            $table->string('to_accounting');
             $table->timestamps();
         });
     }
