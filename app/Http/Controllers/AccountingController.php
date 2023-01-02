@@ -41,10 +41,24 @@ class AccountingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $accounting_vendor = accounting_vendor::all();
-        return view('admins.accounting.tampilvendorbill', compact('accounting_vendor'));
+        if($request->has('cetak'))
+        {
+            $accounting_vendor = accounting_vendor::whereDate('to_accounting', $request->cetak)->get();
+            $title_date = accounting_vendor::whereDate('to_accounting', $request->cetak)->first();
+
+            $sum_totals = accounting_vendor::whereDate('to_accounting', $request->cetak)->sum('total');
+
+            return view ('admins.accounting.cetak_vendor', compact('accounting_vendor', 'sum_totals', 'title_date'));
+        }
+        else
+        {
+            $accounting_vendor = accounting_vendor::orderBy('created_at', 'desc')
+            ->get();
+            
+            return view('admins.accounting.tampilvendorbill', compact('accounting_vendor'));
+        }
     }
 
     /**
