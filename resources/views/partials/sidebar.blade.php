@@ -97,13 +97,13 @@
                             Vendor
                         </a>
                     </li>
-                    <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
                         <a href="{{ route('kasir.index') }}">
                             <em class="fa fa-money  ">&nbsp;</em>
                             Kasir
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
+                    <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
                         <a href="{{ route('pesanan.index') }}">
                             <em class="fa fa-shopping-cart">&nbsp;</em>
                             Detail Pesanan

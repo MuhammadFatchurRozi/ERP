@@ -156,51 +156,52 @@
 
                     <tr>
                         <th rowspan="2">No</th>
-                        <th rowspan="2">Kode Invoice</th>
-                        <th colspan="3">Data Costumer</th>
-                        <th colspan="3">Data Produk</th>
+                        <th rowspan="2">Kode Vendor Bill</th>
+                        <th colspan="3">Data Vendor</th>
+                        <th colspan="2">Data Bahan Baku</th>
                         <th rowspan="2">Quantity</th>
                         <th rowspan="2">Total Harga</th>
                         <th rowspan="2">Tanggal Pemesanan</th>
                         <th rowspan="2">Tanggal Pembayaran</th>
                     </tr>
                     <tr>
-                        <th>Nama Costumer</th>
-                        <th>Alamat</th>
-                        <th>No. Telp</th>
-                        <th>Nama Produk</th>
-                        <th>Ukuran Produk</th>
-                        <th>Harga Produk</th>
+                        <th>Nama Vendor</th>
+                        <th>No Vendor</th>
+                        <th>Alamat Vendor</th>
+                        <th>Nama Bahan Baku</th>
+                        <th>Harga Bahan Baku</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($accounting_customer as $ac)
+                    @forelse ($accounting_vendor as $av)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{!! DNS1D::getBarcodeSVG($ac->kode_accounting_customer, 'C39', 0.4, 40) !!}
+                            <td>{{ $av->id }}</td>
+                            <td>{!! DNS1D::getBarcodeSVG($av->kode_vendor_customer, 'C39', 0.4, 30) !!}
                             </td>
-                            <td>{{ $ac->name }}</td>
-                            <td>{{ $ac->address }}</td>
-                            <td>{{ $ac->phone }}</td>
-                            <td>{{ $ac->nama_produk }}</td>
-                            <td>{{ $ac->ukuran }}</td>
-                            <td>Rp.@idr($ac->harga)</td>
-                            <td>{{ $ac->quantity }}</td>
-                            <td>Rp.@idr($ac->total)</td>
-                            <td><span class="badge bg-success">{{ $ac->tgl_pemesanan }}</span>
-                            </td>
-                            <td><span class="badge bg-success">{{ $ac->tgl_pembayaran }}</span>
-                            </td>
+                            <td>{{ $av->nama_vendor }}</td>
+                            <td>{{ $av->nohp }}</td>
+                            <td>{{ $av->alamat }}</td>
+                            <td>{{ $av->nama_bahan_baku }}</td>
+                            <td>Rp.@idr($av->harga)</td>
+
+                            @if ($av->nama_bahan_baku == 'Benang')
+                                <td>{{ $av->quantity }} <small>Yard</small></td>
+                            @elseif ($av->nama_bahan_baku == 'Kain')
+                                <td>{{ $av->quantity }} <small>Kg</small></td>
+                            @endif
+
+                            <td>Rp.@idr($av->total)</td>
+                            <td>{{ $av->tgl_pesanan }}</td>
+                            <td><span class="badge bg-success">{{ $av->tgl_pembayaran }}</span></td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="14" class="text-center">
-                                Data Kosong
+                                Tidak Ada Data
                             </td>
                         </tr>
                     @endforelse
                 </tbody>
-                <tfoot></tfoot>
             </table>
 
             <table class="hm-p table-bordered" style="width: 100%; margin-top: 20px">
