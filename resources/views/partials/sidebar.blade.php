@@ -62,6 +62,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="{{ request()->is('datavendor*') ? 'active' : '' }} ">
+                        <a href="{{ route('datavendor.index') }}">
+                            <em class="fa fa-handshake-o ">&nbsp;</em>
+                            Vendor
+                        </a>
+                    </li>
                     <li class="{{ request()->is('costumer*' && 'quotation*') ? 'active' : '' }}, parent">
                         <a href="#sub-item-2" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-shopping-basket ">&nbsp;</em>
@@ -91,17 +97,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ request()->is('datavendor*') ? 'active' : '' }} ">
-                        <a href="{{ route('datavendor.index') }}">
-                            <em class="fa fa-handshake-o ">&nbsp;</em>
-                            Vendor
-                        </a>
-                    </li>
                     {{-- <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
-                        <a href="{{ route('kasir.index') }}">
-                            <em class="fa fa-money  ">&nbsp;</em>
-                            Kasir
-                        </a>
+                    <a href="{{ route('kasir.index') }}">
+                        <em class="fa fa-money  ">&nbsp;</em>
+                        Kasir
+                    </a>
                     </li>
                     <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
                         <a href="{{ route('pesanan.index') }}">
