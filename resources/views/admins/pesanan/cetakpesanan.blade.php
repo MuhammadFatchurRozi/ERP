@@ -13,18 +13,22 @@
     <link rel="stylesheet" media="screen" href="{{ asset('style/css/bootstrap.css') }}" />
 
     <style>
-        @page {
-            size: 140mm 110mm;
-            margin: 0;
-        }
-
         @media print {
             body {
                 -webkit-print-color-adjust: exact !important;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                margin: auto;
+                margin-top: 0px !important;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
-        }
 
-        @media print {
             .cetak {
                 display: none;
             }
@@ -44,27 +48,26 @@
                 background-color: #d9534f !important;
             }
 
+            .label-warning {
+                background-color: #f0ad4e !important;
+            }
+
+            .label-success {
+                background-color: #5cb85c !important;
+            }
+
+            .label-info {
+                background-color: #5bc0de !important;
+            }
+
             .label {
                 color: #fff !important;
                 border-radius: 0.25em !important;
                 border: none !important;
             }
 
-            html,
-            body {
-                width: 210mm;
-                height: auto;
-            }
-
-
-            .invoice {
-                margin: 0;
-                border: initial;
-                border-radius: initial;
-                width: initial;
-                min-height: auto;
-                background: initial;
-                page-break-after: always;
+            .panel {
+                border: none !important;
             }
         }
     </style>
@@ -111,9 +114,13 @@
                                                 {{ date('l, j F Y, H:i A', strtotime($pesanans->estimasi)) }}</li>
                                             <li><strong>Status:</strong>
                                                 @if ($pesanans->status == 0)
-                                                    <td><span class="label label-danger">Belum Diproses</span></td>
+                                                    <span class="label label-success">Material Order</span>
                                                 @elseif ($pesanans->status == 1)
-                                                    <td><span class="label label-success">Sudah Diproses</span></td>
+                                                    <span class="label label-warning">Check Avability</span>
+                                                @elseif ($pesanans->status == 2)
+                                                    <span class="label label-info">Produce</span>
+                                                @elseif ($pesanans->status == 3)
+                                                    <span class="label label-danger">Mark as Down</span>
                                                 @endif
                                             </li>
                                         </ul>
@@ -142,7 +149,6 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Kaos Polos - {{ $pesanans->nama }} - {{ $pesanans->ukuran }}
-                                                        ({{ $pesanans->tgl_pesan }})
                                                     </td>
                                                     <td class="text-center">{{ $pesanans->jumlah }} <small
                                                             style="font-size: 9px; font-weight: 900;">Lusin</small></td>
@@ -150,10 +156,6 @@
                                                 </tr>
                                             </tbody>
                                             <tfoot>
-                                                <tr>
-                                                    <th colspan="2" class="text-right">Sub Total:</th>
-                                                    <th class="text-center">Rp. @idr($pesanans->total)</th>
-                                                </tr>
                                                 <tr>
                                                     <th colspan="2" class="text-right">Total:</th>
                                                     <th class="text-center">Rp. @idr($pesanans->total)</th>

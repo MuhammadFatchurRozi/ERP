@@ -27,13 +27,13 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <div class="large"><strong>{{ $all_pesanan }}</strong></div>
-                            <div class="text"><strong> Pesanan</strong></div>
+                            <div class="large"><strong>Rp.@idr($income)</strong></div>
+                            <div class="text"><strong> Pemasukan {{ $year }}</strong></div>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa fa-arrow-up"></i>
                         </div>
-                        <a href="{{ route('pesanan.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('pesanan.index') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <div class="large"><strong>{{ $sum_product }}</strong></div>
-                            <div class="text"><strong>Product Terjual</strong></div>
+                            <div class="large"><strong>Rp.@idr($expenditure) </strong></div>
+                            <div class="text"><strong>Pengeluaran {{ $year }}</strong></div>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-shopping-bag"></i>
+                            <i class="fa fa-arrow-down"></i>
                         </div>
-                        <a href="{{ route('product.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('product.index') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -110,18 +110,26 @@
                                     <tbody class="text-center" style="vertical-align:middle;">
                                         @forelse ($pesanans as $pesanan)
                                             <tr>
-                                                <td>{{ $pesanan->id }} </td>
+                                                <td>{{ $loop->iteration }} </td>
                                                 <td>{{ $pesanan->nama }} </td>
                                                 <td>{{ $pesanan->jumlah }} </td>
                                                 <td>{{ $pesanan->ukuran }} </td>
                                                 <td>{{ $pesanan->kain }} </td>
                                                 <td>{{ $pesanan->benang }} </td>
                                                 <td>{{ $pesanan->estimasi }} </td>
-                                                @if ($pesanan->status == 0)
-                                                    <td><span class="badge bg-danger">Belum Diproses</span></td>
-                                                @elseif ($pesanan->status == 1)
-                                                    <td><span class="badge bg-success">Sudah Diproses</span></td>
-                                                @endif
+                                                <td>
+                                                    @if ($pesanan->status == 0)
+                                                        <span class="badge bg-success">Material Order</span>
+                                                    @elseif ($pesanan->status == 1)
+                                                        <span class="badge bg-warning">Check Avability</span>
+                                                    @elseif ($pesanan->status == 2)
+                                                        <span class="badge bg-info">Produce</span>
+                                                    @elseif ($pesanan->status == 3)
+                                                        <span class="badge bg-primary">Mark as Down</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Gagal Produksi</span>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @empty
                                             ` <tr>

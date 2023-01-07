@@ -1,23 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Bahan_BakuController;
-use App\Http\Controllers\PesananController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\BoMController;
-use App\Http\Controllers\KasirController;
-use App\Http\Controllers\VendorController;
-use App\Http\Controllers\MaDController;
-use App\Http\Controllers\RfqController;
-use App\Http\Controllers\POController;
-use App\Http\Controllers\Confirm_OrderController;
-use App\Http\Controllers\CostumerController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\QuotationController;
-use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\{
+    LoginController,
+    RegisterController,
+    HomeController,
+    Bahan_BakuController,
+    PesananController,
+    ProductController,
+    BoMController,
+    KasirController,
+    VendorController,
+    MaDController,
+    RfqController,
+    POController,
+    Confirm_OrderController,
+    CostumerController,
+    OrderController,
+    QuotationController,
+    AccountingController,
+};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,7 +56,10 @@ Route::resource('bahan', Bahan_BakuController::class);
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
-Route::post('pesanan/{id}/proses', [PesananController::class, 'proses'])->name('pesanan.proses');  //Check Avibility (CA)
+Route::post('pesanan/{id}/mo', [PesananController::class, 'mo'])->name('pesanan.mo');  //MO (Material Order)
+Route::post('pesanan/{id}/check_avability', [PesananController::class, 'check_avability'])->name('pesanan.ca');  //CA (Check Avabilty)
+Route::post('pesanan/{id}/produce', [PesananController::class, 'produce'])->name('pesanan.produce'); //Produce
+Route::post('pesanan/{id}/mad', [PesananController::class, 'mad'])->name('pesanan.mad'); //MAD (Material as Down)
 Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('pesanan.cetak');
 
 #Product

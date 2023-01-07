@@ -31,6 +31,10 @@ return new class extends Migration
             $table->integer('id_produk');
             $table->string('estimasi');
             $table->integer('total_estimasi');
+            $table->integer('mo');
+            $table->integer('ca');
+            $table->integer('produce');
+            $table->integer('mad');
             $table->timestamps();
         });
     }
