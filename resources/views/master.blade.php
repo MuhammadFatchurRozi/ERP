@@ -99,7 +99,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Produk</th>
-                                            <th>Jumlah Kaos (pcs)</th>
+                                            <th>Quanitity <small>Per Lusin</small></th>
                                             <th>Ukuran</th>
                                             <th>Kain/<small>Kg</small></th>
                                             <th>Benang/<small>Yard</small></th>
