@@ -43,7 +43,7 @@
                                         <th rowspan="2">Tanggal Pemesanan</th>
                                         <th rowspan="2">Estimasi Jadi</th>
                                         <th rowspan="2">Status</th>
-                                        <th colspan="3">Action</th>
+                                        <th colspan="4">Action</th>
                                     </tr>
                                     <tr>
                                         <td>Nama Pemesan</td>
@@ -54,7 +54,10 @@
                                         <td>harga Produk</td>
                                         <td>Kain</td>
                                         <td>Benang</td>
-                                        <td>Proses</td>
+                                        <td>MO (Material Order)</td>
+                                        <td>CA (Check Avability)</td>
+                                        <td>Produce</td>
+                                        <td>MaD (Mark as Down)</td>
                                         <td>Cetak</td>
                                         <td>Edit</td>
                                     </tr>
@@ -78,21 +81,83 @@
                                             <td>{{ $pesanan->kain }}<small>Kg</small></td>
                                             <td>{{ $pesanan->benang }}<small>yard</small></td>
                                             <td>{{ $pesanan->tgl_pesan }} </td>
-                                            <td>{{ $pesanan->estimasi }}</td>
-                                            <td><span class="badge bg-danger">Belum Diproses</span></td>
+                                            <td><span class="badge bg-danger">{{ $pesanan->estimasi }}</span></td>
                                             <td>
-                                                <form action="{{ route('pesanan.proses', $pesanan->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-info">Proses</button>
-                                                </form>
+                                                @if ($pesanan->status == 0)
+                                                    <span class="badge bg-success">Material Order</span>
+                                                @elseif ($pesanan->status == 1)
+                                                    <span class="badge bg-warning">Check Avability</span>
+                                                @elseif ($pesanan->status == 2)
+                                                    <span class="badge bg-info">Produce</span>
+                                                @elseif ($pesanan->status == 3)
+                                                    <span class="badge bg-primary">Mark as Down</span>
+                                                @else
+                                                    <span class="badge bg-danger">Gagal Produksi</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($pesanan->mo == 1)
+                                                    <form action="{{ route('pesanan.mo', $pesanan->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-info">MO</button>
+                                                    </form>
+                                                @elseif ($pesanan->mo == 2)
+                                                    <button disabled="disabled" class="btn btn-sm btn-success">MO</button>
+                                                @else
+                                                    <button disabled="disabled" class="btn btn-sm btn-danger">MO</button>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($pesanan->ca == 1)
+                                                    <form action="{{ route('pesanan.ca', $pesanan->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-info">CA</button>
+                                                    </form>
+                                                @elseif ($pesanan->ca == 2)
+                                                    <button disabled="disabled" class="btn btn-sm btn-success">CA</button>
+                                                @else
+                                                    <button disabled="disabled" class="btn btn-sm btn-danger">CA</button>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($pesanan->produce == 1)
+                                                    <form action="{{ route('pesanan.produce', $pesanan->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-info">Produce</button>
+                                                    </form>
+                                                @elseif ($pesanan->produce == 2)
+                                                    <button disabled="disabled"
+                                                        class="btn btn-sm btn-success">Produce</button>
+                                                @else
+                                                    <button disabled="disabled"
+                                                        class="btn btn-sm btn-danger">Produce</button>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($pesanan->mad == 1)
+                                                    <form action="{{ route('pesanan.mad', $pesanan->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-info">MaD</button>
+                                                    </form>
+                                                @elseif ($pesanan->mad == 2)
+                                                    <button disabled="disabled" class="btn btn-sm btn-success">MaD</button>
+                                                @else
+                                                    <button disabled="disabled" class="btn btn-sm btn-danger">MaD</button>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="{{ route('pesanan.cetak', $pesanan->id) }}"
-                                                    class="btn btn-sm btn-default"><i class="fa fa-print"> Cetak</i></a>
+                                                    class="btn btn-sm btn-default"><i class="fa fa-print"></i></a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('pesanan.edit', $pesanan->id) }}"
-                                                    class="btn btn-sm btn-warning"><i class="fa fa-pencil"> Edit</i></a>
+                                                @if ($pesanan->status == 0 || $pesanan->status == 1)
+                                                    <a href="{{ route('pesanan.edit', $pesanan->id) }}"
+                                                        class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                                @else
+                                                    <button class="btn btn-sm btn-warning" disabled><i
+                                                            class="fa fa-pencil"></i></button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty

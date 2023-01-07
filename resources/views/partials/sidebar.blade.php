@@ -49,7 +49,8 @@
                         </a>
                         <ul class="children collapse" id="sub-item-1">
                             <li>
-                                <a class="{{ request()->is('rfq*') ? 'active' : '' }}" href="{{ route('rfq.index') }}">
+                                <a class="{{ request()->is('rfq*') ? 'active' : '' }}"
+                                    href="{{ route('rfq.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     RFQ
                                 </a>
@@ -72,19 +73,22 @@
                         </a>
                         <ul class="children collapse" id="sub-item-2">
                             <li>
-                                <a class="{{ request()->is('costumer*') ? 'active' : '' }}" href="{{ route('costumer.index') }}">
+                                <a class="{{ request()->is('costumer*') ? 'active' : '' }}"
+                                    href="{{ route('costumer.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Costumer
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ request()->is('quotation*') ? 'active' : '' }}" href="{{ route('quotation.index') }}">
+                                <a class="{{ request()->is('quotation*') ? 'active' : '' }}"
+                                    href="{{ route('quotation.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Quotations
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ request()->is('order*') ? 'active' : '' }}" href="{{ route('order.index') }}">
+                                <a class="{{ request()->is('order*') ? 'active' : '' }}"
+                                    href="{{ route('order.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Order
                                 </a>
@@ -97,24 +101,35 @@
                             Vendor
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
-                        <a href="{{ route('kasir.index') }}">
-                            <em class="fa fa-money  ">&nbsp;</em>
-                            Kasir
+                    <li class="{{ request()->is('pesanan*') ? 'active' : '' }}, parent">
+                        <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
+                            <em class="fa fa-money ">&nbsp;</em>
+                            Pemesanan
+                            <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
+                                <em class="fa fa-plus"></em>
+                            </span>
                         </a>
+                        <ul class="children collapse" id="sub-item-3">
+                            <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
+                                <a href="{{ route('kasir.index') }}">
+                                    <em class="fa fa-money  ">&nbsp;</em>
+                                    Kasir
+                                </a>
+                            </li>
+                            <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
+                                <a href="{{ route('pesanan.index') }}">
+                                    <em class="fa fa-shopping-cart">&nbsp;</em>
+                                    Detail Pesanan
+                                </a>
+                            </li>
+                            <li class="{{ request()->is('mad*') ? 'active' : '' }}">
+                                <a href="{{ route('mad.index') }}">
+                                    <em class="fa fa-check-circle  ">&nbsp;</em>
+                                    Data MaD
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
-                        <a href="{{ route('pesanan.index') }}">
-                            <em class="fa fa-shopping-cart">&nbsp;</em>
-                            Detail Pesanan
-                        </a>
-                    </li>
-                    <li class="{{ request()->is('mad*') ? 'active' : '' }}">
-                        <a href="{{ route('mad.index') }}">
-                            <em class="fa fa-check-circle  ">&nbsp;</em>
-                            Data MaD
-                        </a>
-                    </li> --}}
                     <li class="{{ request()->is('accounting*') ? 'active' : '' }}, parent">
                         <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-calculator ">&nbsp;</em>
@@ -125,13 +140,15 @@
                         </a>
                         <ul class="children collapse" id="sub-item-3">
                             <li>
-                                <a class="{{ request()->is('costumerinvoice*') ? 'active' : '' }}" href="{{ route('accounting.index') }}">
+                                <a class="{{ request()->is('costumerinvoice*') ? 'active' : '' }}"
+                                    href="{{ route('accounting.index') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Costumer Invoice
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ request()->is('vendorbill*') ? 'active' : '' }}" href="{{ route('accounting.create') }}">
+                                <a class="{{ request()->is('vendorbill*') ? 'active' : '' }}"
+                                    href="{{ route('accounting.create') }}">
                                     <span class="fa fa-arrow-right">&nbsp;</span>
                                     Vendor Bill
                                 </a>

@@ -127,8 +127,8 @@ class KasirController extends Controller
             'jumlah' => $request->jumlah,
             'total' => $request->total,
             'tgl_pesan' => $tanggal,
-            'kain' => $get_kain,
-            'benang' => $get_benang,
+            'kain' => 0,
+            'benang' => 0,
             'status' => 0,
             'nama_pemesan' => $request->nama_pemesan,
             'alamat_pemesan' => $request->alamat_pemesan,
@@ -136,6 +136,10 @@ class KasirController extends Controller
             'id_produk' => $request->id,
             'estimasi' => $hasil_estimasi->format('Y-m-d, H:i'),
             'total_estimasi' => $sum_estimasi, //untuk menampung jumlah waktu estimasi per pesanan
+            'mo' => 1,
+            'ca' => 0,
+            'produce' => 0,
+            'mad' => 0,
         ]);
 
         if ($pesanan) {
