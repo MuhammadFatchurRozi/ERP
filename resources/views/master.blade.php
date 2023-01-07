@@ -33,7 +33,7 @@
                         <div class="icon">
                             <i class="fa fa-arrow-up"></i>
                         </div>
-                        <a href="{{ route('pesanan.index') }}" class="small-box-footer">Report <i
+                        <a href="{{ route('accounting.index') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <div class="icon">
                             <i class="fa fa-arrow-down"></i>
                         </div>
-                        <a href="{{ route('product.index') }}" class="small-box-footer">Report <i
+                        <a href="{{ route('accounting.create') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

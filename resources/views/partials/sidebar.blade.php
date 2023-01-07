@@ -131,14 +131,14 @@
                         </ul>
                     </li>
                     <li class="{{ request()->is('accounting*') ? 'active' : '' }}, parent">
-                        <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
+                        <a href="#sub-item-4" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-calculator ">&nbsp;</em>
                             Accounting
                             <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
                                 <em class="fa fa-plus"></em>
                             </span>
                         </a>
-                        <ul class="children collapse" id="sub-item-3">
+                        <ul class="children collapse" id="sub-item-4">
                             <li>
                                 <a class="{{ request()->is('costumerinvoice*') ? 'active' : '' }}"
                                     href="{{ route('accounting.index') }}">
