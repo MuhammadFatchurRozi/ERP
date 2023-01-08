@@ -25,7 +25,7 @@ class PesananController extends Controller
      */
     public function index()
     {
-        $pesanans = pesanan::orderBy('tgl_pesan','desc')->paginate(5);
+        $pesanans = pesanan::orderBy('id','desc')->paginate(5);
         return view('admins.pesanan.tampilpesanan', compact('pesanans'));
     }
 
@@ -231,10 +231,11 @@ class PesananController extends Controller
     public function produce($id)
     {
         $pesanans = pesanan::find($id);
+        $estimated = $pesanans->estimasi;
         $now = Carbon::now();
 
         //check_estimated
-        if($pesanans->estimasi >= $now){
+        if($now->gte($estimated)){
             $pesanans->update([
                 'status' => 4,
                 'produce' => 0,

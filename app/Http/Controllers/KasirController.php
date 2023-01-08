@@ -82,10 +82,10 @@ class KasirController extends Controller
             else {
                 $kode_pesan = "ERP-LPE-$request->ukuran-$request->kode";
             }
-        
+
         // Pick DateTime
-            $tanggal = date('Y-m-d, H:i');
-        
+            $tanggal = date('Y-m-d H:i:s');
+
         $boms = bom::find($request->id); // Find Bom by ID from Request (ID kasir)
 
         $current = Carbon::now(); // ambil tanggal,waktu sekarang
@@ -114,7 +114,7 @@ class KasirController extends Controller
             else{
                 $add_day_estimasi = $current->addMinutes($sum_estimasi);
             }
-        
+
         // hasil estimasi
             $hasil_estimasi = $add_day_estimasi;
 
@@ -134,7 +134,7 @@ class KasirController extends Controller
             'alamat_pemesan' => $request->alamat_pemesan,
             'no_pemesan' => $request->no_pemesan,
             'id_produk' => $request->id,
-            'estimasi' => $hasil_estimasi->format('Y-m-d, H:i'),
+            'estimasi' => $hasil_estimasi->format('Y-m-d H:i:s'),
             'total_estimasi' => $sum_estimasi, //untuk menampung jumlah waktu estimasi per pesanan
             'mo' => 1,
             'ca' => 0,
