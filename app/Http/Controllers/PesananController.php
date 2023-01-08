@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\{
-    pesanan, 
-    bahan_baku, 
-    product, 
-    mad, 
+    pesanan,
+    bahan_baku,
+    product,
+    mad,
     bom
 };
 
@@ -124,7 +124,7 @@ class PesananController extends Controller
     public function mo($id)
     {
         $pesanans = pesanan::find($id);
-        
+
         if ($pesanans->nama == 'Lengan Panjang' && $pesanans->ukuran == 'M') {
             $kain = bom::where('id', 1)->first();
             $benang = bom::where('id', 1)->first();
@@ -177,7 +177,7 @@ class PesananController extends Controller
     {
         $pesanans = pesanan::find($id);
 
-        // Inisiliasi Variabel Untuk Menampung Data Kain Dan Benang Dari Tabel Bahan Baku, Digunakan Untuk Menghitung Persediaan 
+        // Inisiliasi Variabel Untuk Menampung Data Kain Dan Benang Dari Tabel Bahan Baku, Digunakan Untuk Menghitung Persediaan
         $kain_bahan = bahan_baku::find(1);
         $kain_bahan = $kain_bahan->stok;
         $benang_bahan = bahan_baku::find(2);
@@ -230,7 +230,7 @@ class PesananController extends Controller
     //Proses Produksi
     public function produce($id)
     {
-        $pesanans = pesanan::find(4);
+        $pesanans = pesanan::find($id);
         $now = Carbon::now();
 
         //check_estimated
@@ -261,7 +261,7 @@ class PesananController extends Controller
         $pesanans = pesanan::find($id); //Mengambil Data Pesanan Berdasarkan ID
         $mad = mad::all(); //Mengambil Semua Data Dari Tabel Mad
         $produk = product::find($pesanans->id_produk); //Mengambil Data Produk Berdasarkan id_produk Pesanan
-            
+
         // Proses Post ke Table MaD
         $mad = mad::create([
             'kode_pesanan' => $pesanans->kode_pesanan,
