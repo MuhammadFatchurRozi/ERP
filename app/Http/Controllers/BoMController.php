@@ -19,7 +19,7 @@ class BoMController extends Controller
     public function index()
     {
         $boms = bom::latest()->paginate(8);
-        return view('admins.bom.tampilbom', compact('boms'));
+        return view('admins.BoM.tampilbom', compact('boms'));
     }
 
     /**
@@ -30,7 +30,7 @@ class BoMController extends Controller
     public function create()
     {
         $products = product::all();
-        return view('admins.bom.tambahbom', compact('products'));
+        return view('admins.BoM.tambahbom', compact('products'));
     }
 
     /**

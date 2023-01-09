@@ -23,7 +23,7 @@ class QuotationController extends Controller
     public function index()
     {
         $quotations = quatation::orderBy('tgl_pemesanan','DESC')->get();
-        return view('admins.quotation.tampilquotation',compact('quotations'));
+        return view('admins.Quotation.tampilquotation',compact('quotations'));
     }
 
     /**
@@ -35,7 +35,7 @@ class QuotationController extends Controller
     {
         $costumers = costumer::all();
         $products = product::where('stok' ,'>' ,'0')->get();
-        return view('admins.quotation.tambahquotation',compact('costumers','products'));
+        return view('admins.Quotation.tambahquotation',compact('costumers','products'));
     }
 
     /**
@@ -209,8 +209,8 @@ class QuotationController extends Controller
             $output = '<option value="' . $row->$costumer2 . '" name="address" selected>' . ucfirst($row->$costumer2) . '</option>';
         }
         echo $output;
-    }   
-    
+    }
+
     //Ajax for table ukuran
     public function product1(Request $request)
     {
