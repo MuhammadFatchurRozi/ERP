@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\mad;
+use App\Models\mad;
 
 class MaDController extends Controller
 {
@@ -15,7 +15,7 @@ class MaDController extends Controller
     public function index()
     {
         $mads = mad::orderBy('tgl_pesan', 'desc')->paginate(8);
-        return view ('admins.mad.tampilmad', compact('mads'));
+        return view ('admins.MaD.tampilmad', compact('mads'));
     }
 
     /**
