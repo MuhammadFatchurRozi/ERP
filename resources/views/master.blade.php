@@ -33,7 +33,9 @@
                         <div class="icon">
                             <i class="fa fa-arrow-up"></i>
                         </div>
-                        <a href="{{ route('accounting.index') }}" class="small-box-footer">Report <i
+                        <a href="{{ route('accounting.index') }}" class="small-box-footer">More Info Report <i
+                            class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('home.cetak_customer') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -48,7 +50,9 @@
                         <div class="icon">
                             <i class="fa fa-arrow-down"></i>
                         </div>
-                        <a href="{{ route('accounting.create') }}" class="small-box-footer">Report <i
+                        <a href="{{ route('accounting.create') }}" class="small-box-footer">More Info Report <i
+                            class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('home.cetak_vendor') }}" class="small-box-footer">Report <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -65,6 +69,8 @@
                         </div>
                         <a href="{{ route('home.kain') }}" class="small-box-footer">More info <i
                                 class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('home.kain_create') }}" class="small-box-footer">Order <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -80,6 +86,8 @@
                         </div>
                         <a href="{{ route('home.benang') }}" class="small-box-footer">More info <i
                                 class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('home.benang_create') }}" class="small-box-footer">Order <i
+                            class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

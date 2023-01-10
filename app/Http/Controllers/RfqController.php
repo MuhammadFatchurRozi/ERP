@@ -71,7 +71,7 @@ class RfqController extends Controller
             'quantity' => $request->quantity,
             'total' => $request->total,
             'tgl_pesan' => $now->format('Y-m-d, H:i'),
-        ]); 
+        ]);
 
         $confirm_order = vendor::find($request->id);
         $count_order = $confirm_order->count_confirm_order + 1;

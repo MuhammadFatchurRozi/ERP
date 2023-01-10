@@ -31,7 +31,7 @@ class AccountingController extends Controller
         {
             $accounting_customer = accounting_customer::orderBy('created_at', 'desc')
             ->get();
-            
+
             return view('admins.accounting.tampilinvoice', compact('accounting_customer'));
         }
     }
@@ -56,7 +56,7 @@ class AccountingController extends Controller
         {
             $accounting_vendor = accounting_vendor::orderBy('created_at', 'desc')
             ->get();
-            
+
             return view('admins.accounting.tampilvendorbill', compact('accounting_vendor'));
         }
     }
@@ -80,7 +80,9 @@ class AccountingController extends Controller
      */
     public function show($id)
     {
-        //
+        $accounting_customer = accounting_customer::find($id);
+
+        return view ('admins.accounting.cetak_customer_id', compact('accounting_customer'));
     }
 
     /**

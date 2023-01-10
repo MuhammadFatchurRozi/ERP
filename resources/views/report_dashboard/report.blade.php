@@ -8,7 +8,11 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Report Page - {{ $accounting_customer->to_accounting }}</title>
+        @if ($get_data->count() == 0)
+        <title>Report Page - Null</title>
+        @else
+        <title>Report Page - {{ $title_date->to_accounting }}</title>
+        @endif
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <style>
             @page {
@@ -144,11 +148,19 @@
                             <h3>
                                 Report
                                 <span style=" font-weight: 300; font-size: 85%; color: #626262; margin-left: 5px;">
-                                    Order Date: {{ $accounting_customer->to_accounting }}
+                                    @if ($get_data->count() == 0)
+                                    Order Date: null
+                                    @else
+                                    Order Date: {{ $title_date->to_accounting }}
+                                    @endif
                                 </span>
                                 <p style=" font-weight: 300; font-size: 85%; color: #626262; margin-top: 7px;">
                                     Status:
-                                    <span style="color: #00bb07">{{ $accounting_customer->status }}</span><br />
+                                    @if ($get_data->count() == 0)
+                                    <span style="color: #00bb07">null</span><br />
+                                    @else
+                                    <span style="color: #00bb07">{{ $title_date->status }}</span><br />
+                                    @endif
                                 </p>
                             </h3>
                         </td>
@@ -174,7 +186,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($accounting_customer as $ac)
+                    @forelse ($get_data as $ac)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{!! DNS1D::getBarcodeSVG($ac->kode_accounting_customer, 'C39', 0.4, 40) !!}

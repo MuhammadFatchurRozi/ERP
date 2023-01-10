@@ -96,7 +96,7 @@
                                         <td><span class="badge bg-success">{{ $ac->tgl_pembayaran }}</span></td>
                                         <td><span class="badge bg-success">{{ $ac->status }}</span></td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-print"></i>
+                                            <a href="{{ route('accounting.show',$ac->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-print"></i>
                                                 Cetak</a>
                                         </td>
                                     </tr>
