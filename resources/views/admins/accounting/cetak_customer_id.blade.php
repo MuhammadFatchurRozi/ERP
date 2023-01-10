@@ -174,31 +174,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($accounting_customer as $ac)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{!! DNS1D::getBarcodeSVG($ac->kode_accounting_customer, 'C39', 0.4, 40) !!}
+                            <td>{{ $accounting_customer->id }}</td>
+                            <td>{!! DNS1D::getBarcodeSVG($accounting_customer->kode_accounting_customer, 'C39', 0.4, 40) !!}
                             </td>
-                            <td>{{ $ac->name }}</td>
-                            <td>{{ $ac->address }}</td>
-                            <td>{{ $ac->phone }}</td>
-                            <td>{{ $ac->nama_produk }}</td>
-                            <td>{{ $ac->ukuran }}</td>
-                            <td>Rp.@idr($ac->harga)</td>
-                            <td>{{ $ac->quantity }}</td>
-                            <td>Rp.@idr($ac->total)</td>
-                            <td><span class="badge bg-success">{{ $ac->tgl_pemesanan }}</span>
+                            <td>{{ $accounting_customer->name }}</td>
+                            <td>{{ $accounting_customer->address }}</td>
+                            <td>{{ $accounting_customer->phone }}</td>
+                            <td>{{ $accounting_customer->nama_produk }}</td>
+                            <td>{{ $accounting_customer->ukuran }}</td>
+                            <td>Rp.@idr($accounting_customer->harga)</td>
+                            <td>{{ $accounting_customer->quantity }}</td>
+                            <td>Rp.@idr($accounting_customer->total)</td>
+                            <td><span class="badge bg-success">{{ $accounting_customer->tgl_pemesanan }}</span>
                             </td>
-                            <td><span class="badge bg-success">{{ $ac->tgl_pembayaran }}</span>
+                            <td><span class="badge bg-success">{{ $accounting_customer->tgl_pembayaran }}</span>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="14" class="text-center">
-                                Data Kosong
-                            </td>
-                        </tr>
-                    @endforelse
+
                 </tbody>
                 <tfoot></tfoot>
             </table>
@@ -208,7 +201,7 @@
                     <tr style="background: #fcbd02">
                         <th>Total Order Value</th>
                         <td style="width: 120px; text-align: right; border-right: none">
-                            <b>Rp.@idr($sum_totals)</b>
+                            <b>Rp.@idr($accounting_customer->total)</b>
                         </td>
                         <td colspan="5" style="border-left: none"></td>
                     </tr>

@@ -47,7 +47,11 @@ use App\Http\Controllers\{
 #Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('bahan/kain', [HomeController::class, 'kain'])->name('home.kain');
+Route::get('rfq/kain/create', [HomeController::class, 'kain_create'])->name('home.kain_create');
 Route::get('bahan/benang', [HomeController::class, 'benang'])->name('home.benang');
+Route::get('rfq/benang/create', [HomeController::class, 'benang_create'])->name('home.benang_create');
+Route::get('bahan/report_income', [HomeController::class, 'cetak_income'])->name('home.cetak_customer');
+Route::get('bahan/report_expenditure', [HomeController::class, 'cetak_expenditure'])->name('home.cetak_vendor');
 
 
 #Bahan baku
@@ -85,7 +89,7 @@ Route::get('/confirm/{id}/confirm/{kode_rfq}', [Confirm_OrderController::class, 
 Route::resource('bom', BomController::class);
 Route::post('/bom/fetch', [BomController::class, 'fetch'])->name('bom.dependent'); //Ajax Fetch Data nama produk from products
 Route::post('/bom/fetch1', [BomController::class, 'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
-Route::get('/bom/{id}/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF  
+Route::get('/bom/{id}/cetak', [BomController::class, 'cetak'])->name('bom.cetak'); //Route Cetak PDF
 
 #MaD
 Route::resource('mad', MadController::class);
