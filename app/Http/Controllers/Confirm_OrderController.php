@@ -52,7 +52,7 @@ class Confirm_OrderController extends Controller
     public function show($id)
     {
         $confirm = confirm_order::where('id_vendor', $id)->orderBy('id', 'desc')->get();
-        return view('admins.data-vendor.confirm-vendor.tampilconfirmvendor', compact('confirm'));
+        return view('admins.data-vendor.Confirm-vendor.tampilconfirmvendor', compact('confirm'));
     }
 
     /**

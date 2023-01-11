@@ -42,7 +42,7 @@
                     <li class="{{ request()->is('rfq*' && 'po*') ? 'active' : '' }}, parent">
                         <a href="#sub-item-1" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-cart-plus ">&nbsp;</em>
-                            Order Bahan
+                            Purchasing
                             <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right">
                                 <em class="fa fa-plus"></em>
                             </span>
@@ -104,7 +104,7 @@
                     <li class="{{ request()->is('pesanan*') ? 'active' : '' }}, parent">
                         <a href="#sub-item-3" data-toggle="collapse" aria-expanded="false">
                             <em class="fa fa-money ">&nbsp;</em>
-                            Pemesanan
+                            Manufacturing Order
                             <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
                                 <em class="fa fa-plus"></em>
                             </span>
@@ -113,13 +113,13 @@
                             <li class="{{ request()->is('kasir*') ? 'active' : '' }}">
                                 <a href="{{ route('kasir.index') }}">
                                     <em class="fa fa-money  ">&nbsp;</em>
-                                    Kasir
+                                    Mark as To Do
                                 </a>
                             </li>
                             <li class="{{ request()->is('pesanan*') ? 'active' : '' }}">
                                 <a href="{{ route('pesanan.index') }}">
                                     <em class="fa fa-shopping-cart">&nbsp;</em>
-                                    Detail Pesanan
+                                    Detail MaT
                                 </a>
                             </li>
                             <li class="{{ request()->is('mad*') ? 'active' : '' }}">
