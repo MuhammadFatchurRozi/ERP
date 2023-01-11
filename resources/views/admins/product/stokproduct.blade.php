@@ -11,14 +11,14 @@
                         </em>
                     </a></li>
                 <li class="breadcrumb-item"><a href="{{ route('product.index') }}"> Detail Produk</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Edit Produk</li>
+                <li class="breadcrumb-item active" aria-current="page"> Tambah Stok Produk</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Edit Produk</h2>
+                <h2 class="page-header">Tambah Stok Produk</h2>
             </div>
         </div>
     </div>
